@@ -4,3 +4,12 @@
 *.backup
 *.xml
 *.bib~
+*.txt~
+*.bbl
+*.blg
+*.lof
+*.log
+*.log
+*.lot
+*.out
+*.toc
