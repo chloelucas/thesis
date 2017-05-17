@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [ $# -lt 1 ]
+then
+    for f in *.svg; do 
+        e=$(basename $f svg)eps;
+        echo "Converting $f to a pdf image!"
+        inkscape --export-embed-fonts  --export-text-to-path -f $f -E $e; 
+        epstopdf $e
+        rm $e
+    done
+else
+    for f in $*; do
+        if [ -f $f -a ${f#*.} = "svg" ]
+        then
+            e=$(basename $f svg)eps;
+            echo "Converting $f to a pdf image!"
+            inkscape --export-embed-fonts  --export-text-to-path -f $f -E $e; 
+            epstopdf $e
+            rm $e
+        else
+            echo "File $f is not a SVG!"
+        fi
+    done
+fi

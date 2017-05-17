@@ -1,0 +1,78 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \titlehead	Kopfzeile der Titelseite
+% \subject	Thema des Dokumentes
+% \title	Titel des Dokumentes
+% \subtitle	Untertitel
+% \author	Autor des Dokumentes
+% \date	Datum der Veröffentlichung
+% \dedication	Widmung ;-)
+% \publishers	Herausgeber
+% \thanks	Fußnote
+% \begin{abstract}
+%   ...
+% \end{abstract}
+
+\newcommand{\mytitle}{}
+\newcommand{\setmytitle}[1]{\renewcommand{\mytitle}{#1}}
+
+\newcommand{\myauthor}{}
+\newcommand{\setmyauthor}[1]{\renewcommand{\myauthor}{#1}}
+
+\newcommand{\mysubject}{}
+\newcommand{\setmysubject}[1]{\renewcommand{\mysubject}{#1}}
+
+
+\setmytitle{Modelling and simulation of electricity generation from run-of-the-river hydroelectric power plants based on open access geodatabases}
+\setmyauthor{Chloe Lucas}
+\setmysubject{Master Thesis}
+
+\titlehead{%
+	\fontsize{14pt}{12} \selectfont%
+	\textbf{Fakultät III} \\%
+	\vspace{0.5cm}%
+	Institute for Energy Engineering
+}
+
+\title{}
+\subject{\vspace{0.1cm}%
+	\mysubject \\
+	\vspace{0.5cm}%
+	\mytitle%
+	\vspace{-1.5cm}%
+}
+\author{%
+	{
+	\renewcommand{\arraystretch}{1}
+	\fontsize{12pt}{12} \selectfont%
+	\begin{tabular}{lcl}%
+		Submitted by & : & \myauthor \\%
+		\\
+		Born on & : & January 09, 1992\\%
+	\end{tabular}
+	}\\[0.8cm]%
+	{
+	\fontsize{12pt}{12} \selectfont%
+for the obtention of the degree of%\\
+ 	}
+		\\%
+ 		\textbf{Master of Science}\\%
+ 		\textbf{(MSc.)}\\%
+ 		\\%
+	{
+	\renewcommand{\arraystretch}{1}
+	\fontsize{12pt}{12} \selectfont%
+ 	\begin{tabular}{lcl}
+		Supervisors & : & Msc. Birgit Schachler (Reiner Lemoine Institute) \\%
+		& & Dipl.-Ing. Mathias Hofmann (Technical University Berlin)\\%
+		\\
+ 		Responsible Professor & : & Prof. Dr.-Ing. George Tsatsaronis\\%
+		\\%
+		Student number & : & 376567 \\%
+		\\%
+		Submitted on & : & \today, Berlin%
+	\end{tabular}%
+	}
+}
+\date{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
