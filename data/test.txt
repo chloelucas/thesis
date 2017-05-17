@@ -1,0 +1,12 @@
+' Test
+Sub write_file(text As String)
+        Dim fileSaveName
+        fileSaveName = Application.GetSaveAsFilename("*.prg", _
+            fileFilter:="PRG Files (*.prg), *.prg")
+        If fileSaveName <> False Then
+            Open fileSaveName For Output As #1
+            Print #1, text
+            Close #1
+        End If
+End Sub
+
