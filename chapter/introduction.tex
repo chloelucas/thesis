@@ -2,25 +2,19 @@
 \label{chap:introduction}
 
 \section{Energy systems modelling}
-Pollution, global warming, depletion of fossil ressources, conflicts about access to fossil fuels --> energy transition \newline
-Renewable energies (wind, solar, hydro, waves, geothermy, biomasse) --> decentralized, intermittent (for some of them) and highly dependant on Standort, weather, relief, etc.... \newline
-Complexification of the energy system :\newline
-* Supply doesn't follow demand (supply is not steuerbar)\newline
-* No general solution applicable everywhere\newline
-* Supply not produced where demand is\newline
---> use of modelisation amd simulations to find an optimal energy mix / distribution schema / optimal energy system\newline
-Weather data for each standort\newline
-Reliable and consistent info about Standort (existing plants, potential and space for new plants, flexibility)\newline
-Energy conversion models\newline
-Energy distribution models\newline
-Energy demand data (load curve)\newline
-Optimisation tools\newline
+
+In the past decades, the need for an energy transition has emerged in many countries. This need has been acknowledge in the sustainable development goals \cite{un_sdgs} set by the United Nations, in particular the goals 7 \cite{un_sdg7} and 11 \cite{un_sdg11} : ``affordable and clean energy'' and ``sustainable cities and communities''. However, a successful energy transition will have a positive impact on other development goals as well, through a reduction of pollution, global warming, and conflicts about the access to fosil fuels. \newline
+The transition in the production of energy is made possible by replacing conventional fuels such as coal, gas or uranium by renewable energy sources, such as wind, sunlight, kinetic and potential energy of water, geothermal energy or biomass. These energy sources are harnessed on site, and the potential of a site is highly dependant on the weather, the relief, as well as the time of the year or of the day. This leads to a more decentralized and intemittent production compared to conventional power plants, which complexifies the energy system. \newline
+Because of the intermittency of the production and the strong dependance on weather, the energy supply is not controllable, and cannot always follow the demand. Furthermore, the variablility in the potential of each type of renewable energy depending on the site make it impossible to have a general solution applicable everywhere. This prompts the need for reliable energy systems modelling to simulate and optimize the energy mix, distribution schema and energy management of a given region. The simulation of energy systems requires good quality energy conversion and distribution models, consistent data about the weather, the existing plants in the region, and the energy demand, and robust optimisation tools.
+
 
 \section{Open source}
-Publication of results, not tools --> same models developped by different actors --> not efficient  \newline
-Growing volume of research about RE + tools available to share and work together + complexity of the models requiring specialists of differents fields --> synergy \newline
-Insuffisant transparency \newline
-Project openFRED (and short presentation of RLI?)\newline
+
+The volume of research about renewable energy has grown over the last decades (more than 180 university and 120 non-university research institutes are conducting research about energy transition in Germany alone \cite{bmbf_energiewende}), and various actors of the energy sector are developping models for energy systems and gathering input data for these models. The complexity of the models has also increased, requiring specialists of differents fields to work together (geographers, meteorologists, energy specialists, economists, sociologists,etc). A wide range of case studies can be found in research articles, exposing the methods used and the results of these models for specific regions. However the tools themselves are rarely made public, which forces different actors to inject time, money and energy into developping the same models and gathering the same data. \newline
+The Open Energy Modelling initiative (Openmod) was launched in september 2014 by several researchers in Germany and abroad \cite{openmod_workshop} and aims at promoting open energy modelling in Europe. They define “Open” as model source code that can be studied, changed and improved as well as freely available energy system data and state that more openness in energy modelling will increase transparency and credibility, reduce wasteful double-work and improve overall quality \cite{openmod_manifesto}. \newline
+The Reiner Lemoine institute has been part of this initiative since the beginning and  carries out several projects of open energy modelling, such as oemof (open energy system modelling framework \cite{rli_oemof}), open\_eGo (open electricity grid optimisation \cite{rli_openego}) or open\_FRED (open feed-in time series based on a renewable energy database \cite{rli_openfred}). This thesis is part of the open\_FRED project, which aims at creating and making available in an open data base consistent standard data of all relevant data sets (power plant, climate, and basic data), and at developping compatible open source simulations models, which will produce feed-in time series of fluctuating renewable energies. \newline
+The topic of this thesis is the modelling and simulation of electricity generation from run-of-the-river hydroelectric power plants based on open access geodatabases. It aims at developping an open-source Python model able to simulate time series of the electrical output of one or several run-of-the-river power plants based on open source datasets of power plants, weather, and river discharge.
+
 
 \section{Hydropower}
 Hydropower in the world \newline
