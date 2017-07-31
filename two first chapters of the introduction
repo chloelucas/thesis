@@ -1,0 +1,21 @@
+two first chapters of the instroduction
+#
+# Es sieht so aus, als committen Sie einen Merge.
+# Falls das nicht korrekt ist, löschen Sie bitte die Datei
+#	.git/MERGE_HEAD
+# und versuchen Sie es erneut.
+
+
+# Bitte geben Sie eine Commit-Beschreibung für Ihre Änderungen ein. Zeilen,
+# die mit '#' beginnen, werden ignoriert, und eine leere Beschreibung
+# bricht den Commit ab.
+#
+# Commit-Ersteller: Chloé Lucas <RL-INSTITUT\chloe.lucas@solydxk>
+#
+# Auf Branch master
+# Ihr Branch und 'origin/master' sind divergiert,
+# und haben jeweils 1 und 1 unterschiedliche Commits.
+#   (benutzen Sie "git pull", um Ihren Branch mit dem Remote-Branch zusammenzuführen)
+#
+# Alle Konflikte sind behoben, aber Sie sind immer noch beim Merge.
+#
