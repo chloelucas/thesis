@@ -48,6 +48,7 @@
 \usepackage{units}		% Einheiten komfortabel darstellen \unit[Zahlenwert]{Einheit}
 \usepackage{textcomp}		% einige Text-Mode Mathe Symbole, wie zB Mal-Zeichen x (siehe The Comprehensive LaTeX Symbol List)
 \usepackage{gensymb}		% celsius, micro, ohm, perthousand, degree in Mathe und Textmodus
+\usepackage{tabto}		% Use of tabs to indent
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Einbindung von allen Grafikformaten möglich
@@ -137,7 +138,7 @@
 \captionsetup{format=hang,margin=30pt}
 \captionsetup[lstlisting]{skip=13pt}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\graphicspath{{images/}}
 
 
 %% Listings-Formatierung
@@ -164,7 +165,11 @@
 
 % Tabellen
 % neuer Spaltentyp C --> zentrierte X Spalten
-\newcolumntype{C}{>{\centering\arraybackslash}X}
+%\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
 % Größere Höhe von Tabellenzellen
 \renewcommand{\arraystretch}{1.3}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -229,16 +234,21 @@
 	\include{./chapter/acronym}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+	
+	\include{./chapter/abstract}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	
 	% Hauptteil
 	\mainmatter
 
 	\include{./chapter/introduction}
+	\include{./chapter/methodology}
+	\include{./chapter/results}
+	\include{./chapter/discussion}
 
 	%% hier eigentliche Kapitel einfügen
 
-	\include{./chapter/abstract}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 	% Anhang
 	\include{./chapter/appendix}
