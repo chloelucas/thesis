@@ -11,6 +11,7 @@ Quaschning \cite{quaschning} describes how a run-of-the-river power plant operat
 \end{equation}
 With 
 \begin{itemize}
+\itemsep0em 
  \item $P$ \tabto{4cm} power produced by the generator \tabto{12cm} $[W]$
  \item $\rho_\mathrm{water}$ \tabto{4cm} density of water \tabto{12cm} $1000 \ kg/m^3$
  \item $g$ \tabto{4cm} acceleration of gravity \tabto{12cm} $9.81 \ m/s^2$
@@ -62,7 +63,7 @@ The efficiency factor of the generator depends on its power and on the part-load
 \end{tabular}
 \end{table}
 
-The list of hydropower plants available at the Reiner Lemoine Institute only contains plants with a nominal power over 1 MW (see section \ref{hpp_register}). It is estimated that among the 6500 to 7500 hydropower plants in Germany, only 406 have a nominal power above 1MW \cite{uba_wasserkraft}. However, the plants under 1MW account for a small part of the total installed power (see figure \ref{uba_hpp}). For that reason, the generator efficiency has been approximated to 95\% for all power plants is this work.
+It is estimated that among the 6500 to 7500 hydropower plants in Germany, only 406 have a nominal power above 1MW \cite{uba_wasserkraft}. Out of 7500 run-of-the-river hydropower plants in the OpenEnergy Database, 5600 have a capacity under 100kW (see figure \ref{oedb_capa} in section \ref{hpp_register}).  However, the plants under 1MW account for a small part of the total installed power (see figure \ref{uba_hpp}). For that reason, the generator efficiency has been approximated to 95\% for all power plants is this work.
 
 \begin{figure}[H]
 \includegraphics[width=16cm]{uba_hpp.png}
@@ -74,7 +75,7 @@ The list of hydropower plants available at the Reiner Lemoine Institute only con
 The efficiency of the turbine depends on the type of turbine and on the part-load range \cite{quaschning}\cite{pacer}. There are four types of turbines used for run-of-the-river plants : Pelton, Francis, Kaplan and crossflow. These turbines have optimal performances over ranges of water flow and hydraulic head, and their application areas can be plotted on a characterisitc diagramm, as in figure \ref{charac_diag}. XXX Add other Quelle in AnhangXXX
 
 \begin{figure}[H]
-\includegraphics[width=16cm]{charac_diag.png}
+\includegraphics[width=14cm]{charac_diag.png}
 \caption[Characteristic diagramm for several types of water turbines]{Characteristic diagramm for several types of water turbines \cite{wiki_WK} XXXtranslate to englishXXX}
 \centering
 \label{charac_diag}
@@ -119,11 +120,84 @@ Figure \ref{efficiency_turb} give the efficiency curves of different turbine typ
 \end{table}
 
 
-\subsection{Hydropower plants registers}
+\subsection{Hydropower plants registers and data about hydropower}
 \label{hpp_register}
 
+This work, as well as the project open\_FRED, is linked to the OpenEnergy Platform, developped by the Reiner Lemoine Institute within the open\_eGo project. The OpenEnergy Platform provides necessary tools for transparent and collaborative energy system modelling \cite{oedb}, such as grid data, power plants register, geography data or weather data. The OpenEnergy Database has 7491 entries for run-of-the-river hydropower plants in Germany and contains (among others) the following information :
+\begin{itemize}
+\itemsep0em 
+ \item EEG ID
+ \item Company operating the plant
+ \item Adress and state
+ \item Startup, retrofit and shutdown years
+ \item Electrical capacity [MW]
+ \item Network operator information
+ \item Position (latitude, longitude, and GIS geometry)
+\end{itemize}
 
-OEDB, MaStr
+
+Figure \ref{oedb_capa} shows the repartition of the capacity of these plants. This is consistent with the Umweltbundesamt numbers of 6500 to 7500 hydropower plants excluding pumped hydro, among which 406 with a nominal power above 1MW \cite{uba_wasserkraft}. 
+
+\begin{figure}[H]
+\includegraphics[width=16cm]{oedb_capa.png}
+\caption[Repartition of the capacity of hydropower plants in the OpenEnergy Database]{Repartition of the capacity of hydropower plants in the OpenEnergy Database - own representation}
+\centering
+\label{oedb_capa}
+\end{figure}
+
+
+The Agentur für Erneuerbare Energien (AEE) provides data about the installed capacity, electricity generation over the year and number of hydropower plants for each Bundesland \cite{aee} from 2001 to 2014 (based on data from the Bundesverband der Energie- und Wasserwirtschaft). However, this data is for hydropower in general, including reservoir plants and pumped hydro, and might show discrepancies with the OEDB database. Table \ref{oedb_aee_diff} lists the number of plants and installed capacity per Bundesland from these two sources, as well as the relative difference for each state, with the AEE data as reference.  
+
+\begin{table}
+\footnotesize 
+ \caption[Number of hydropowerplants and installed capacity per Bundesland]{Number of hydropowerplants and installed capacity per Bundesland \cite{oedb}\cite{aee}}
+ \centering
+ \label{oedb_aee_diff}
+ \begin{tabular}{|c|cc|cc| cc|}
+  \cline{2-7}
+  \multicolumn{0}{c|}{} &\multicolumn{2}{|c}{\textbf{OEDB}}&\multicolumn{2}{|c|}{\textbf{AEE}}&\multicolumn{2}{c|}{\textbf{Difference}} \\
+  \hline
+  \textbf{Bundesland} & Number 	& 	Capacity [MW] 	&	Number 	& 	Capacity [MW] 	&	Number [\%] 	&	Capacity [\%] \\
+  \hline
+  SH	&	29	&	8.1		&	24	&	5		&	20.8		&	62.8	\\
+  HH	&	1	&	0.11		&	1	&	0.1		&	0		&	10	\\
+  NI	&	258	&	56.3		&	257	&	70		&	0.4		&	-19	\\
+  HB	&	1	&	10		&	1	&	10		&	0		&	0	\\
+  NRW	&	437	&	137.8		&	409	&	202		&	6.9		&	-31.8	\\
+  HE	&	463	&	51.9		&	482	&	82		&	-3.9		&	-36.7	\\
+  RLP	&	217	&	40.8		&	199	&	218		&	9		&	-81.3	\\
+  BW	&	1741	&	464.5		&	1485	&	960		&	17		&	-51.6	\\	
+  BY	&	3657	&	666.2		&	3578	&	2661		&	2.2		&	-75	\\
+  SL	&	26	&	11.1		&	26	&	24		&	0		&	-53.6	\\
+  B	&	0	&	0		&	0	&	0		&	0		&	0	\\
+  BB	&	42	&	5.3		&	38	&	6		&	10.5		&	-11.8	\\
+  MV	&	25	&	3		&	24	&	3		&	4.2		&	-0.1	\\
+  SN	&	322	&	134.4		&	330	&	99		&	-2.4		&	35.8	\\
+  ST	&	57	&	26		&	52	&	26		&	9.6		&	0.2	\\
+  TH	&	204	&	32.6		&	198	&	32		&	3		&	2	\\
+  \hline
+ \end{tabular} 
+\end{table}
+
+The relative difference is shown on maps \ref{map_diff_num} and \ref{map_diff_pow}, which respectively display the differences in the number of plants and in the installed capacity. The analysis of these two maps and of table \ref{oedb_aee_diff} shows that the OEDB and AEE databases are consistant in three federal state : Thuringia, Saxony-Anhalt and Mecklenburg-Vorpommern (Berlin and Bremen being excluded due to the near absence of hydropower). The discrepencies in other federal states can be explained by different reasons. First, the data of the the AEE are based on all hydropower plants, including reservoir plants. This is why both the number of plants and the installed capacity are greater in the AEE data for most states. Second,these reservoir plants tend to have a bigger capacity than most run-of-the-river plants, which explains that the difference in installed capacity is not proportionnal to the difference in number of plants. Finally, rivers often mark boundaries between states and countries, and some hydropower plant are operated by two countries or inject electricity into the grids of more than one country. It is possible that the AEE and the OEDB don't count the installed capacity in the same manner in this situation. Map \ref{map_diff_pow} shows a bigger discrepency in installed capacity for border states.
+\newline
+For this reason, the state-wide simulation of hydropower production presented in the case study from section XXX UPDATE WHEN READY XXX as been conducted for XXX TH or ST or MV XXX, in order to compare the results of the simulation based on the OEDB register with the yearly production values given by the AEE.
+
+\begin{figure}[H]
+\includegraphics[width=16cm]{map_diff_pow.png}
+\caption[Repartition of the ROR plant capacities in the open energy database]{Repartition of the plant capacities in the open energy database - own representation}
+\centering
+\label{map_diff_pow}
+\end{figure}
+
+
+\begin{figure}[H]
+\includegraphics[width=16cm]{map_diff_num.png}
+\caption[Repartition of the installed capacity per Bundesland (OEDB data)]{Repartition of the installed capacity per Bundesland (OEDB data)- own representation}
+\centering
+\label{map_diff_num}
+\end{figure}
+
 
 \subsection{Modelling runoff}
 Several works use equation \ref{eq_power_1} or \ref{eq_power_2} to calculate the production or potential of run-of-river hydroelectricity on a given river \cite{hammid} \cite{bayazit} \cite{garrido}. In the case of potential assesment, the head of water can be obtained through geographic information systems (GIS) by calculating the elevation difference between neighbouring cells. The runoff can also be assessed from weather data using GIS, as described by Döll in figure \ref{waterGAP}.
