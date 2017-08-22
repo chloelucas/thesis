@@ -119,11 +119,19 @@ Figure \ref{efficiency_turb} give the efficiency curves of different turbine typ
  \end{tabular}
 \end{table}
 
+\subsection{Related works}
+Several works deal with the estimation of hydropower production. 
+Several works use equation \ref{eq_power_1} or \ref{eq_power_2} to calculate the production or potential of run-of-river hydroelectricity on a given river \cite{hammid} \cite{bayazit} \cite{garrido}. In the case of potential assesment, the head of water can be obtained through geographic information systems (GIS) by calculating the elevation difference between neighbouring cells. The runoff can also be assessed from weather data using GIS, as described by Döll in figure \ref{waterGAP}.
+
+
+Gesine usw
+
+\section{Available data}
 
 \subsection{Hydropower plants registers and data about hydropower}
 \label{hpp_register}
 
-This work, as well as the project open\_FRED, is linked to the OpenEnergy Platform, developped by the Reiner Lemoine Institute within the open\_eGo project. The OpenEnergy Platform provides necessary tools for transparent and collaborative energy system modelling \cite{oedb}, such as grid data, power plants register, geography data or weather data. The OpenEnergy Database has 7491 entries for run-of-the-river hydropower plants in Germany and contains (among others) the following information :
+This work, as well as the project open\_FRED, is linked to the OpenEnergy Platform, developped by the Reiner Lemoine Institute within the open\_eGo project. The OpenEnergy Platform provides necessary tools for transparent and collaborative energy system modeling \cite{oedb}, such as grid data, power plants register, geography data or weather data. The OpenEnergy Database has 7491 entries for run-of-the-river hydropower plants in Germany and contains (among others) the following information :
 \begin{itemize}
 \itemsep0em 
  \item EEG ID
@@ -157,7 +165,7 @@ The Agentur für Erneuerbare Energien (AEE) provides data about the installed ca
   \cline{2-7}
   \multicolumn{0}{c|}{} &\multicolumn{2}{|c}{\textbf{OEDB}}&\multicolumn{2}{|c|}{\textbf{AEE}}&\multicolumn{2}{c|}{\textbf{Difference}} \\
   \hline
-  \textbf{Bundesland} & Number 	& 	Capacity [MW] 	&	Number 	& 	Capacity [MW] 	&	Number [\%] 	&	Capacity [\%] \\
+  \textbf{State} & Number 	& 	Capacity [MW] 	&	Number 	& 	Capacity [MW] 	&	Number [\%] 	&	Capacity [\%] \\
   \hline
   SH	&	29	&	8.1		&	24	&	5		&	20.8		&	62.8	\\
   HH	&	1	&	0.11		&	1	&	0.1		&	0		&	10	\\
@@ -200,23 +208,31 @@ For this reason, the state-wide simulation of hydropower production presented in
 
 
 \subsection{Modelling runoff}
-Several works use equation \ref{eq_power_1} or \ref{eq_power_2} to calculate the production or potential of run-of-river hydroelectricity on a given river \cite{hammid} \cite{bayazit} \cite{garrido}. In the case of potential assesment, the head of water can be obtained through geographic information systems (GIS) by calculating the elevation difference between neighbouring cells. The runoff can also be assessed from weather data using GIS, as described by Döll in figure \ref{waterGAP}.
-\begin{figure}[h]
+Modelling runoff is a difficult task, as the model has to assess the interactions between river sources, relief, rainfall, local soil and vegetation type, as well as anthropogenic use. This can be done using GIS \cite{bayazit}, by assigning each cell with the precedent parameters. The water input in each cell (rainfall, water sources and runoff from other cells) is converted in runoff from the cell by subtracting the water lost by infiltration, evapotranspiration, or anthropogenic use, and the runoff direction is given by the slope, calculated using a digital elevation model \cite{heywood}. \newline
+The waterGAP software, developed by the universities of Kassel and Frankfurt, uses this method to calculate flows and storages of water around the globe, as shown on figure \ref{waterGAP}.
+
+\begin{figure}[H]
 \includegraphics[width=16cm]{waterGAP.png}
-\caption[Representation of a global hydrological from the WaterGAP software]{Representation of a global hydrological fron the WaterGAP software \cite{doll}}
+\caption[Representation of a global hydrological from the WaterGAP software]{Representation of a global hydrological from the WaterGAP software \cite{doll}}
 \centering
 \label{waterGAP}
 \end{figure}
 
-\subsection{Measured runoff}
-HYDABA
-DAFG
-Pegelonline
-DJG
-Banque hydro
+Given that this work is part of the openFRED project (see introduction) the runoff data should eventually be accessible from open source databases or software. A model is currently being developed by the Helmholtz Zentrum Geesthacht in partnership with the Reiner Lemoine Institute, in order to be used in the openFRED project. This model was not yet available during this work, therefore other sources where used for runoff data (see section \ref{meas_runoff}).
 
-\subsection{Other works}
-Gesine usw
+\subsection{Measured runoff}
+\label{meas_runoff}
+Water levels and water flows of the main rivers are regularly measured and documented by several organizations, in order to keep track of the history of the waterways and to anticipate potential floods. In Germany, the German Federal Institute of Hydrology (Bundesanstalt für Gewässerkunde – BfG), is a supreme federal agency within the portfolio of the Federal Ministry of Transport and Digital Infrastructure. As such it is the federal government's scientific institution for research, assessments, and consulting in the fields of hydrology, uses, quality and conservation of waters and ecology \cite{bafg}. The BfG gathers data about water levels and water flows since its founding in 1949 and publishes it every year in the ``Deutsches Gewässerkundliches Jahrbuch'' (DGJ). The BfG also operates the HYDABA database, in which times series for water flow and water level are stored, going back to 1816 for daily values and 1981 for hourly values. This database gathers water levels from around 600 gauges and water flows from around 250 stations. The data can, among others, be provided to universities, public administrations, engineering or insurance companies \cite{bafg_hyd}. \newline
+Another source of measured river data is Pegelonline, a service of the Federal Waterways and Shipping Administration (WSV). It publishes raw values of water levels from around 600 gauges in Germany over the previous 30 days. Some of the stations also measure water flows \cite{pegelonline}. The locations of the gauges are shown on map \ref{pegelonline}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=8cm]{pegelonline.png}
+\caption[Locations of the gauge stations]{Locations of the gauge stations \cite{pegelonline}}
+\label{pegelonline}
+\end{figure}
+
+In this work, data from the BfG was used as input to test the model (XXX put references of teil über Mosel und Thuringe XXX), as well as data from the french ``Banque Hydro'' (XXX reference of the teil über Hydroraon XXX). The ``Banque Hydro'' is run by the SCHAPI (Service Central d'Hydrométéorologie et d'Appui à la Prévision des Inondations), a section of the french Ministry of Ecology, Sustainable Development and Energy, and gathers data from around 5000 gauge stations.
 
 \section{Specifications of the model}
 
