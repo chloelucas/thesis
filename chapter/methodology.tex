@@ -207,7 +207,7 @@ For this reason, the state-wide simulation of hydropower production presented in
 \end{figure}
 
 
-\subsection{Modelling runoff}
+\subsection{Modeling runoff}
 Modelling runoff is a difficult task, as the model has to assess the interactions between river sources, relief, rainfall, local soil and vegetation type, as well as anthropogenic use. This can be done using GIS \cite{bayazit}, by assigning each cell with the precedent parameters. The water input in each cell (rainfall, water sources and runoff from other cells) is converted in runoff from the cell by subtracting the water lost by infiltration, evapotranspiration, or anthropogenic use, and the runoff direction is given by the slope, calculated using a digital elevation model \cite{heywood}. \newline
 The waterGAP software, developed by the universities of Kassel and Frankfurt, uses this method to calculate flows and storages of water around the globe, as shown on figure \ref{waterGAP}.
 
@@ -236,13 +236,36 @@ In this work, data from the BfG was used as input to test the model (XXX put ref
 
 \section{Specifications of the model}
 
-\subsection{Inputs}
-Available data (HPP register oedb) and future available data (MaStr)
---> Pnenn, Standort, ...
+\subsection{Inputs and outputs}
+\label{in_out}
 
-\subsection{Outputs}
-Zeitreihen pro Kraftwerk oder pro Ebene, mehrere Kraftwerke auf einmal simulieren
+In order to predict with precision the electrical output of a run-of-the-river power plant, the following parameters and values would be needed : 
+\begin{itemize}
+\itemsep0em
+ \item Power plant parameters : 
+ \begin{itemize}
+  \item nominal water flow through the turbine ($Q_\mathrm{nenn}$)
+  \item nominal head of water ($H_\mathrm{nenn}$)
+  \item nominal water level ($W_\mathrm{nenn}$)
+  \item efficiency curve of the turbine ($\eta_\mathrm{turbine}$) 
+  \item efficiency of the generator ($\eta_\mathrm{generator}$)  
+  \item unusable water flow ($Q_\mathrm{rest}$)  
+ \end{itemize}
+ \item Input time series : 
+ \begin{itemize}
+  \item actual water flow through the turbine ($Q$)
+  \item actual water level downstream from the turbine ($W$)
+ \end{itemize}
+\end{itemize}
+
+However, if such precise data can be found for single power plants, it is not easily accessible at a state or country-wide level. The OEDB database lists the location and nominal power of the plants, without further information on their design. The german Bundesnetzagentur is developing a register of every energy production facility in Germany, called MaStR (Marktstammdatenregister). This register should give a complete overview of the power plants in Germany, sorted by energy carrier and type of plant (reservoir, run-of-the-river, pumped hydro...), and listing the location and nominal power, as well as the presence or not of a restriction of the usable water flow due to a fish ladder or fish protection system for instance \cite{MaStR}. This last information is not yet available in registers such as the OEDB.
+\newline
+Therefore, the model should be able to extrapolate missing data and to make some assumptions when optional input parameters are not provided. The only compulsory input parameter will be the broadly available nominal power of the turbine and section \ref{missing_data} explains how other parameters can be assumed or extrapolated. \newline
+In terms of time series, in addition to the water flow over the simulated period, the model will take as input the water flow over several years in order to extrapolate missing parameters. Section \ref{rel_river_data} will go more in details into the reasons why water level data is not relevant.\newline \\
+The desired outputs for the model are electricity production time series per power plant or per area. It should also be possible to simulate several plants in one go.
 
 
 \subsection{Tools}
-Python, GIS, databases
+
+In order to fulfill the specifications listed in section \ref{in_out}, several computational tools are necessary. The model itself is written in Python, an interpreted programming language, and linked to the OpenEnergy Database, where the input data are stored and accessed by SQL queries. The model is accessible on Github under https://github.com/hydro-python/hydropowerlib/
+Furthermore, QGIS, a geographic information software, was used to assign rivers and gauge stations to the hydropower plants of the OpenEnergy Database. This is detailed in section \ref{assign_rivers}. Image XXX DO A GRAPH OF INTERACTIONS BETWEEN TOOLS XXX shows the interactions between the different tools.
