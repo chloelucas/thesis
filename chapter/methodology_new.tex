@@ -1,0 +1,47 @@
+\chapter{Methodology}
+\label{chap:methodology}
+
+\section{Developement of the simulation model}
+\subsection{Specifications}
+In order to predict with precision the electrical output of a run-of-the-river power plant, the following parameters and values would be needed : 
+\begin{itemize}
+\itemsep0em
+ \item Power plant parameters : 
+ \begin{itemize}
+  \item nominal water flow through the turbine ($Q_\mathrm{nenn}$)
+  \item nominal head of water ($H_\mathrm{nenn}$)
+  \item nominal water level ($W_\mathrm{nenn}$)
+  \item efficiency curve of the turbine ($\eta_\mathrm{turbine}$) 
+  \item efficiency of the generator ($\eta_\mathrm{generator}$)  
+  \item unusable water flow ($Q_\mathrm{rest}$)  
+ \end{itemize}
+ \item Input time series : 
+ \begin{itemize}
+  \item actual water flow through the turbine ($Q$)
+  \item actual water level downstream from the turbine ($W$)
+ \end{itemize}
+\end{itemize}
+
+However, if such precise data can be found for single power plants, it is not easily accessible at a state or country-wide level. The OEDB database lists the location and nominal power of the plants, without further information on their design. The german Bundesnetzagentur is developing a register of every energy production facility in Germany, called MaStR (Marktstammdatenregister). This register should give a complete overview of the power plants in Germany, sorted by energy carrier and type of plant (reservoir, run-of-the-river, pumped hydro...), and listing the location and nominal power, as well as the presence or not of a restriction of the usable water flow due to a fish ladder or fish protection system for instance \cite{MaStR}. This last information is not yet available in registers such as the OEDB.\newline
+Therefore, the model should be able to extrapolate missing data and to make some assumptions when optional input parameters are not provided. The only compulsory input parameter will be the broadly available nominal power of the turbine and section \ref{missing_data} explains how other parameters can be assumed or extrapolated. \newline
+In terms of time series, in addition to the water flow over the simulated period, the model will take as input the water flow over several years in order to extrapolate missing parameters. Section \ref{rel_river_data} will go more in details into the reasons why water level data is not relevant. \\
+The desired outputs for the model are electricity production time series per power plant or per area. It should also be possible to simulate several plants in one go.
+
+\subsection{Collection and administration of data basis}
+XXX take some from above and complete : inputs, parameters and validation data
+XXX write here the stuff about W not being relevant
+
+\subsection{Simulation results and evaluation}
+XXX Over which period of time, stepsize, error...
+
+\section{Data preprocessing}
+
+\subsection{Power plants register - OEDB}
+XXX GIS/SQL code from Ludwig. Next neighbour finden, gauge station has to be on the same river...
+\subsection{Runoff data}
+XXX structure in DB
+
+\section{Simulation}
+
+\section{Evaluation of results}
+

@@ -184,6 +184,7 @@
 
 % 1,5-Zeilenabstand (Paket setspace erforderlich)
 \onehalfspacing
+\setlength{\parindent}{0pt}
 % Neuberechnung des Satzspiegels für neuen Zeilenabstand (DIV Angabe aus der
 % Klassendeklartion übernommen)
 \KOMAoptions{DIV=last}
@@ -243,9 +244,13 @@
 	\mainmatter
 
 	\include{./chapter/introduction}
-	\include{./chapter/methodology}
+	\include{./chapter/basics}
+	\include{./chapter/data_basis}
+	\include{./chapter/methodology_new}
+	\include{./chapter/simulation_model}
 	\include{./chapter/results}
 	\include{./chapter/discussion}
+	\include{./chapter/conclusion}
 
 	%% hier eigentliche Kapitel einfügen
 
