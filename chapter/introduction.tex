@@ -1,26 +1,52 @@
 \chapter{Introduction}
 \label{chap:introduction}
 
-\section{Energy systems modelling}
-
-In the past decades, the need for an energy transition has emerged in many countries. This need has been acknowledge in the sustainable development goals \cite{un_sdgs} set by the United Nations, in particular the goals 7 \cite{un_sdg7} and 11 \cite{un_sdg11} : ``affordable and clean energy'' and ``sustainable cities and communities''. However, a successful energy transition will have a positive impact on other development goals as well, through a reduction of pollution, global warming, and conflicts about the access to fosil fuels. \newline
-The transition in the production of energy is made possible by replacing conventional fuels such as coal, gas or uranium by renewable energy sources, such as wind, sunlight, kinetic and potential energy of water, geothermal energy or biomass. These energy sources are harnessed on site, and the potential of a site is highly dependant on the weather, the relief, as well as the time of the year or of the day. This leads to a more decentralized and intemittent production compared to conventional power plants, which complexifies the energy system. \newline
-Because of the intermittency of the production and the strong dependance on weather, the energy supply is not controllable, and cannot always follow the demand. Furthermore, the variablility in the potential of each type of renewable energy depending on the site make it impossible to have a general solution applicable everywhere. This prompts the need for reliable energy systems modelling to simulate and optimize the energy mix, distribution schema and energy management of a given region. The simulation of energy systems requires good quality energy conversion and distribution models, consistent data about the weather, the existing plants in the region, and the energy demand, and robust optimisation tools.
-
-
-\section{Open source}
-
-The volume of research about renewable energy has grown over the last decades (more than 180 university and 120 non-university research institutes are conducting research about energy transition in Germany alone \cite{bmbf_energiewende}), and various actors of the energy sector are developping models for energy systems and gathering input data for these models. The complexity of the models has also increased, requiring specialists of differents fields to work together (geographers, meteorologists, energy specialists, economists, sociologists,etc). A wide range of case studies can be found in research articles, exposing the methods used and the results of these models for specific regions. However the tools themselves are rarely made public, which forces different actors to inject time, money and energy into developping the same models and gathering the same data. \newline
-The Open Energy Modelling initiative (Openmod) was launched in september 2014 by several researchers in Germany and abroad \cite{openmod_workshop} and aims at promoting open energy modelling in Europe. They define “Open” as model source code that can be studied, changed and improved as well as freely available energy system data and state that more openness in energy modelling will increase transparency and credibility, reduce wasteful double-work and improve overall quality \cite{openmod_manifesto}. \newline
-The Reiner Lemoine institute has been part of this initiative since the beginning and  carries out several projects of open energy modelling, such as oemof (open energy system modelling framework \cite{rli_oemof}), open\_eGo (open electricity grid optimisation \cite{rli_openego}) or open\_FRED (open feed-in time series based on a renewable energy database \cite{rli_openfred}). This thesis is part of the open\_FRED project, which aims at creating and making available in an open data base consistent standard data of all relevant data sets (power plant, climate, and basic data), and at developping compatible open source simulations models, which will produce feed-in time series of fluctuating renewable energies. \newline
-The topic of this thesis is the modelling and simulation of electricity generation from run-of-the-river hydroelectric power plants based on open access geodatabases. It aims at developping an open-source Python model able to simulate time series of the electrical output of one or several run-of-the-river power plants based on open source datasets of power plants, weather, and river discharge.
-
 
 \section{Hydropower}
-Hydropower in the world \newline
-Hydropower in Europe (example Norway?) \newline
-Hydropower in Germany (places, part of the mix, installed capacity, potential) \newline
-Pros and cons and ror vs not ror 
+
+Hydropower is power derived from the potential or kinetic energy of water, which may be harnessed for useful purposes. It has been used throughout history, from the first watermills used in Syria around 2nd century BC \cite{reynolds} to arrigate or activate mechanical devices, to the modern days electricity production plants. The first hydroelectric power station was built in 1882 in Appleton, Wisconsin, and by 1920 hydropower accounted for 25\% of the US electricity generation \cite{hist_hyd}. \newline
+Nowadays, 1171 GW of hydropower are installed in the world, around 27\% of it being in China, 10\% in Canada and 9\% in Brasil. In terms of percentage of hydroelectricity in domestic electricity generation, Norway leads with 96\% \cite{iea_stat}. Figure \ref{world_hp} shows the evolution of hydroelectricity production in the world over the last 50 years.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{world_hp.png}
+\caption[Hydroelectricity production by region from 1971 to 2014 [TWh]]{Hydroelectricity production by region from 1971 to 2014 [TWh] \cite{iea_stat}}
+\centering
+\label{world_hp}
+\end{figure}
+
+In Europe, hydropower is the largest renewable energy resource accounting for 18\% of of total electricity generation. However, the potential for hydropower generation depends on geographic and climatic conditions, and capacity is therefore not evenly distributed across Europe. Hydropower sources are concentrated in several distinct regions, including the Nordic countries, the Alps, the Iberian Peninsula as well as Turkey \cite{hp_europe}. Hydropower presents many advantages for a transition to a more sustainable energy system : it does not require any fossil fuels in the operating phase, it has a very low lifecycle GHG emissions (see figure \ref{ghg_em}), and it is available at a commercial scale at competitive costs \cite{hp_europe}. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{ghg_em.png}
+\caption[Life-cycle emission intensity of electricity generation by technology]{Life-cycle emission intensity of electricity generation by technology \cite{hp_europe}}
+\label{ghg_em}
+\end{figure}
+
+However, hydropower also has negative social and environmental impacts because of the changes brought by the construction of dams and reservoirs. These structures change the ecosystem, both aquatic and terrestrial, by flooding areas, destroying wildlife habitat, and changing or blocking the water flow. Reservoirs also occupy large areas and sometimes require entire communities to be relocated. Most new projects must undergo a environmental and social impact assessment to oversee, prevent or compensate the negative impacts. Run-of-the-river power plants, in contrast to reservoir plants, have a much smaller impact on the ecosystem and the society because they do not require water impoundment. The dams are often equipped with a fish ladder and fish protection facilities, in order not to impede wildlife circulation.
+
+In Germany, hydroelectricity production is mostly concentrated in the south and west (Bayern, Baden-Württemberg, Rheinland Pfalz, North Rhine-Westphalia), as can be seen on map \ref{hp_de}. In 2014, it accounted for 12\% of the renewable electricity production in Germany, with around 20TWh produced (reservoir plants, run-of-the-river plants, as well as production from natural inflow in pumped storage plants) \cite{bdew}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{hp_de.png}
+\caption[Use of hydropower in Germany]{Use of hydropower in Germany \cite{bdew}}
+\label{hp_de}
+\end{figure}
 
 
+\section{Energy systems modeling}
+
+In the past decades, the need for an energy transition has emerged in many countries. This need has been acknowledge in the sustainable development goals \cite{un_sdgs} set by the United Nations, in particular the goals 7 \cite{un_sdg7} and 11 \cite{un_sdg11} : ``affordable and clean energy'' and ``sustainable cities and communities''. However, a successful energy transition will have a positive impact on other development goals as well, through a reduction of pollution, global warming, and conflicts about the access to fossil fuels. \newline
+The transition in the production of energy is made possible by replacing conventional fuels such as coal, gas or uranium by renewable energy sources, such as wind, sunlight, kinetic and potential energy of water, geothermal energy or biomass. These energy sources are harnessed on site, and the potential of a site is highly dependent on the weather, the relief, as well as the time of the year or of the day. This leads to a more decentralized and intermittent production compared to conventional power plants, which makes the energy system more complex. \newline
+Because of the irregularity of the production and the strong dependance on weather, the energy supply is not controllable, and cannot always follow the demand. Furthermore, the variability in the potential of each type of renewable energy depending on the site make it impossible to have a general solution applicable everywhere. This prompts the need for reliable energy systems modeling to simulate and optimize the energy mix, distribution schema and energy management of a given region. The simulation of energy systems requires good quality energy conversion and distribution models, consistent data about the weather, the existing plants in the region, and the energy demand, and robust optimization tools.
+
+
+\section{Open source and open data}
+
+The volume of research about renewable energy has grown over the last decades (more than 180 university and 120 non-university research institutes are conducting research about energy transition in Germany alone \cite{bmbf_energiewende}), and various actors of the energy sector are developing models and data sets for energy systems and gathering input data for these models. The complexity of the models has also increased, requiring specialists of different fields to work together (geographers, meteorologists, energy specialists, economists, sociologists,etc). A wide range of case studies can be found in research articles, exposing the methods used and the results of these models for specific regions. However the tools and databases themselves are rarely made public, which forces different actors to inject time, money and energy into developing the same models and gathering the same data. \newline
+The Open Energy Modeling initiative (Openmod) was launched in September 2014 by several researchers in Germany and abroad \cite{openmod_workshop} and aims at promoting open energy modeling in Europe. They define “Open” as model source code that can be studied, changed and improved as well as freely available energy system data and state that more openness in energy modeling will increase transparency and credibility, reduce wasteful double-work and improve overall quality \cite{openmod_manifesto}. \newline
+The Reiner Lemoine institute has been part of this initiative since the beginning and  carries out several projects of open energy modeling, such as oemof (open energy system modeling framework \cite{rli_oemof}), open\_eGo (open electricity grid optimization \cite{rli_openego}) or open\_FRED (open feed-in time series based on a renewable energy database \cite{rli_openfred}). This thesis is part of the open\_FRED project, which aims at creating and making available in an open data base consistent standard data of all relevant data sets (power plant, climate, and basic data), and at developing compatible open source simulations models, which will produce feed-in time series of fluctuating renewable energies. \newline
+The topic of this thesis is the modeling and simulation of electricity generation from run-of-the-river hydroelectric power plants based on open access geodatabases. It aims at developing an open-source Python model able to simulate time series of the electrical output of one or several run-of-the-river power plants based on open source data sets of power plants, weather, and river discharge.
 
