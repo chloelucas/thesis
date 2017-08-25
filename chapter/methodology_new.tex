@@ -28,8 +28,22 @@ In terms of time series, in addition to the water flow over the simulated period
 The desired outputs for the model are electricity production time series per power plant or per area. It should also be possible to simulate several plants in one go.
 
 \subsection{Collection and administration of data basis}
+
+It is estimated that among the 6500 to 7500 hydropower plants in Germany, only 406 have a nominal power above 1MW \cite{uba_wasserkraft}. Out of 7500 run-of-the-river hydropower plants in the OpenEnergy Database, 5600 have a capacity under 100kW (see figure \ref{oedb_capa} in section \ref{hpp_register}).  However, the plants under 1MW account for a small part of the total installed power (see figure \ref{uba_hpp}). For that reason, the generator efficiency has been approximated to 95\% for all power plants is this work.
+
+\begin{figure}[H]
+\includegraphics[width=15cm]{uba_hpp_en.png}
+\caption[Installed power pro Bundesland for plants over and under 1MW]{Installed power pro Bundesland for plants over and under 1MW \cite{uba_wasserkraft}}
+\centering
+\label{uba_hpp}
+\end{figure}
 XXX take some from above and complete : inputs, parameters and validation data
 XXX write here the stuff about W not being relevant
+
+For this reason, the state-wide simulation of hydropower production presented in the case study from section XXX UPDATE WHEN READY XXX as been conducted for XXX TH or ST or MV XXX, in order to compare the results of the simulation based on the OEDB register with the yearly production values given by the AEE.
+
+In this work, data from the BfG was used as input to test the model (XXX put references of teil über Mosel und Thuringe XXX), as well as data from the french ``Banque Hydro'' (XXX reference of the teil über Hydroraon XXX). The ``Banque Hydro'' is run by the SCHAPI (Service Central d'Hydrométéorologie et d'Appui à la Prévision des Inondations), a section of the french Ministry of Ecology, Sustainable Development and Energy, and gathers data from around 5000 gauge stations.
+
 
 \subsection{Simulation results and evaluation}
 XXX Over which period of time, stepsize, error...
