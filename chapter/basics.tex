@@ -7,12 +7,12 @@ This chapter is a brief introduction to hydropower. It presents the origin and q
 
 \subsection{Characteristics}
 
-On Earth, water is continuously moving in liquid, gaseous or solid form, in a process called the hydrologic cycle. Water evaporates, is transported by winds, falls out as rain or snow, gathers into streams and rivers, and flows into seas or lakes. All this movement provides an enormous opportunity to harness useful energy \cite{ucsusa}. Kinetic and potential energy of water can set turbines in motion, creating mechanical energy, which can then be turned into electric energy. The global technically exploitable hydropower potential is estimated at more than 16 400 TWh per year, around 19\% of which have been developed worldwide \cite{iea_hp_ess}.
+On Earth, water is continuously moving in liquid, gaseous or solid form, in a process called the hydrological cycle. Water evaporates, is transported by winds, falls out as rain or snow, gathers into streams and rivers, and flows into seas or lakes. All this movement provides an enormous opportunity to harness useful energy \cite{ucsusa}. Kinetic and potential energy of water can set turbines in motion, creating mechanical energy, which can then be turned into electric energy. The global technically exploitable hydropower potential is estimated at more than 16 400 TWh per year, around 19\% of which have been developed worldwide \cite{iea_hp_ess}.
  
 \subsection{Runoff prediction}
  
-Modelling runoff is a difficult task, as the model has to assess the interactions between river sources, relief, rainfall, local soil and vegetation type, as well as anthropogenic use. This can be done using GIS \cite{bayazit}, by assigning each cell with the precedent parameters. The water input in each cell (rainfall, water sources and runoff from other cells) is converted in runoff from the cell by subtracting the water lost by infiltration, evapotranspiration, or anthropogenic use, and the runoff direction is given by the slope, calculated using a digital elevation model \cite{heywood}. \newline
-The waterGAP software, developed by the universities of Kassel and Frankfurt, uses this method to calculate flows and storages of water around the globe, as shown on figure \ref{waterGAP}.
+Modeling runoff is a difficult task, as the model has to assess the interactions between river sources, relief, rainfall, local soil and vegetation type, as well as anthropogenic use. This can be done using GIS \cite{bayazit}, by assigning each cell with the precedent parameters. The water input in each cell (rainfall, water sources and runoff from other cells) is converted in runoff from the cell by subtracting the water lost by infiltration, evapotranspiration, or anthropogenic use, and the runoff direction is given by the slope, calculated using a digital elevation model \cite{heywood}. \newline
+The WaterGAP software, developed by the universities of Kassel and Frankfurt, uses this method to calculate flows and reservoirs of water around the globe, as shown on figure \ref{waterGAP}.
 
 \begin{figure}[H]
 \includegraphics[width=15cm]{waterGAP.png}
@@ -28,11 +28,11 @@ In order to study rivers, measurement stations have been installed and monitored
  
 \section{Types of hydropower plants}
 
-The main types of hydroelectrcity generating methods are conventional hydropower (dams), pumped storage plants, run-of-the-river plants and tide power stations.
+The main types of hydroelectricity generating methods are conventional hydropower (dams), pumped storage plants, run-of-the-river plants and tide power stations.
 
 \subsection{Conventional}
 
-Conventional hydroelectricity, or reservoir hydroelectricity, comes from the potential energy of dammed water. In a conventional power plant, the turbine is powered by an inflow from one or several reservoirs. Its use is thereby largely independant from the temporal course of the river flowing into the reservoir \cite{vgb}.
+Conventional hydroelectricity, or reservoir hydroelectricity, comes from the potential energy of dammed water. In a conventional power plant, the turbine is powered by an inflow from one or several reservoirs. Its use is thereby largely independent from the temporal course of the river flowing into the reservoir \cite{vgb}.
 
 \subsection{Pumped storage}
 
@@ -40,7 +40,7 @@ A pumped storage power plant is a reservoir plant, whose reservoir is completely
 
 \subsection{Run-of-the-river}
 
-Run-of-the-river hydropower plants are hydropower plants that uses the natural usable stream without delaying it \cite{vgb}. They do not accumulate water in a reservoir and are therefore dependant on the flow of the river.
+Run-of-the-river hydropower plants are hydropower plants that uses the natural usable stream without delaying it \cite{vgb}. They do not accumulate water in a reservoir and are therefore dependent on the flow of the river.
 
 \subsection{Others}
 
@@ -74,7 +74,7 @@ With
 \end{itemize}
 
 
-The head of water is the altitude difference between the surface of the river before and after the turbine. For run-of-the-river hydropower plants, it is assumed that the water level before the turbine is kept constant by the dam, while the water level downstream can vary. This happens when the waterflow exceeds the capacity of the turbine and has to be deviated over the dam. With this assumption, the head of water is given by the equation \ref{eq_head} and the waterflow in the turbine by the equation \ref{eq_waterflow} \cite{quaschning}.
+The head of water is the altitude difference between the surface of the river before and after the turbine. For run-of-the-river hydropower plants, it is assumed that the water level before the turbine is kept constant by the dam, while the water level downstream can vary. This happens when the water flow exceeds the capacity of the turbine and has to be deviated over the dam. With this assumption, the head of water is given by the equation \ref{eq_head} and the water flow in the turbine by the equation \ref{eq_waterflow} \cite{quaschning}.
 \begin{equation}
 \label{eq_head} 
  H = H_\mathrm{n} +W_\mathrm{n}-W
@@ -112,16 +112,16 @@ There are two families of water turbines : action turbines and reaction turbines
 
 \subsection{Turbine efficiency}
 
-The efficiency of the turbine depends on the type of turbine and on the part-load range \cite{quaschning}\cite{pacer}. There are four types of turbines used for run-of-the-river plants : Pelton, Francis, Kaplan and crossflow. These turbines have optimal performances over ranges of water flow and hydraulic head, and their application areas can be plotted on a characterisitc diagramm, as in figure \ref{charac_diag}. 
+The efficiency of the turbine depends on the type of turbine and on the part-load range \cite{quaschning}\cite{pacer}. There are four types of turbines used for run-of-the-river plants : Pelton, Francis, Kaplan and crossflow. These turbines have optimal performances over ranges of water flow and hydraulic head, and their application areas can be plotted on a characteristic diagram, as in figure \ref{charac_diag}. 
 
 \begin{figure}[H]
 \includegraphics[width=14cm]{charac_diag_en.png}
-\caption[Characteristic diagramm for several types of water turbines]{Characteristic diagramm for several types of water turbines \cite{wiki_WK}}
+\caption[Characteristic diagram for several types of water turbines]{Characteristic diagram for several types of water turbines \cite{wiki_WK}}
 \centering
 \label{charac_diag}
 \end{figure}
 
-Figure \ref{efficiency_turb} give the efficiency curves of different turbine types depending on the part load. These efficiencies can be approximated by the empiric function given in equation \ref{eq_eff} with the parameters given in table \ref{eff_param} \cite{quaschning}. In this equation, $Q_\mathrm{min}$ is the minimal water flow to start the turbine, $Q_\mathrm{n}$ is the nominal waterflow of the turbine and $q=\frac{Q-Q_\mathrm{min}}{Q_\mathrm{n}}$.
+Figure \ref{efficiency_turb} give the efficiency curves of different turbine types depending on the part load. These efficiencies can be approximated by the empiric function given in equation \ref{eq_eff} with the parameters given in table \ref{eff_param} \cite{quaschning}. In this equation, $Q_\mathrm{min}$ is the minimal water flow to start the turbine, $Q_\mathrm{n}$ is the nominal water flow of the turbine and $q=\frac{Q-Q_\mathrm{min}}{Q_\mathrm{n}}$.
 
 \begin{equation}
  \label{eq_eff}
@@ -161,7 +161,7 @@ Figure \ref{efficiency_turb} give the efficiency curves of different turbine typ
 
 \subsection{Generator efficiency}
 
-The efficiency factor of the generator depends on its power and on the part-load range \cite{pacer}. The swiss ``Bundesamt für Konjunkturfragen'' gives the values given in table \ref{eta_gen}.
+The efficiency factor of the generator depends on its power and on the part-load range \cite{pacer}. The Swiss ``Bundesamt für Konjunkturfragen'' gives the values given in table \ref{eta_gen}.
 
 \begin{table}
  \caption[Generator efficiency in full load and part load]{Generator efficiency in full load (left) and part load (right) \cite{pacer}}
