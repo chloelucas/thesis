@@ -15,17 +15,17 @@ This work, as well as the project open\_FRED, is linked to the OpenEnergy Platfo
  \item Company operating the plant
  \item Adress and state
  \item Startup, retrofit and shutdown years
- \item Electrical capacity [MW]
+ \item Electrical capacity [\unit{MW}]
  \item Network operator information
  \item Position (latitude, longitude, and GIS geometry)
 \end{itemize}
 
 
-Figure \ref{oedb_capa} shows the repartition of the capacity of these plants. This is consistent with the Umweltbundesamt numbers of 6500 to 7500 hydropower plants excluding pumped hydro, among which 406 with a nominal power above 1MW \cite{uba_wasserkraft}. 
+Figure \ref{oedb_capa} shows the repartition of the capacity of these plants. This is consistent with the Umweltbundesamt numbers of 6500 to 7500 hydropower plants excluding pumped hydro, among which 406 with a nominal power above \unit[1]{MW} \cite{uba_wasserkraft}. 
 
 \begin{figure}[H]
 \includegraphics[width=15cm]{oedb_capa.png}
-\caption[Repartition of the capacity of run-of-the-river plants in the OpenEnergy Database]{Repartition of the capacity of run-of-the-river plants plants in the OpenEnergy Database - own representation}
+\caption[Repartition of the capacity of run-of-the-river plants in the OpenEnergy Database]{Repartition of the capacity of run-of-the-river plants plants in the OpenEnergy Database}
 \centering
 \label{oedb_capa}
 \end{figure}
@@ -41,7 +41,7 @@ The OpenEnergy Database also has entries for reservoir and pumped storage plants
   \cline{2-5}
   \multicolumn{0}{c|}{} &\multicolumn{2}{|c}{\textbf{Reservoir plants}}&\multicolumn{2}{|c|}{\textbf{Pumped storage plants}} \\
   \hline
-  \textbf{State} & Number 	& 	Capacity [MW] 	&	Number 	& 	Capacity [MW] 	 \\
+  \textbf{State} & Number 	& 	Capacity [\unit{MW}] 	&	Number 	& 	Capacity [\unit{MW}] 	 \\
   \hline
   SH	&	0	&	0		&	3	&	119.1	\\
   NI	&	0	&	0		&	1	&	220	\\
@@ -58,18 +58,18 @@ The OpenEnergy Database also has entries for reservoir and pumped storage plants
 
 \subsection{Capacity and production data}
 
-The Agentur für Erneuerbare Energien (AEE) provides data about the installed capacity, electricity generation over the year and number of hydropower plants for each federal state \cite{aee} from 2001 to 2014 (based on data from the Bundesverband der Energie- und Wasserwirtschaft). This data contains run-of-the-river and reservoir plants, as well as pumped storage power plants with natural inflow for which only the production from natural inflow is accounted for. Therefore, it might show discrepancies with the OEDB register for run-of-the-river plants. Table \ref{oedb_aee_diff} lists the number of plants and installed capacity per federal state from these two sources, as well as the relative difference for each state, with the AEE data as reference. The OEDB entries for pumped storage and reservoir plants, listed in table \ref{oedb_pump_res} were not used in this work because they cannot be simulated with the developed model. Moreover, these data do not make up for the difference between the OEDB and the AEE shown on table \ref{oedb_aee_diff} and maps \ref{map_diff_num} and \ref{map_diff_pow}, and the pumped storage entries from the OEDB do not make the distinction between natural inflow and pumped inflow.
+The Agentur für Erneuerbare Energien (AEE) provides data about the installed capacity, electricity generation over the year and number of hydropower plants for each federal state \cite{aee} from 2001 to 2014 (based on data from the Bundesverband der Energie- und Wasserwirtschaft). This data contains run-of-the-river and reservoir plants, as well as pumped storage power plants with natural inflow for which only the production from natural inflow is accounted for. Therefore, it might show discrepancies with the OEDB register for run-of-the-river plants. Table \ref{oedb_aee_diff} lists the number of plants and installed capacity per federal state from these two sources, as well as the relative difference for each state, with the AEE data as reference. The OEDB entries for pumped storage and reservoir plants, listed in table \ref{oedb_pump_res} were not used in this work because they cannot be simulated with the developed model. Moreover, these data do not make up for the difference between the OEDB and the AEE shown in table \ref{oedb_aee_diff} and figures \ref{map_diff_num} and \ref{map_diff_pow}, and the pumped storage entries from the OEDB do not make the distinction between natural inflow and pumped inflow.
 
 \begin{table}
 \footnotesize 
- \caption[Number of hydropower plants and installed capacity per federal state]{Number of hydropower plants and installed capacity per federal state \cite{oedb}\cite{aee}}
+ \caption[Number of hydropower plants and installed capacity per federal state]{Number of hydropower plants and installed capacity per federal state}
  \centering
  \label{oedb_aee_diff}
  \begin{tabular}{|c|cc|cc| cc|}
   \cline{2-7}
-  \multicolumn{0}{c|}{} &\multicolumn{2}{|c}{\textbf{OEDB}}&\multicolumn{2}{|c|}{\textbf{AEE}}&\multicolumn{2}{c|}{\textbf{Difference}} \\
+  \multicolumn{0}{c|}{} &\multicolumn{2}{|c}{\textbf{OEDB \cite{oedb}}}&\multicolumn{2}{|c|}{\textbf{AEE \cite{aee}}}&\multicolumn{2}{c|}{\textbf{Difference}} \\
   \hline
-  \textbf{State} & Number 	& 	Capacity [MW] 	&	Number 	& 	Capacity [MW] 	&	Number [\%] 	&	Capacity [\%] \\
+  \textbf{State} & Number 	& 	Capacity [\unit{MW}] 	&	Number 	& 	Capacity [\unit{MW}] 	&	Number [\unit{\%}] 	&	Capacity [\unit{\%}] \\
   \hline
   SH	&	29	&	8.1		&	24	&	5		&	20.8		&	62.8	\\
   HH	&	1	&	0.11		&	1	&	0.1		&	0		&	10	\\
@@ -94,12 +94,12 @@ The Agentur für Erneuerbare Energien (AEE) provides data about the installed ca
 
 
 
-The relative difference is shown on maps \ref{map_diff_num} and \ref{map_diff_pow}, which respectively display the differences in the number of plants and in the installed capacity. The analysis of these two maps and of table \ref{oedb_aee_diff} shows that the OEDB and AEE databases are consistent in three federal state : Thuringia, Saxony-Anhalt and Mecklenburg-Vorpommern (Berlin and Bremen being excluded due to the near absence of hydropower). The discrepancies in other federal states can be explained by different reasons. First, the data of the the AEE are based on all hydropower plants, including reservoir plants and natural inflow in pumped storage plants. This is why both the number of plants and the installed capacity are greater in the AEE data for most states. Second,these reservoir plants and pumped storage plants tend to have a bigger capacity than most run-of-the-river plants, which explains that the difference in installed capacity is not proportional to the difference in number of plants. Finally, rivers often mark boundaries between states and countries, and some hydropower plant are operated by two countries or inject electricity into the grids of more than one country. It is possible that the AEE and the OEDB don't count the installed capacity in the same manner in this situation. Map \ref{map_diff_pow} shows a bigger discrepancy in installed capacity for border states.
+The relative difference is shown on figures \ref{map_diff_num} and \ref{map_diff_pow}, which respectively display the differences in the number of plants and in the installed capacity. The analysis of these two maps and of table \ref{oedb_aee_diff} shows that the OEDB and AEE databases are consistent in three federal state : Thuringia, Saxony-Anhalt and Mecklenburg-Vorpommern (Berlin and Bremen being excluded due to the near absence of hydropower). The discrepancies in other federal states can be explained by different reasons. First, the data of the the AEE are based on all hydropower plants, including reservoir plants and natural inflow in pumped storage plants. This is why both the number of plants and the installed capacity are greater in the AEE data for most states. Second, these reservoir plants and pumped storage plants tend to have a bigger capacity than most run-of-the-river plants, which explains that the difference in installed capacity is not proportional to the difference in number of plants. Finally, rivers often mark boundaries between states and countries, and some hydropower plant are operated by two countries or inject electricity into the grids of more than one country. It is possible that the AEE and the OEDB don't count the installed capacity in the same manner in this situation. Figure \ref{map_diff_pow} shows a bigger discrepancy in installed capacity for border states.
 
 
 \begin{figure}[H]
 \includegraphics[width=15cm]{map_diff_num.png}
-\caption[Absolute difference in the number of plants between OEDB and AEE]{Absolute difference in the number of plants between OEDB and AEE - own representation}
+\caption[Absolute difference in the number of plants between OEDB and AEE]{Absolute difference in the number of plants between OEDB and AEE}
 \centering
 \label{map_diff_num}
 \end{figure}
@@ -107,7 +107,7 @@ The relative difference is shown on maps \ref{map_diff_num} and \ref{map_diff_po
 
 \begin{figure}[H]
 \includegraphics[width=15cm]{map_diff_pow.png}
-\caption[Absolute difference in the installed capacity between OEDB and AEE]{Absolute difference in the installed capacity between OEDB and AEE - own representation}
+\caption[Absolute difference in the installed capacity between OEDB and AEE]{Absolute difference in the installed capacity between OEDB and AEE}
 \centering
 \label{map_diff_pow}
 \end{figure}
@@ -129,4 +129,4 @@ Other countries have similar databases for measured river data. In France, the `
 
 \section{Runoff data - modeled}
 
-Given that this work is part of the openFRED project (see introduction) the runoff data should eventually be accessible from open source databases or software. A model is currently being developed by the Helmholtz Zentrum Geesthacht in partnership with the Reiner Lemoine Institute, in order to be used in the openFRED project. This model was not yet available during this work, therefore other sources where used for runoff data (see section XXX ref to the methodology section about measured data XXX).
+Given that this work is part of the openFRED project (see ch. \ref{chap:introduction}) the runoff data should eventually be accessible from open source databases or software. A model is currently being developed by the Helmholtz Zentrum Geesthacht in partnership with the Reiner Lemoine Institute, in order to be used in the openFRED project. This model was not yet available during this work, therefore other sources where used for runoff data (see sec. XXX ref to the methodology section about measured data XXX).

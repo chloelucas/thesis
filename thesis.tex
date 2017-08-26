@@ -1,7 +1,7 @@
 % Klassendeklaration
 \documentclass[
 		fontsize=12pt,		% Schriftgröße 12pt
-		toc=listof,		% Schreibt Tabellen/Abbildungs-Verzeichnisse auch mit ins Inhaltsverzeichnis
+		%toc=listof,		% Schreibt Tabellen/Abbildungs-Verzeichnisse auch mit ins Inhaltsverzeichnis
 		toc=bib,		% Literaturverzeichnis im Inhaltsverzeichnis aufführen
 		%bibliography=openstyle	% Literaturverzeichnis etwas auflockern
 		headsepline,		% Linie unter Kolumnentitel
@@ -190,7 +190,9 @@
 \KOMAoptions{DIV=last}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+% Table of contents setup
+\setcounter{tocdepth}{1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Befehle für Hoch und Tiefstellen innerhalb eines Textes
 \newcommand{\up}[2]{#1\textsuperscript{#2}}
