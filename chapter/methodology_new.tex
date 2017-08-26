@@ -39,8 +39,36 @@ The first assumption regards the efficiency of the generator. Section \ref{sub:g
 \caption[Installed power pro Bundesland for plants over and under {\unit[1]{MW}}]{Installed power pro Bundesland for plants over and under {\unit[1]{MW}} \cite{uba_wasserkraft}}
 \label{uba_hpp}
 \end{figure}
+
+The second assumption regards the variability of the head of water. The equation \ref{eq_head} given on page \pageref{eq_head} gives the relation between the head and the water level. Section \ref{meas_runoff} shows that measured data for water level is widely available throughout Germany, however this data is only valid on the site of the gauge. Figures \ref{mosel_WQ} based on measurement data for three stations on the Mosel from the Deutsches Gewässerkundliches Jahrbuch show that water level and water flow have a linear correlation, and figure \ref{Q_mosel} (see appendix \ref{app:boxplot} on how to read the graph) shows that the water flow augments gradually as tributaries merge with the river. However, the water level does not depend on the distance to the river mouth (see fig. \ref{W_mosel} and appendix \ref{app:boxplot}). This is due to the fact that the correlation factor between water flow and water level depends on the shape of the river bed. This strong variability of water level from a place to another would biase the results if the equation \ref{eq_head} (p.\pageref{eq_head}) was used. For that reason, the model will approximate the head of water $h$ with the nominal head $h_\mathrm{n}$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=15cm]{mosel_WQ.png}
+\caption[Linear correlation between W and  \.{V} for three places on the Mosel]{Linear correlation between W and  \.{V} for three places on the Mosel}
+\label{mosel_WQ}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=15cm]{Q_mosel.png}
+\caption[Distribution of water flow for three places on the Mosel]{Distribution of water flow for three places on the Mosel}
+\label{Q_mosel}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=15cm]{W_mosel.png}
+\caption[Distribution of water level at gauges on the Mosel]{Distribution of water level at gauges on the Mosel}
+\label{W_mosel}
+\end{figure}
+
+
+
+\subsection{Collection and administration of data basis}
+
+
 XXX take some from above and complete : inputs, parameters and validation data
-XXX write here the stuff about W not being relevant
 
 For this reason, the state-wide simulation of hydropower production presented in the case study from section XXX UPDATE WHEN READY XXX as been conducted for XXX TH or ST or MV XXX, in order to compare the results of the simulation based on the OEDB register with the yearly production values given by the AEE.
 
