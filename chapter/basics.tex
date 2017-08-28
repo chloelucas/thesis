@@ -25,6 +25,7 @@ The WaterGAP software, developed by the universities of Kassel and Frankfurt, us
 \subsection{Measured runoff}
  
 In order to study rivers, measurement stations have been installed and monitored for decades, dating back as far as 1816 for Germany. These stations measure the water level or the flow volume with a given timestep and the data is stored in databases. There are different ways to measure the water flow, such as propeller gauges, ultrasonic flow meter, or acoustic current profilers.In Germany there are around 4300 stations measuring water flow or water level, operated by different stakeholders \cite{bafg_hyd}.
+
  
 \section{Types of hydropower plants}
 
@@ -74,21 +75,21 @@ With
 \end{itemize}
 
 
-The head of water is the altitude difference between the surface of the river before and after the turbine. For run-of-the-river hydropower plants, it is assumed that the water level before the turbine is kept constant by the dam, while the water level downstream can vary. This happens when the water flow exceeds the capacity of the turbine and has to be deviated over the dam. With this assumption, the head of water is given by the equation \ref{eq_head} and the water flow in the turbine by the equation \ref{eq_waterflow} \cite{quaschning}.
+The head of water is the altitude difference between the surface of the river before and after the turbine. For run-of-the-river hydropower plants, it is assumed that the water level before the turbine is kept constant by the dam, while the water level downstream can vary. This happens when the water flow exceeds the capacity of the turbine and has to be deviated over the dam. With this assumption, the head of water is given by the equation \ref{eq_head}. The water flow in the turbine is at most \.{V}\textsubscript{n}, and an amount of residual water has to be substracted from the available water flow. The amount of residual water is fixed by law to ensure a minimum water flow in the rivers at all time, an is potentially incresed by the presence of a fish ladder or a passage for canoes. The water flow in the turbine by the equation \ref{eq_waterflow} \cite{quaschning}.
 \begin{equation}
 \label{eq_head} 
  h = h_\mathrm{n} +W_\mathrm{n}-W
 \end{equation}
 \begin{equation}
 \label{eq_waterflow} 
- \dot{V}_\mathrm{turbine} = \min(\dot{V}_\mathrm{n},\dot{V})
+ \dot{V}_\mathrm{turbine} = \min(\dot{V}_\mathrm{n},\dot{V}-\dot{V}_\mathrm{rest})
 \end{equation}
 Where $h_\mathrm{n}$, $W_\mathrm{n}$ and $\dot{V}_\mathrm{n}$ are respectively the nominal head, water level downstream from the dam and water flow, and W and \.{V} the real water level and water flow.
 \newline
 The  equation \ref{eq_power_1} becomes :
 \begin{equation}
  \label{eq_power_2} 
- P = \rho_\mathrm{water} \cdot g \cdot \min(\dot{V}_\mathrm{n},\dot{V}) \cdot (h_\mathrm{n} +W_\mathrm{n}-W) \cdot \eta_\mathrm{turbine} \cdot \eta_\mathrm{generator}
+ P = \rho_\mathrm{water} \cdot g \cdot \min(\dot{V}_\mathrm{n},\dot{V}-\dot{V}_\mathrm{rest}) \cdot (h_\mathrm{n} +W_\mathrm{n}-W) \cdot \eta_\mathrm{turbine} \cdot \eta_\mathrm{generator}
 \end{equation}
 
 \subsection{Types of turbines}
@@ -109,17 +110,11 @@ There are two families of water turbines : action turbines and reaction turbines
  \end{itemize}
 \end{itemize}
 
+The four types of turbines used for run-of-the-river plants are Pelton, Francis, Kaplan and crossflow. These turbines have optimal performances over ranges of water flow and hydraulic head : Kaplan turbine are appropriate for low-head plants, Francis for average heads and Pelton for low water flows and high heads.   
 
 \subsection{Turbine efficiency}
 
-The efficiency of the turbine depends on the type of turbine and on the part-load range \cite{quaschning}\cite{pacer}. There are four types of turbines used for run-of-the-river plants : Pelton, Francis, Kaplan and crossflow. These turbines have optimal performances over ranges of water flow and hydraulic head, and their application areas can be plotted on a characteristic diagram, as in figure \ref{charac_diag}. 
-
-\begin{figure}[H]
-\includegraphics[width=14cm]{charac_diag_en.png}
-\caption[Characteristic diagram for several types of water turbines]{Characteristic diagram for several types of water turbines \cite{wiki_WK}}
-\centering
-\label{charac_diag}
-\end{figure}
+The efficiency of the turbine depends on the type of turbine and on the part-load range \cite{quaschning}\cite{pacer}. 
 
 Figure \ref{efficiency_turb} gives the efficiency curves of different turbine types depending on the part load. These efficiencies can be approximated by the empiric function given in equation \ref{eq_eff} with the parameters given in table \ref{eff_param} \cite{quaschning}. In this equation, $\dot{V}_\mathrm{min}$ is the minimal water flow to start the turbine, $\dot{V}_\mathrm{n}$ is the nominal water flow of the turbine and $\dot{v}=\frac{\dot{V}-\dot{V}_\mathrm{min}}{\dot{V}_\mathrm{n}}$.
 
