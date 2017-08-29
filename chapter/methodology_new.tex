@@ -1,11 +1,26 @@
 \chapter{Methodology}
 \label{chap:methodology}
 
-\section{Developement of the simulation model}
+\section{Development of the simulation model}
 
 \subsection{Specifications}
 \label{sub:spec}
-In order to use the use the characterisitc equation of hydroelectricity (eq. \ref{eq_power_2} page \pageref{eq_power_2}) and predict with precision the electrical output of a run-of-the-river power plant, the following parameters and values would be needed : 
+
+The aim of the model is to be able to simulate the production of a single power plant as well as to execute state or country-wide simulations. It should also take datasets from the OpenEnergy Database as input and be able to run solely on these inputs. The OEDB database lists the location and nominal power of the plants, without further information on their design (see sec. \ref{sub:hpp_reg}). The german Bundesnetzagentur is developing a register of every energy production facility in Germany, called ``Marktstammdatenregister''. This register should give a complete overview of the power plants in Germany, sorted by energy carrier and type of plant (reservoir, run-of-the-river, pumped hydro...), and listing the location and nominal power, as well as the presence or not of a restriction of the usable water flow due to a fish ladder or fish protection system for instance \cite{MaStR}. This last information is not yet available in registers such as the OEDB.\newline
+The desired outputs for the model are electricity production time series per power plant or per area.
+
+
+\subsection{Performance calculation}
+\label{sub:perf_calc}
+
+The electricity production of a power plant will be calculated using the characterisitc equation of hydroelectricity (eq. \ref{eq_power_2} obtained page \pageref{eq_power_2}).
+
+\begin{equation}
+ P = \rho_\mathrm{water} \cdot g \cdot \min(\dot{V}_\mathrm{n},\dot{V}-\dot{V}_\mathrm{rest}) \cdot (h_\mathrm{n} +W_\mathrm{n}-W) \cdot \eta_\mathrm{turbine} \cdot \eta_\mathrm{generator}\tag{\ref{eq_power_2}}
+\end{equation}
+
+In order to use this equation, the following parameters and values would be needed : 
+
 \begin{itemize}
 \itemsep0em
  \item Power plant parameters : 
@@ -14,8 +29,8 @@ In order to use the use the characterisitc equation of hydroelectricity (eq. \re
   \item nominal head of water ($h_\mathrm{n}$)
   \item nominal water level ($W_\mathrm{n}$)
   \item efficiency curve of the turbine ($\eta_\mathrm{turbine}$) 
-  \item efficiency of the generator ($\eta_\mathrm{generator}$)  
-  \item unusable water flow ($\dot{V}_\mathrm{rest}$)  
+  \item efficiency curve of the generator ($\eta_\mathrm{generator}$)  
+  \item residual water flow ($\dot{V}_\mathrm{rest}$)  
  \end{itemize}
  \item Input time series : 
  \begin{itemize}
@@ -24,10 +39,10 @@ In order to use the use the characterisitc equation of hydroelectricity (eq. \re
  \end{itemize}
 \end{itemize}
 
-However, if such precise data can be found for single power plants, it is not easily accessible at a state or country-wide level. The OEDB database lists the location and nominal power of the plants, without further information on their design. The german Bundesnetzagentur is developing a register of every energy production facility in Germany, called ``Marktstammdatenregister''. This register should give a complete overview of the power plants in Germany, sorted by energy carrier and type of plant (reservoir, run-of-the-river, pumped hydro...), and listing the location and nominal power, as well as the presence or not of a restriction of the usable water flow due to a fish ladder or fish protection system for instance \cite{MaStR}. This last information is not yet available in registers such as the OEDB.\newline
+However, if such precise data can be found for single power plants, it is not easily accessible at a state or country-wide level and not present in the OEDB or in the Marktstammdatenregister. 
 Therefore, the model should be able to extrapolate missing data and to make some assumptions when optional input parameters are not provided. The only compulsory input parameter will be the broadly available nominal power of the turbine and subsections \ref{sub:assumptions} and \ref{sub:extrapolation} explains how other parameters can be assumed or extrapolated. \newline
-In terms of time series, in addition to the water flow over the simulated period, the model will take as input the water flow over several years in order to extrapolate missing parameters.\\
-The desired outputs for the model are electricity production time series per power plant or per area. It should also be possible to simulate several plants in one go.
+In terms of time series, in addition to the water flow over the simulated period, the model will take as input the water flow over several years in order to extrapolate missing parameters.
+The efficiencies of the generator and of the tubine will be calculated using respectively the values given in tables \ref{eta_gen} page \pageref{eta_gen} and \ref{eff_param} page \pageref{eff_param}.
 
 \subsection{Assumptions}
 \label{sub:assumptions}
@@ -115,7 +130,7 @@ Finally, the type of turbine is set using a characteristic diagram (fig. \ref{ch
 
 \subsection{Collection and administration of data basis}
 
-Considering the assumptions made in the previous subsection (sec. \ref{sub:assumptions}), the list of necessary data from subsection \ref{sub:spec} becomes :
+Considering the assumptions made in the previous subsection (sec. \ref{sub:assumptions}), the list of necessary data from subsection \ref{sub:perf_calc} becomes :
 \begin{itemize}
  \item Water flow data (time series for the period to simulate)
  \item Geographical data (river courses)
@@ -133,13 +148,13 @@ This data has to be collected and pre-processed to serve as input for the model.
 
 \subsection{Simulation results and evaluation}
 
-
-For this reason, the state-wide simulation of hydropower production presented in the case study from section XXX UPDATE WHEN READY XXX as been conducted for XXX TH or ST or MV XXX, in order to compare the results of the simulation based on the OEDB register with the yearly production values given by the AEE.
-
-In this work, data from the BfG was used as input to test the model (XXX put references of teil über Mosel und Thuringe XXX), as well as data from the french ``Banque Hydro'' (XXX reference of the teil über Hydroraon XXX). The ``Banque Hydro'' is run by the SCHAPI (Service Central d'Hydrométéorologie et d'Appui à la Prévision des Inondations), a section of the french Ministry of Ecology, Sustainable Development and Energy, and gathers data from around 5000 gauge stations.
-
-
-XXX Over which period of time, stepsize, error...
+In order to validate the model, the simulation results have to be compared to real data. This concerns the part of the model extrapolating plant parameters (sec. \ref{sub:extrapolation}) as well as the calculation of production itself (sec. \ref{sub:perf_calc}). \newline
+The model will be evaluated on three cases : 
+\begin{itemize}
+ \item \textbf{Simulation of a single power plant}, whose parameters are known. The simulation will be run on the Hydroraon power plants in the french Vosges department, operated by the company Ercisol. Ercisol operates 4 run-of-the-river power plants in France and publishes the monthly productions on their website \cite{ercisol}. The power plant ``Hydroraon'' was chosen due to its proximity with a gauge station measuring water flow. The measured time series are made available on the ``Banque Hydro'' \cite{eaufrance}. This database is run by the SCHAPI (Service Central d'Hydrométéorologie et d'Appui à la Prévision des Inondations), a section of the french Ministry of Ecology, Sustainable Development and Energy, and gathers data from around 5000 gauge stations. XX add period of time over which simu was made
+ \item \textbf{Extrapolation of missing plant parameters}. This process will be run on the power plants of the Mosel, whose characteristics (nominal head, nominal water flow, turbine types) are known \cite{mosel}, and for which measured values of water flow are available in three stations. These stations are run by the Wasserstraßen- und Schifffahrtsverwaltung des Bundes (WSV) and the time series were made available by the Bundesanstalt für Gewässerkunde (BfG).
+ \item \textbf{State-wide simulation} based on the OEDB and measured water flows. The simulated production will be compared with the yearly production given by the AEE and presented in section \ref{sub:prod_data}. This section showed important discrepancies in installed capacity between the AEE data and the OEDB data. In order to minimize the impact of these discrepancies, the simulation will be run for Thuringe : among the three states for which the AEE data and the OEDB are consistent, this is the state with the biggest installed capacity. The water flow time series were made available by XXX. XXX add years simulated
+\end{itemize}
 
 \section{Data preprocessing}
 

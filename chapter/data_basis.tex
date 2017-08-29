@@ -7,7 +7,7 @@ The previous chapter mentioned quantifying runoff and parameters affecting hydro
 \label{hpp_register}
 
 \subsection{Power plant register}
-
+\label{sub:hpp_reg}
 This work, as well as the project open\_FRED, is linked to the OpenEnergy Platform, developed by the Reiner Lemoine Institute within the open\_eGo project. The OpenEnergy Platform provides necessary tools for transparent and collaborative energy system modeling \cite{oedb}, such as grid data, power plants register, geography data or weather data. The OpenEnergy Database has 7491 entries for run-of-the-river hydropower plants in Germany and contains, among others, the following information :
 \begin{itemize}
 \itemsep0em 
@@ -57,6 +57,7 @@ The OpenEnergy Database also has entries for reservoir and pumped storage plants
 \end{table}
 
 \subsection{Capacity and production data}
+\label{sub:prod_data}
 
 The Agentur für Erneuerbare Energien (AEE) provides data about the installed capacity, electricity generation over the year and number of hydropower plants for each federal state \cite{aee} from 2001 to 2014 (based on data from the Bundesverband der Energie- und Wasserwirtschaft). This data contains run-of-the-river and reservoir plants, as well as pumped storage power plants with natural inflow for which only the production from natural inflow is accounted for. Therefore, it might show discrepancies with the OEDB register for run-of-the-river plants. Table \ref{oedb_aee_diff} lists the number of plants and installed capacity per federal state from these two sources, as well as the relative difference for each state, with the AEE data as reference. The OEDB entries for pumped storage and reservoir plants, listed in table \ref{oedb_pump_res} were not used in this work because they cannot be simulated with the developed model. Moreover, these data do not make up for the difference between the OEDB and the AEE shown in table \ref{oedb_aee_diff} and figures \ref{map_diff_num} and \ref{map_diff_pow}, and the pumped storage entries from the OEDB do not make the distinction between natural inflow and pumped inflow.
 
