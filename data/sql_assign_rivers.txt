@@ -1,0 +1,33 @@
+/*
+Hydro power plants to rivers
+__copyright__   = "Reiner Lemoine Institut"
+__license__     = "GNU Affero General Public License Version 3 (AGPL-3.0)"
+__url__         = ""
+__author__      = "chloelucas"
+*/
+
+
+
+DROP MATERIALIZED VIEW IF EXISTS    supply.fred_dp_res_powerplant_hydro_on_river_mview;
+CREATE MATERIALIZED VIEW            supply.fred_dp_res_powerplant_hydro_on_river_mview AS
+    SELECT DISTINCT ON (a.id)
+        a.id,
+        b.gwk,
+        b.nam,
+        a.geom AS orig_geom,						-- initial geometry
+        ST_ENDPOINT(ST_SHORTESTLINE(
+            ST_TRANSFORM(a.geom,3035) ::geometry(Point,3035),
+            b.geom ::geometry(MultiLineString,3035)
+            )::geometry(LineString,3035)) AS dp_geom,			-- new geometry on the river
+        ST_SHORTESTLINE(
+            ST_TRANSFORM(a.geom,3035) ::geometry(Point,3035),
+            b.geom ::geometry(MultiLineString,3035)
+            ) ::geometry(LineString,3035) AS geom_line,
+        ST_DISTANCE(ST_TRANSFORM(a.geom,3035),b.geom)
+    FROM    supply.ego_renewable_power_plants_germany_hydro_mview AS a,	-- base
+            environment.fred_dp_rivers_mview AS b             		-- target
+    WHERE   ST_DWITHIN(ST_TRANSFORM(a.geom,3035),b.geom, 2000)   	-- In a 2 km radius
+    ORDER BY a.id, ST_DISTANCE(ST_TRANSFORM(a.geom,3035),b.geom);
+    
+-- grant (oeuser)
+ALTER TABLE environment.fred_dp_rivers_mview OWNER TO oeuser;

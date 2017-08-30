@@ -129,6 +129,7 @@ Finally, the type of turbine is set using a characteristic diagram (fig. \ref{ch
 \end{figure}
 
 \subsection{Collection and administration of data basis}
+\label{sub:collec_data}
 
 Considering the assumptions made in the previous subsection (sec. \ref{sub:assumptions}), the list of necessary data from subsection \ref{sub:perf_calc} becomes :
 \begin{itemize}
@@ -147,6 +148,7 @@ Considering the assumptions made in the previous subsection (sec. \ref{sub:assum
 This data has to be collected and pre-processed to serve as input for the model.
 
 \subsection{Simulation results and evaluation}
+\label{sub:simu_res}
 
 In order to validate the model, the simulation results have to be compared to real data. This concerns the part of the model extrapolating plant parameters (sec. \ref{sub:extrapolation}) as well as the calculation of production itself (sec. \ref{sub:perf_calc}). \newline
 The model will be evaluated on three cases : 
@@ -158,9 +160,41 @@ The model will be evaluated on three cases :
 
 \section{Data preprocessing}
 
+The input data listed in subsection \ref{sub:collec_data} and obtained by the sources cited in subsection \ref{sub:simu_res} have to be preprocessed in order to be read by the model.
+
 \subsection{Power plants register - OEDB}
+
+The OEDB register containing information about run-of-the-river power plants is the table ``ego{\_}dp{\_}res{\_}powerplant'' in the schema ``supply''. It is a register for renewable power plants, classified by technology through the column generation{\_}type (solar, wind, geothermal, run{\_}of{\_}river, gas, biomass). In order to be used by the model, a runoff time series has to be assigned to each plant by identifying the river on which the plant is and finding the next gauge station on that river.
+\\ \\
+OR (if work with waterGAP)
+\\ \\
+The OEDB register containing information about run-of-the-river power plants is the table ``ego{\_}dp{\_}res{\_}powerplant'' in the schema ``supply''. It is a register for renewable power plants, classified by technology through the column generation{\_}type (solar, wind, geothermal, run{\_}of{\_}river, gas, biomass). \newline In order to be used by the model, a runoff time series has to be assigned to each plant. The runoff time series used in this work (see section XXX) are given for each grid cell, and the assignment can easily be made by finding the cell in which the plant is located. However, looking at the map of OEDB run-of-the-river power plants and german rivers shows that the localization of the plants is not always accurate (see fig. \ref{pp_river_dist}). In this situation, the plant could  be assigned to a grid cell where no river flows. For this reason, the plants first have to be relocated near the closest river. 
+\begin{figure}[H]
+\center
+\framebox{\includegraphics[width=10cm]{pp_river_dist.png}}
+\caption{Inaccuracy of plant locations}
+\label{pp_river_dist}
+\end{figure}
+
+\subsubsection*{River identification and relocation of power plants}
+
+This is made with SQL queries. The register of all rivers in Germany was created from the Digital Landscape Model (DLM250) of the german Federal Agency for Cartography and Geodesy. This model describes the topographic features of the landscape in the vector format and is made available as open data \cite{dlm250}. Two types of features were used : ``57003 AX{\_}Gewaesserstationierungsachse'' from the layer GEW03 give the main rivers and ``44004 AX{\_}Gewaesserachse'' from the layer GEW01 give the secondary rivers. SQL queries on the river segments and power plants geometries enabled the assignment of a river to each plant. This process is described in figure \ref{river_id} and takes place as follow : the function ``ST{\_}DWithin(power plant geometry, rivers geometry, 2000)'' locates all rivers in a \unit[2]{km} radius around each plant (fig. b), then the function ``ST{\_}Distance(power plant geometry, rivers geometry)'' measures the  shortest distance to each river (fig. c) and only the closest river is kept for each plant (fig. d). Finally, the plant is relocated by filling a new geometry column (dp{\_}geom) with the other extremity of the segment between the plant and the river using ``ST{\_}ENDPOINT(ST{\_}SHORTESTLINE(plant geometry, river geometry)''. The actual code is given in appendix \ref{app:sql_assign_river}.
+\begin{figure}[H]
+\begin{center}
+  \subfigure[Power plants and river layers]{\framebox{\includegraphics[width=6.5cm]{empty.png}}}
+  \subfigure[Search rivers within {\unit[2]{km}} of plants]{\framebox{\includegraphics[width=6.5cm]{kreis.png}}}\\
+  \subfigure[Measure shortest distance to each river]{\framebox{\includegraphics[width=6.5cm]{kreis_many_lines.png}}}
+  \subfigure[Keep the closest river]{\framebox{\includegraphics[width=6.5cm]{kreis_line.png}}}
+\end{center}
+\caption{River identification process}
+\label{river_id}
+\end{figure}
+
+\subsubsection*{Gauge assignment}
+Probably remove this section if work with watergap.
 XXX GIS/SQL code from Ludwig. Next neighbour finden, gauge station has to be on the same river...
 \subsection{Runoff data}
+
 XXX structure in DB
 
 \section{Simulation}
