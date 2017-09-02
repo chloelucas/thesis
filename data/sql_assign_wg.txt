@@ -1,0 +1,28 @@
+/*
+Hydro power plants to rivers
+__copyright__   = "Reiner Lemoine Institut"
+__license__     = "GNU Affero General Public License Version 3 (AGPL-3.0)"
+__url__         = ""
+__author__      = "chloelucas"
+*/
+
+
+
+DROP MATERIALIZED VIEW IF EXISTS    supply.fred_dp_res_powerplant_hydro_on_wg_mview;
+CREATE MATERIALIZED VIEW            supply.fred_dp_res_powerplant_hydro_on_wg_mview AS
+
+SELECT DISTINCT ON (a.id) a.id, a.dp_geom, b.gid wg_id
+    FROM supply.fred_dp_res_powerplant_hydro_on_river_mview a, hydrolib.watergap_geoms b
+    WHERE st_dwithin(st_transform(a.dp_geom,3035), st_transform(b.geom,3035), 7000)
+    ORDER BY a.id, st_distance(st_transform(a.dp_geom,3035), st_transform(b.geom,3035)); 
+
+    -- grant (oeuser)
+ALTER TABLE environment.fred_dp_rivers_mview OWNER TO oeuser;
+
+-- index (id)
+CREATE UNIQUE INDEX fred_dp_res_powerplant_hydro_on_wg_mview_idx
+    ON  supply.fred_dp_res_powerplant_hydro_on_wg_mview (id);
+
+-- index GIST (geom)
+CREATE INDEX fred_dp_res_powerplant_hydro_on_wg_mview_gidx
+    ON supply.fred_dp_res_powerplant_hydro_on_wg_mview USING GIST (dp_geom);

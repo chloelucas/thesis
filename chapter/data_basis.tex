@@ -115,7 +115,7 @@ The relative difference is shown on figures \ref{map_diff_num} and \ref{map_diff
 
 \section{Runoff data - measured}
 
-\label{meas_runoff}
+\label{sec:meas_runoff}
 Water levels and water flows of the main rivers are regularly measured and documented by several organizations, in order to keep track of the history of the waterways and to anticipate potential floods. In Germany, the German Federal Institute of Hydrology (Bundesanstalt für Gewässerkunde – BfG), is a supreme federal agency within the portfolio of the Federal Ministry of Transport and Digital Infrastructure. As such it is the federal government's scientific institution for research, assessments, and consulting in the fields of hydrology, uses, quality and conservation of waters and ecology \cite{bafg}. The BfG gathers data about water levels and water flows since its founding in 1949 and publishes it every year in the ``Deutsches Gewässerkundliches Jahrbuch'' (DGJ). The BfG also operates the HYDABA database, in which times series for water flow and water level are stored, going back to 1816 for daily values and 1981 for hourly values. This database gathers water levels from around 600 gauges and water flows from around 250 stations. The data can, among others, be provided to universities, public administrations, engineering or insurance companies \cite{bafg_hyd}. \newline
 Another source of measured river data is Pegelonline, a service of the Federal Waterways and Shipping Administration (WSV). It publishes raw values of water levels from around 600 gauges in Germany over the previous 30 days. Some of the stations also measure water flows \cite{pegelonline}. The locations of the gauges are shown on map \ref{pegelonline}.
 
@@ -130,4 +130,6 @@ Other countries have similar databases for measured river data. In France, the `
 
 \section{Runoff data - modeled}
 
-Given that this work is part of the openFRED project (see ch. \ref{chap:introduction}) the runoff data should eventually be accessible from open source databases or software. A model is currently being developed by the Helmholtz Zentrum Geesthacht in partnership with the Reiner Lemoine Institute, in order to be used in the openFRED project. This model was not yet available during this work, therefore other sources where used for runoff data (see sec. XXX ref to the methodology section about measured data XXX).
+\label{sec:mod_runoff}
+
+Given that this work is part of the openFRED project (see ch. \ref{chap:introduction}) the runoff data should eventually be accessible from open source databases or software. A model is currently being developed by the Helmholtz Zentrum Geesthacht in partnership with the Reiner Lemoine Institute, in order to be used in the openFRED project. This model was not yet available during this work, therefore modeled time series from the WaterGap software were used in this work. The data takes the form of a raster with a resolution of 5 angular minutes, each raster cells containing time series of runoff with a daily temporal resolution.
