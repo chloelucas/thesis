@@ -16,7 +16,7 @@ The model is developed in Python and consists of two classes (see fig. \ref{uml}
  \caption{Attributes and methods of the classes}
  \centering
  \label{att_meth}
- \begin{tabular}{|l|l|l|p{7cm}|}
+ \begin{tabular}{|l|l|l|p{6cm}|}
   \cline{2-4}
   \multicolumn{1}{c|}{}&\multicolumn{3}{c|}{\textbf{class HydropowerPlant}}\\ \hline
   \multirow{8}{*}{\rotatebox[origin=c]{90}{\textbf{Attributes}}}&id&string&Identification of the plant\\
@@ -36,16 +36,15 @@ The model is developed in Python and consists of two classes (see fig. \ref{uml}
   &file{\_}turb{\_}graph&string&File containing the characteristic diagrams\\
   \hline
   \multirow{7}[5]{*}{\rotatebox[origin=c]{90}{\textbf{Methods}}}&check{\_}feasibilty()&boolean&Checks if input data is sufficient \\
-  &get{\_}dV{\_}rest()&float&Calculates residual runoff value in \unit{m\textsuperscript{3}\textperiodcentered s\textsuperscript{-1}}\\
-  &get{\_}dV{\_}n()&float&Calculates HPP.dV{\_}n in \unit{m\textsuperscript{3}\textperiodcentered s\textsuperscript{-1}}\\
-  &get{\_}P{\_}n()&float&Calculates HPP.P{\_}n in \unit{W}\\
-  &get{\_}h{\_}n()&float&Calculates HPP.h{\_}n in \unit{m}\\
+  &get{\_}dV{\_}rest()&float&Calculates residual runoff in \unit{m\textsuperscript{3}\textperiodcentered s\textsuperscript{-1}}\\
+  &get{\_}dV{\_}n()&float&Calculates nominal runoff in \unit{m\textsuperscript{3}\textperiodcentered s\textsuperscript{-1}}\\
+  &get{\_}P{\_}n()&float&Calculates nominal power in \unit{W}\\
+  &get{\_}h{\_}n()&float&Calculates nominal head in \unit{m}\\
   &get{\_}turb{\_}type()&string&Finds type of turbine\\
   &run()&void&Calculates HPP.power{\_}output in \unit{W}\\
   \hline
  \end{tabular}
 \end{table}
-
 
 \section{Implementation details}
 \section{Results post-processing}
