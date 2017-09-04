@@ -72,7 +72,7 @@ When a Modelchain object is created. an initialization process takes place to ch
 \subsection{Method check{\_}feasibility()}
 \label{sub:check_feas}
 
-When a Modelchain object is initialized, the missing parameters of the HydropowerPlant object are extrapolated from the known parameters and the runoff history. For the extrapolation to be possible, enough parameters have to be filled in. With two parameters among  P{\_}n, dV{\_}n and h{\_}n can the third be calculated using the power equation in nominal operation (eq. \ref{eq_nom}) with nominal efficiencies of the generator and the turbine approximated to respectively 95\% and 90\%. If the runoff history is filled in, it can be use to extrapolate the nominal and residual water flows. If it is not filled in, the residual water flow can be set to 0 as it is very small part of the actual water flow. The type of turbine is then extrapolated from the nominal head and water flow.
+When a Modelchain object is initialized, the missing parameters of the HydropowerPlant object are extrapolated from the known parameters and the runoff history. For the extrapolation to be possible, enough parameters have to be filled in. With two parameters among  P{\_}n, dV{\_}n and h{\_}n can the third be calculated using the power equation in nominal operation (eq. \ref{eq_nom}) with nominal efficiencies of the generator and the turbine approximated to respectively \unit[95]{\%} and \unit[90]{\%}. If the runoff history is filled in, it can be use to extrapolate the nominal and residual water flows. If it is not filled in, the residual water flow can be set to 0 as it is very small part of the actual water flow. The type of turbine is then extrapolated from the nominal head and water flow.
 \begin{equation}
 \label{eq_nom} 
  P_\mathrm{n} = \rho_\mathrm{water} \cdot g \cdot \dot{V}_\mathrm{n} \cdot h_\mathrm{n} \cdot \eta_\mathrm{turbine, n} \cdot \eta_\mathrm{generator, n}
@@ -99,17 +99,39 @@ The python script of this method is given in appendix \ref{app:get_dV_rest}.
 
 \subsection{Methods get{\_}dV{\_}n(), get{\_}h{\_}n() and get{\_}P{\_}n()}
 
-If the nominal head and nominal power are given, the nominal water flow is calculated using equation \ref{eq_dV_n} with $\eta_\mathrm{turbine, n} = \unit[90]{\%}$ and $\eta_\mathrm{generator, n} = \unit[95]{\%}$.\newline
+If the nominal head and nominal power are given, the nominal water flow is calculated using equation \ref{eq_dV_n} with $\eta_\mathrm{turbine, n} = \unit[90]{\%}$ and $\eta_\mathrm{generator, n} = \unit[95]{\%}$. This same equation is used to calculate the nominal power or nominal head.\newline
 
 \begin{equation}
 \label{eq_dV_n} 
  \dot{V}_\mathrm{n}=\frac{ P_\mathrm{n}}{\rho_\mathrm{water} \cdot g  \cdot h_\mathrm{n} \cdot \eta_\mathrm{turbine, n} \cdot \eta_\mathrm{generator, n}}
 \end{equation}
 
-If the nominal head or nominal water flow are missing, a history of water flows has to be specified for the simulation to be possible, and the nominal water flow is extrapolated from this history. The approach chosen to calculate the nominal water flow is given in section \ref{sub:extrapolation}. It is implemented in the model within the get{\_}dV{\_}rest() method of the Modelchain class, called during initialization.\newline
+If the nominal water flow cannot be obtained from equation \ref{eq_dV_n} because either the nominal head or the nominal power are missing, a history of water flows has to be specified for the simulation to be possible, and the nominal water flow is extrapolated from this history. The approach chosen to calculate the nominal water flow is given in section \ref{sub:extrapolation}.\newline
+The water flow history is sorted on runoff values and set with an index representing the percentage of time a value has been exceeded. The residual water flow is subtracted from this flow duration curve, to obtain a flow duration curve of usable runoff (see fig. \ref{fdc}). Finally, the nominal water flow is read as being the usable water flow reached \unit[20]{\%} of the time. \newline
+The python script of this method is given in appendix \ref{app:get_dV_n}
+
+\begin{figure}[H]
+\caption{Extrapolation of nominal water flow from the flow duration curve}
+\center
+\includegraphics[width=12cm]{fdc.png}
+\label{fdc}
+\end{figure}
 
 \subsection{Method get{\_}turb{\_}type()}
 \label{sub:get_type}
+
+Once the residual water flow and the nominal water flow, head and power are set, the type of turbine can be worked out from locating the turbine on a h\textsubscript{n}/\.{V}\textsubscript{n} diagram such as the one shown on figure \ref{charac_diag} page \pageref{charac_diag}. \newline
+The implementation of this method in Python requires to be able of finding out if a point is inside a polygon. In that effect, a ray casting algorithm was used. Ray casting algorithms use the fact that a point is inside a polygon if a half-line starting from this point intersects the edges of the polygon an uneven number of times.\newline To implement a ray casting algorithm in Python, the characteristic diagrams of each turbine type were stored in a csv file by the coordinates of their vertices (see appendix \ref{app:csv_vertices}), and a function to test the intersection of two segments was defined as follows : \newline
+Segments [AD] and [BC] intersect $\iff 
+\left\{
+\begin{tabular}{@{}l@{}}
+    A and D are on opposite sides of [BC] \\
+    AND\\
+    B and C are on opposite sides of [AD]
+\end{tabular}\right.$ \cite{erickson}.
+
+
+
 \subsection{Calculate power output}
 \section{Use examples}
 \subsection{With csv files}
