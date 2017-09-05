@@ -5,9 +5,9 @@
 
 \subsection{Classes of the model}
 The model is developed in Python and consists of two classes (see fig. \ref{uml}) : the HydropowerPlant class, which represents a run-of-the-river power plant and the Modelchain class which represents the simulation of one plant. The attributes and methods of each class are detailled in table \ref{att_meth}. \newline
-A Modelchain object takes a HydropowerPlant object as input, as well as runoff time series. If attributes from the HydropowerPlant object are missing, the Modelchain object calculates them during initialization, through the extrapolation process presented in subsection \ref{sub:extrapolation}. The implementation of this process is detailed in subsections \ref{sub:check_feas} to \ref{sub:get_type}.
+A Modelchain object takes a HydropowerPlant object as input, as well as runoff time series. If attributes from the HydropowerPlant object are missing, the Modelchain object calculates them during initialization, through the extrapolation processes presented in subsection \ref{sub:assumptions}. The implementation of this process is detailed in subsections \ref{sub:check_feas} to \ref{sub:get_type}.
 \begin{figure}[H]
-\center
+\centering
 \includegraphics[width=12cm]{uml.png}
 \caption{Classes of the hydropower model}
 \label{uml}
@@ -15,8 +15,8 @@ A Modelchain object takes a HydropowerPlant object as input, as well as runoff t
 
 \begin{table}
 \footnotesize
- \caption{Attributes and methods of the classes}
  \centering
+ \caption{Attributes and methods of the classes}
  \label{att_meth}
  \begin{tabular}{|l|l|l|p{6cm}|}
   \cline{2-4}
@@ -63,7 +63,7 @@ The output power in \unit{W} is stored in the power{\_}output attribute of the H
 When a Modelchain object is created. an initialization process takes place to check the integrity of the input and if needs be extrapolate the missing input data. The initialization process is presented in figure \ref{init} and the different methods are detailed in the following sections.
 
 \begin{figure}[H]
-\center
+\centering
 \includegraphics[width=15cm]{init.png}
 \caption{Initialization of Modelchain class}
 \label{init}
@@ -86,50 +86,58 @@ Therefore, the first step of the initialization is to check the feasibility of t
 \end{equation}
 
 \begin{figure}[H]
-\caption{Karnaugh map of simulation feasibility depending on inputs}
-\center
+\centering
 \includegraphics[width=8cm]{karnaugh.png}
+\caption{Karnaugh map of simulation feasibility depending on inputs}
 \label{karnaugh}
 \end{figure}
 
 \subsection{Method get{\_}dV{\_}rest()}
 
-The approach chosen to calculate the residual water flow is given in section \ref{sub:extrapolation}. It is implemented in the model within the get{\_}dV{\_}rest() method of the Modelchain class, called during initialization.\newline If no runoff history has been specified, the residual water flow is set to zero. Otherwise, the ten most recent years of the runoff history are aggregated in a mean flow duration curve from which \.{V}\textsubscript{347} is extracted as the water flow attained or exceeded 347 days a year. The residual water flow \.{V}\textsubscript{rest} is then calculated following table \ref{res_wat} page \pageref{res_wat}. \newline
+The approach chosen to calculate the residual water flow is given in section \ref{sub:assumptions}. It is implemented in the model within the get{\_}dV{\_}rest() method of the Modelchain class, called during initialization.\newline If no runoff history has been specified, the residual water flow is set to zero. Otherwise, the ten most recent years of the runoff history are aggregated in a mean flow duration curve from which \.{V}\textsubscript{347} is extracted as the water flow attained or exceeded 347 days a year. The residual water flow \.{V}\textsubscript{rest} is then calculated following table \ref{res_wat} page \pageref{res_wat}. \newline
 The python script of this method is given in appendix \ref{app:get_dV_rest}.
 
 \subsection{Methods get{\_}dV{\_}n(), get{\_}h{\_}n() and get{\_}P{\_}n()}
 
-If the nominal head and nominal power are given, the nominal water flow is calculated using equation \ref{eq_dV_n} with $\eta_\mathrm{turbine, n} = \unit[90]{\%}$ and $\eta_\mathrm{generator, n} = \unit[95]{\%}$. This same equation is used to calculate the nominal power or nominal head.\newline
+If the nominal head and nominal power are given, the nominal water flow is calculated using equation \ref{eq_dV_n} with $\eta_\mathrm{turbine, n} = \unit[90]{\%}$ and $\eta_\mathrm{generator, n} = \unit[95]{\%}$. This same equation is used to calculate the nominal power or nominal head.
 
 \begin{equation}
 \label{eq_dV_n} 
  \dot{V}_\mathrm{n}=\frac{ P_\mathrm{n}}{\rho_\mathrm{water} \cdot g  \cdot h_\mathrm{n} \cdot \eta_\mathrm{turbine, n} \cdot \eta_\mathrm{generator, n}}
 \end{equation}
 
-If the nominal water flow cannot be obtained from equation \ref{eq_dV_n} because either the nominal head or the nominal power are missing, a history of water flows has to be specified for the simulation to be possible, and the nominal water flow is extrapolated from this history. The approach chosen to calculate the nominal water flow is given in section \ref{sub:extrapolation}.\newline
+If the nominal water flow cannot be obtained from equation \ref{eq_dV_n} because either the nominal head or the nominal power are missing, a history of water flows has to be specified for the simulation to be possible, and the nominal water flow is extrapolated from this history. The approach chosen to calculate the nominal water flow is given in section \ref{sub:assumptions}.\newline
 The water flow history is sorted on runoff values and set with an index representing the percentage of time a value has been exceeded. The residual water flow is subtracted from this flow duration curve, to obtain a flow duration curve of usable runoff (see fig. \ref{fdc}). Finally, the nominal water flow is read as being the usable water flow reached \unit[20]{\%} of the time. \newline
 The python script of this method is given in appendix \ref{app:get_dV_n}
 
 \begin{figure}[H]
-\caption{Extrapolation of nominal water flow from the flow duration curve}
-\center
+\centering
 \includegraphics[width=12cm]{fdc.png}
+\caption{Extrapolation of nominal water flow from the flow duration curve}
 \label{fdc}
 \end{figure}
 
 \subsection{Method get{\_}turb{\_}type()}
 \label{sub:get_type}
 
-Once the residual water flow and the nominal water flow, head and power are set, the type of turbine can be worked out from locating the turbine on a h\textsubscript{n}/\.{V}\textsubscript{n} diagram such as the one shown on figure \ref{charac_diag} page \pageref{charac_diag}. \newline
-The implementation of this method in Python requires to be able of finding out if a point is inside a polygon. In that effect, a ray casting algorithm was used. Ray casting algorithms use the fact that a point is inside a polygon if a half-line starting from this point intersects the edges of the polygon an uneven number of times.\newline To implement a ray casting algorithm in Python, the characteristic diagrams of each turbine type were stored in a csv file by the coordinates of their vertices (see appendix \ref{app:csv_vertices}), and a function to test the intersection of two segments was defined as follows : \newline
+Once the residual water flow and the nominal water flow, head and power are set, the type of turbine can be worked out from locating the turbine on a h\textsubscript{n}/\.{V}\textsubscript{n} diagram such as the one shown on figure \ref{charac_diag} page \pageref{charac_diag}. \newline The implementation of this method in Python requires to be able of finding out if a point is inside a polygon. In that effect, a ray casting algorithm was used. Ray casting algorithms use the fact that a point is inside a polygon if a half-line starting from this point intersects the edges of the polygon an uneven number of times.\newline The intersection of half-lines with a polygon edges is not clear in the case where the origin of the half line is on an edge or vertex of the polygon. In our situation, this is automatically counted as being inside the polygon, and the ray casting algorithm is only used for points not locaed on the perimeter of the polygon. \newline To implement a ray casting algorithm in Python, the characteristic diagrams of each turbine type were stored in a csv file by the coordinates of their vertices (see appendix \ref{app:csv_vertices}), and a function to test the intersection of two segments was defined as follows : \newline
 Segments [AD] and [BC] intersect $\iff 
 \left\{
 \begin{tabular}{@{}l@{}}
     A and D are on opposite sides of [BC] \\
     AND\\
     B and C are on opposite sides of [AD]
-\end{tabular}\right.$ \cite{erickson}.
-
+\end{tabular}\right.$\newline
+A and D are on opposite sides of [BC] $\iff$ ccw(A,B,C) $\neq$ ccw(D,B,C) \cite{erickson} \newline \\
+Where ccw(A,B,C) is a function testing whether A, B and C are in counterclockwise order. \newline  Therefore, testing in [AD] and [BC] intersect is equivalent to testing if only one triplet among \{A,B,C\} and \{D,B,C\} is in counterclockwise order.\newline \\
+To test if a triplet \{A,B,C\} of non aligned points is in couterclockwise order, we compute the determinant of $\overrightarrow{AB}$ and $\overrightarrow{BC}$ :\newline
+ccw(A,B,C) \tabto{2.5cm}$\iff \mathrm{det}(\overrightarrow{AB},\overrightarrow{AC})>0$\newline \\
+\tabto{2.5cm}$\iff \begin{vmatrix}x_B-x_A&x_c-x_A\\y_B-y_A&y_c-y_A\end{vmatrix}>0$\newline\\
+\tabto{2.5cm}$\iff (y_C-y_A)\cdot(x_B-x_A) > (y_B-y_A)\cdot(x_C-x_A)$ \newline
+Where A, B and C are located by their abscissa x and ordinate y. \newline
+\\
+Having implemented these two functions in Python, the main function takes a horizontal ray starting in the point (dV\textsubscript{n},h\textsubscript{n}) representing the turbine to test and counts how many time in intersects the edges of each turbine type. When a turbine type gives a uneven number of intersections, the function stops and return this type. If results are found after testing all turbine types defined in the csv file, the function return the type 'dummy', which represent a virtual turbine. \newline
+The python script of this method is given in appendix \ref{app:get_turb_type}
 
 
 \subsection{Calculate power output}

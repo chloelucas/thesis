@@ -2,8 +2,7 @@ def get_dV_n(self):
     r"""
     Get value for dV_n, the nominal water flow through the turbine. 
     If P_n and h_n are known, dV_n is calculated through equation P_n=h_n*dV_n*g*rho*eta_g_n*eta_t_n
-    Where g=9.81 m/s², rho=1000 kg/m³, eta_g_n (nominal generator efficiency)=0.95 and 
-    eta_t_n (nominal turbine efficiency)=0.9
+    Where g=9.81 m/s2, rho=1000 kg/m3, eta_g_n (nominal generator efficiency)=0.95 and eta_t_n (nominal turbine efficiency)=0.9
     Otherwise dV_n is calculated from the flow duration curve over several years, after subtracting dV_rest.
     It is the water flow reached or exceeded 20% of the time.
     :return: 
@@ -12,6 +11,5 @@ def get_dV_n(self):
     if self.HPP.h_n is not None and self.HPP.P_n is not None:
         return self.HPP.P_n/(self.HPP.h_n*9.81*1000*0.9*0.95)
     else:
-        fdc = pd.Series(self.dV_hist.sort_values(by='dV', ascending=False).dV.values - self.HPP.dV_rest,
-                    index=np.arange(1, 100, 99 / self.dV_hist.count()))
+        fdc = pd.Series(self.dV_hist.sort_values(by='dV', ascending=False).dV.values - self.HPP.dV_rest, index=np.arange(1, 100, 99 /  self.dV_hist.count()))
         return np.interp(20,fdc.index,fdc.values)
