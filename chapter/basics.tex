@@ -1,59 +1,27 @@
 \chapter{Basics}
 \label{chap:basics}
 
-This chapter is a brief introduction to hydropower. It presents the origin and quantification of hydro resource, and gives an overview of the conversion devices with a focus on run-of-the-river (ROR) power plants.
+This chapter is a brief introduction to hydropower. It presents gives an overview of the conversion devices with a focus on run-of-the-river (ROR) power plants.
 
-\section{Hydro resource}
-
-\subsection{Characteristics}
-
-On Earth, water is continuously moving in liquid, gaseous or solid form, in a process called the hydrological cycle. Water evaporates, is transported by winds, falls out as rain or snow, gathers into streams and rivers, and flows into seas or lakes. All this movement provides an enormous opportunity to harness useful energy \cite{ucsusa}. Kinetic and potential energy of water can set turbines in motion, creating mechanical energy, which can then be turned into electric energy. The global technically exploitable hydropower potential is estimated at more than \unit[16400]{TWh} per year, around \unit[19]{\%} of which have been developed worldwide \cite{iea_hp_ess}.
- 
-\subsection{Runoff prediction}
- 
-Modeling runoff is a difficult task, as the model has to assess the interactions between river sources, relief, rainfall, local soil and vegetation type, as well as anthropogenic use. This can be done using GIS \cite{bayazit}, by assigning each cell with the precedent parameters. The water input in each cell (rainfall, water sources and runoff from other cells) is converted in runoff from the cell by subtracting the water lost by infiltration, evapotranspiration, or anthropogenic use, and the runoff direction is given by the slope, calculated using a digital elevation model \cite{heywood}. \newline
-The WaterGAP software, developed by the universities of Kassel and Frankfurt, uses this method to calculate flows and reservoirs of water around the globe, as shown on figure \ref{waterGAP}.
-
-\begin{figure}[H]
-\includegraphics[width=15cm]{waterGAP.png}
-\caption[Representation of a global hydrological from the WaterGAP software]{Representation of a global hydrological from the WaterGAP software \cite{doll}}
-\centering
-\label{waterGAP}
-\end{figure}
-
- 
-\subsection{Measured runoff}
- 
-In order to study rivers, measurement stations have been installed and monitored for decades, dating back as far as 1816 for Germany. These stations measure the water level or the flow volume with a given timestep and the data is stored in databases. There are different ways to measure the water flow, such as propeller gauges, ultrasonic flow meter, or acoustic current profilers.In Germany there are around 4300 stations measuring water flow or water level, operated by different stakeholders \cite{bafg_hyd}.
-
- 
 \section{Types of hydropower plants}
 
-The main types of hydroelectricity generating methods are conventional hydropower (dams), pumped storage plants, run-of-the-river plants and tide power stations.
+The main types of hydroelectricity generating methods are conventional hydropower (dams), pumped storage plants, run-of-the-river plants and tide power stations. They are defined as follows by the VGB Powertech \cite{vgb}.
 
-\subsection{Conventional}
+\begin{itemize}
+ \item Conventional hydroelectricity, or reservoir hydroelectricity, comes from the potential energy of dammed water. In a conventional power plant, the turbine is powered by an inflow from one or several reservoirs. Its use is thereby largely independent from the temporal course of the river flowing into the reservoir.
+ \item A pumped storage power plant is a reservoir plant, whose reservoir is completely or partially filled with pumped water. In general, the water is pumped from a lower reservoir, which can be the reservoir of another power plant or a natural water body. A distinction is made between pumped storage with or without natural inflow in the upper reservoir.
+ \item Run-of-the-river hydropower plants are hydropower plants that uses the natural usable stream without delaying it. They do not accumulate water in a reservoir and are therefore dependent on the flow of the river.
+ \item Other types of hydropower include devices converting energy from the tides or the waves.
+\end{itemize}
 
-Conventional hydroelectricity, or reservoir hydroelectricity, comes from the potential energy of dammed water. In a conventional power plant, the turbine is powered by an inflow from one or several reservoirs. Its use is thereby largely independent from the temporal course of the river flowing into the reservoir \cite{vgb}.
-
-\subsection{Pumped storage}
-
-A pumped storage power plant is a reservoir plant, whose reservoir is completely or partially filled with pumped water. In general, the water is pumped from a lower reservoir, which can be the reservoir of another power plant or a natural water body. A distinction is made between pumped storage with or without natural inflow in the upper reservoir \cite{vgb}.
-
-\subsection{Run-of-the-river}
-
-Run-of-the-river hydropower plants are hydropower plants that uses the natural usable stream without delaying it \cite{vgb}. They do not accumulate water in a reservoir and are therefore dependent on the flow of the river.
-
-\subsection{Others}
-
-Other types of hydropower include devices converting energy from the tides or the waves.
 
 \section{Theory of run-of-the-river power plants}
 \subsection{Operating}
 Quaschning \cite{quaschning} describes how a run-of-the-river power plant operates. Even though there is no reservoir accumulating the water upstream from the plant, run-of-the-river power plants need an altitude difference, called head, between the water surface before and after the plant. This can be achieved through a dam, a derivation of the water stream through a canal, or a lock \cite{tdi_petites_centrales}. The water is lead through a turbine (see fig. \ref{schema_hpp}) that drives a electrical generator.
 \begin{figure}[H]
+\centering
 \includegraphics[width=15cm]{schema_hpp_en.png}
 \caption[Schema of a run-of-the-river hydropower plant]{Schema of a run-of-the-river hydropower plant \cite{quaschning}}
-\centering
 \label{schema_hpp}
 \end{figure}
 \subsection{Output power}
@@ -112,9 +80,9 @@ There are two families of water turbines : action turbines and reaction turbines
 
 The four types of turbines used for run-of-the-river plants are Pelton, Francis, Kaplan and crossflow. These turbines have optimal performances over ranges of water flow and hydraulic head : Kaplan turbine are appropriate for low-head plants, Francis for average heads and Pelton for low water flows and high heads.   
 
-\subsection{Turbine efficiency}
+\subsection{Turbine and generator efficiencies}
 
-The efficiency of the turbine depends on the type of turbine and on the part-load range \cite{quaschning}\cite{pacer}. 
+The efficiency of the turbine depends on the type of turbine and on the part-load range\cite{quaschning}\cite{pacer}. 
 
 Figure \ref{efficiency_turb} gives the efficiency curves of different turbine types depending on the part load. These efficiencies can be approximated by the empiric function given in equation \ref{eq_eff} with the parameters given in table \ref{eff_param} \cite{quaschning}. In this equation, $\dot{V}_\mathrm{min}$ is the minimal water flow to start the turbine, $\dot{V}_\mathrm{n}$ is the nominal water flow of the turbine and $\dot{v}=\frac{\dot{V}-\dot{V}_\mathrm{min}}{\dot{V}_\mathrm{n}}$.
 
@@ -131,17 +99,17 @@ Figure \ref{efficiency_turb} gives the efficiency curves of different turbine ty
 
 
 \begin{figure}[H]
-\includegraphics[width=15cm]{efficiency_turb_en.png}
-\caption[Efficiency of different types of turbines depending on the part load ratio]{Efficiency of different types of turbines depending on the part load ratio (water flow / nominal water flow) \cite{raa89}}
 \centering
+\includegraphics[width=12cm]{efficiency_turb_en.png}
+\caption[Efficiency of different types of turbines depending on the part load ratio]{Efficiency of different types of turbines depending on the part load ratio (water flow / nominal water flow) \cite{raa89}}
 \label{efficiency_turb}
 \end{figure}
 
 
-\begin{table}
+\begin{table}[H]
+ \centering
  \caption[Parameters to calculate the turbine efficiency]{Parameters to calculate the turbine efficiency \cite{quaschning}}
  \label{eff_param}
- \centering
  \begin{tabular}{|c|c|c|c|c|c|}
   \cline{2-6}
   \multicolumn{1}{c|}{}&$\dot{V}_\mathrm{min} / \dot{V}\mathrm{n}$ & $\eta_\mathrm{T,n}$& $a_\mathrm{1}$ & $a_\mathrm{2}$&$a_\mathrm{3}$ \\ 
@@ -154,12 +122,12 @@ Figure \ref{efficiency_turb} gives the efficiency curves of different turbine ty
  \end{tabular}
 \end{table}
 
-\subsection{Generator efficiency}
 \label{sub:gen_eff}
 
 The efficiency factor of the generator depends on its power and on the part-load range \cite{pacer}. The Swiss ``Bundesamt für Konjunkturfragen'' gives the values given in table \ref{eta_gen}.
 
-\begin{table}
+\begin{table}[H]
+ \centering
  \caption[Generator efficiency in full load and part load]{Generator efficiency in full load (left) and part load (right) \cite{pacer}}
  \label{eta_gen}
  \begin{tabular}{|C{3cm}|C{3cm}| C{1cm} |C{3cm}|C{3cm}|}
@@ -176,4 +144,14 @@ The efficiency factor of the generator depends on its power and on the part-load
 \end{tabular}
 \end{table}
 
+\section{Existing models and approaches}
 
+Several hydropower models have been or are being developed, among which : 
+\begin{itemize}
+ \item The r.green.hydro model, developed by EURAC Research in Bolzano \cite{grass} to work with the GRASS GIS software computes hydropower potential from discharge raster maps with theoretical, legal, technical, ecological or economic constraints.
+ \item The simple{\_}hydropower{\_}model from James Sample \cite{sample} estimates the potential impacts of climate change on Scotland's run-of-river hydropower potential. It takes historical and future flow data as input, a user-defined head of water, and set the nominal water flow based on the flow duration curve, and computes the output.
+ \item The OSeMOSYS community \cite{osemosys} developed a browser-based open source interface for energy systems modeling which includes hydropower.
+ \item The renpass model \cite{wiese} developed by Frauke Wiese is another energy systems modeling tool with a hydropower part developed by Gesine Boekenkamp \cite{gesine}. It uses a mathematical approach to assess the production, based on the capacity utilization of previous years and the water level variations.
+ \item Matthias Stark calculated the production from German hydropower in his PhD work, by approximated the nominal water flow of a plant with the mean annual water flow of the river \cite{stark}.
+\end{itemize}
+The objective of this work was not to asses hydropower potential but rather to develop a model capable of producing feed-in time series of existing plants. The above-mentioned works were reviewed and some similar approaches were used to develop a model compliant with the expectations of the Reiner Lemoine Institute and the openFRED project.
