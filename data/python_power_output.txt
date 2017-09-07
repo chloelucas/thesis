@@ -125,16 +125,17 @@ def run(hpp, dV, file_turb_eff):
     turbine_parameters = get_turb_param(hpp.turb_type, file_turb_eff)
 
     for timestep in dV.index:
-        if load[timestep] < turbine_parameters["load_min"][0]:
+        if load[timestep] < turbine_parameters.load_min.values[0]:
             power_output[timestep] = 0
         elif load[timestep] >= 1:
             power_output[timestep] = hpp.P_n
         else:
-            eta_turb = (load[timestep] - turbine_parameters["load_min"][0]) / (
-            turbine_parameters["a1"][0] + turbine_parameters["a2"][0] * (
-            load[timestep] - turbine_parameters["load_min"][0]) + turbine_parameters["a3"][0] * (
-            load[timestep] - turbine_parameters["load_min"][0]) * (load[timestep] - turbine_parameters["load_min"][0]))
+            eta_turb = (load[timestep] - turbine_parameters.load_min.values[0]) / (
+            turbine_parameters.a1.values[0] + turbine_parameters.a2.values[0] * (
+            load[timestep] - turbine_parameters.load_min.values[0]) + turbine_parameters.a3.values[0] * (
+            load[timestep] - turbine_parameters.load_min.values[0]) * (load[timestep] - turbine_parameters.load_min.values[0]))
             eta_gen = get_eta_gen(load[timestep], eta_g_n)
             power_output[timestep] = eta_turb * eta_gen * 9.81 * 1000 * dV.dV[timestep] * hpp.h_n
 
     return power_output
+

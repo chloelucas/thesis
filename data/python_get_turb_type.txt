@@ -91,5 +91,4 @@
                 return turbine_type
                 break
 
-        logging.info('Turbine type could not be defined for plant %s. Dummy type used' %self.HPP.id)
         return 'dummy'
