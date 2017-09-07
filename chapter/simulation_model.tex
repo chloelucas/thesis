@@ -167,6 +167,7 @@ P= \left\{
 
 \section{Use examples}
 Two (XXX three?) use examples are provided with the model to help the user start simulations. Example \ref{ssub:ex_with_csv} is designed for simulations with the user's own data (runoff and power plant parameters) and is the study case which results are presented in section \ref{sec:res_single}. Example \ref{sub:example_with_OEDB} (XXX ?) is designed for simulations with the OpenEnergy Database and is the study case which results are presented in section\ref{sec:res_th}.
+
 \subsection{With csv files}
 \label{sub:ex_with_csv}
 
@@ -178,3 +179,8 @@ The code of this example is given in appendix \ref{app:ex_with_csv}.
 
 \subsection{With the OpenEnergy Database}
 \label{sub:ex_with_oedb}
+
+This use example aims at simulating the production of a region over a year, based on a register of run-of-the-river plants of the region, with runoff time series stored in a database. It is based on power plants of Thuringia and modeled runoff data from the waterGAP software. The process would be similar with measured runoff data, as long as the database registers have been preprocessed following the guidelines of section \ref{sec:data_preproc}. \newline
+The power plant register is imported from the OEDB via a sql query and a database connection. It is stored in a DataFrame with the plant id, its electrical capacity and the id of the raster cell containing the runoff modeled data. The example iterates over each plant, fetches the available runoff time series from the database, creates HydropowerPlant and Modelchain instances, and stores the power output and parameters of each plant in a DataFrame. \newline
+The example counts how many power plants were simulated and displays it, along with the total energy production. The dataframe of plants and power outputs can be exported as csv.\newline
+The code of this example is given in appendix \ref{app:ex_with_oedb}.
