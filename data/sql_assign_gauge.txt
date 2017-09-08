@@ -9,23 +9,20 @@ __author__      = "ludee"
 DROP MATERIALIZED VIEW IF EXISTS supply.fred_dp_res_powerplant_hydro_on_gauge_mview;
 CREATE MATERIALIZED VIEW supply.fred_dp_res_powerplant_hydro_on_gauge_mview AS 
 
-
-WITH gauges_with_data AS
-(SELECT distinct on (station.id) station.id, station.geom, station.station_id, station.station, station.name, station.plz, station.water, station.kilometer, station.comment, station.gk3_zone, station.rechts, station.hoch 
-FROM hydrolib.fred_gaugeheight_station station, hydrolib.bfg_hydaba_runoff runoff
-WHERE lower(station.station)=lower(runoff.station))
-
+WITH recent_gauges AS (SELECT * FROM hydrolib.fred_gaugeheight_station_with_data_mview
+WHERE station != 'ZOELLNITZ' and station!='KAULSDORF-EICHICHT')
 
 SELECT DISTINCT ON (a.id) a.id plant_id,
     b.id gauge_id,
     b.station_id,
     b.station,
     b.water,
+    b.source,
     a.dp_geom,
     st_shortestline(st_transform(a.dp_geom, 3035)::geometry(Point,3035), b.geom)::geometry(LineString,3035) AS geom_line,
     st_distance(st_transform(a.dp_geom, 3035), b.geom) AS st_distance
-   FROM supply.fred_dp_res_powerplant_hydro_on_river_mview a, gauges_with_data b
-  WHERE lower(a.nam::text) ~~ lower(b.water::text) OR (st_dwithin(st_transform(a.dp_geom, 3035), b.geom, 20000::double precision) AND lower(a.nam::text) !~~ lower(b.water::text))
+   FROM supply.fred_dp_res_powerplant_hydro_on_river_mview a, recent_gauges b
+  WHERE lower(a.nam::text) ~~ lower(b.water::text) OR (st_dwithin(st_transform(a.dp_geom, 3035), b.geom, 40000::double precision) AND lower(a.nam::text) !~~ lower(b.water::text))
   ORDER BY a.id, lower(a.nam::text)!~~lower(b.water::text), (st_distance(st_transform(a.dp_geom, 3035), b.geom));
   
     -- grant (oeuser)

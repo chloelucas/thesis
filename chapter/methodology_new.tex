@@ -15,9 +15,9 @@ The desired outputs for the model are electricity production time series per pow
 
 The electricity production of a power plant will be calculated using the characteristic equation of hydroelectricity (eq. \ref{eq_power_2} obtained page \pageref{eq_power_2}).
 
-\begin{equation}
- P = \rho_\mathrm{water} \cdot g \cdot \min(\dot{V}_\mathrm{n},\dot{V}-\dot{V}_\mathrm{rest}) \cdot (h_\mathrm{n} +W_\mathrm{n}-W) \cdot \eta_\mathrm{turbine} \cdot \eta_\mathrm{generator}\tag{\ref{eq_power_2}}
-\end{equation}
+\begin{equation*}
+ P = \rho_\mathrm{water} \cdot g \cdot \min(\dot{V}_\mathrm{n},\dot{V}-\dot{V}_\mathrm{rest}) \cdot (h_\mathrm{n} +W_\mathrm{n}-W) \cdot \eta_\mathrm{turbine} \cdot \eta_\mathrm{generator}\tag{\ref{eq_power_2} revisited}
+\end{equation*}
 
 In order to use this equation, the following parameters and values would be needed : 
 
@@ -149,6 +149,7 @@ This data has to be collected and pre-processed to serve as input for the model 
 The input data listed in subsection \ref{sub:collec_data} and obtained by the sources cited in subsection \ref{sec:simu_res} have to be preprocessed in order to be read by the model.
 
 \subsection{Power plants register - OEDB}
+\label{sub:pp_reg}
 
 The OEDB register containing information about run-of-the-river power plants is the table ``ego{\_}dp{\_}res{\_}powerplant'' in the schema ``supply''. It is a register for renewable power plants, classified by technology through the column generation{\_}type (solar, wind, geothermal, run{\_}of{\_}river, gas, biomass). \newline 
 The map of OEDB run-of-the-river power plants and German rivers shows that the localization of the plants is not always accurate (see fig. \ref{pp_river_dist}).
@@ -230,7 +231,7 @@ The model will be evaluated through simulations on :
 \end{itemize}
 
 \subsection{Simulation of a single power plant}
-
+\label{sub:metho_single}
 The simulation will be conducted on a power plant whose parameters are known, giving a many inputs as possible. The Hydroraon power plant in the french Vosges department and operated by the company Ercisol was chosen for this simulation. Ercisol operates 4 run-of-the-river power plants in France and publishes the monthly productions on their website \cite{ercisol}. The power plant ``Hydroraon'' was chosen due to its proximity with a gauge station measuring water flow. The measured time series are made available on the ``Banque Hydro'' \cite{eaufrance}. This database is run by the SCHAPI (Service Central d'Hydrométéorologie et d'Appui à la Prévision des Inondations), a section of the french Ministry of Ecology, Sustainable Development and Energy, and gathers data from around 5000 gauge stations. \newline
 The power plant has the following parameters :
 \begin{itemize}
@@ -258,9 +259,9 @@ XXX More plants : Raon, Kyll, ..., write this when the simu is done
 XXX More details. Modeled data as well ?
 
 \subsection{State-wide simulations} 
-
+\label{sub:metho_sw}
 The state wide simulations take the OEDB as power plant register. The simulated production is compared with the yearly production given by the AEE and presented in section \ref{sub:prod_data}. This section showed important discrepancies in installed capacity between the AEE data and the OEDB data. In order to minimize the impact of these discrepancies, the simulation will be run for Thuringe : among the three states for which the AEE data and the OEDB are consistent, this is the state with the biggest installed capacity, and it has no reservoir power plants listed in the OEDB. \newline
-A simulation will be run with daily measured data from the Global Runoff Data Center (GRDC, Koblenz, Germany) and the Bundesanstalt für Gewässerkunde. Table \ref{quelle_runoff_th} lists the gauge stations and the respective timespan and source of the data.
+A simulation will be run with daily measured data from the Global Runoff Data Center (GRDC, Koblenz, Germany) and the Federal Waterways and Shipping Administration, provided by the Bundesanstalt für Gewässerkunde. Table \ref{quelle_runoff_th} lists the gauge stations and the timespans over which data was made available. The stations of Zoellnitz and Kaulsdorf-Eichicht were not used in this study because they do not have available data for the last decade.
 \begin{table}
 \footnotesize
  \centering

@@ -4,6 +4,7 @@
 The previous chapter mentioned parameters affecting hydroelectricity production. In this chapter, the data sets available for this work will be described and analyzed. This include power plants data registers and production data, as well as runoff data sets. 
 
 \section{Hydroelectricity}
+\label{sec:db_hydroelec}
 In order to simulate the hydroelectricity production of a region, a register of all existing power plants is needed. The simulated hydroelectricity production should then be compared to real production data, in order to validate the model. This process can only be consistent if the actual production data comes from the same plants listed in the power plants register. This section presents the available data sets for existing plants and production, and shows the significant discrepancies between them. 
 
 \subsection{Power plant}
@@ -124,7 +125,7 @@ When published, it will be uploaded in the OEDB and will provide a more consiste
 In order to study rivers, measurement stations have been installed and monitored for decades, dating back as far as 1816 for Germany. These stations measure the water level or the flow volume with a given timestep and the data is stored in databases. There are different ways to measure the water flow, such as propeller gauges, ultrasonic flow meter, or acoustic current profilers.In Germany there are around 4300 stations measuring water flow or water level, operated by different stakeholders \cite{bafg_hyd}.
 
 Water levels and water flows of the main rivers are regularly measured and documented by several organizations, in order to keep track of the history of the waterways and to anticipate potential floods. In Germany, the German Federal Institute of Hydrology (Bundesanstalt für Gewässerkunde – BfG), is a supreme federal agency within the portfolio of the Federal Ministry of Transport and Digital Infrastructure. As such it is the federal government's scientific institution for research, assessments, and consulting in the fields of hydrology, uses, quality and conservation of waters and ecology \cite{bafg}. The BfG gathers data about water levels and water flows since its founding in 1949 and publishes it every year in the ``Deutsches Gewässerkundliches Jahrbuch'' (DGJ). The BfG also operates the HYDABA database, in which times series for water flow and water level are stored, going back to 1816 for daily values and 1981 for hourly values. This database gathers water levels from around 600 gauges and water flows from around 250 stations. The data can, among others, be provided to universities, public administrations, engineering or insurance companies \cite{bafg_hyd}. \newline
-Another source of measured river data is Pegelonline, a service of the Federal Waterways and Shipping Administration (WSV). It publishes raw values of water levels from around 600 gauges in Germany over the previous 30 days. Some of the stations also measure water flows \cite{pegelonline}. The locations of the gauges are shown on map \ref{pegelonline}.
+The HYDABA data is made available by the BfG and comes from gauge stations of the Federal Waterways and Shipping Administration (WSV). The WSV, through its service Pegelonline, publishes raw values of water levels from its gauge stations in Germany over the previous 30 days. Some of the stations also measure water flows \cite{pegelonline}. The locations of the gauges are shown on map \ref{pegelonline}.
 
 \begin{figure}[H]
 \centering
@@ -132,6 +133,8 @@ Another source of measured river data is Pegelonline, a service of the Federal W
 \caption[Locations of the gauge stations]{Locations of the gauge stations \cite{pegelonline}}
 \label{pegelonline}
 \end{figure}
+
+Another source for runoff data is the Global Runoff Data Center (GRDC, 56068 Koblenz, Germany) which operates, on a non-profit basis, a world-wide database of measured runoffs. The GRDC can transfer its data on demand and under certain conditions (according to its policy guidelines for the dissemination of data).\newline
 
 Other countries have similar databases for measured river data. In France, the ``Banque Hydro'' is run by the SCHAPI (Service Central d'Hydrométéorologie et d'Appui à la Prévision des Inondations), a section of the french Ministry of Ecology, Sustainable Development and Energy, and gathers and publishes data from around 5000 gauge stations.
 
@@ -148,4 +151,11 @@ The WaterGAP software, developed by the universities of Kassel and Frankfurt, us
 \end{figure}
 Other runoff models exist, such as the WEAP model of the Stockholm Environment Institute \cite{weap}, the HYPE model of the Swedish Meteorological and Hydrological Institute \cite{hype}, or the TOPKAPI model of PROGEA \cite{topkapi}. \newline
 Given that this work is part of the openFRED project (see ch. \ref{chap:introduction}) the runoff data should eventually be accessible from open source databases or software. The weather aspects of the openFRED project are handled together with the Helmholtz Zentrum Geesthacht. The weather model COSMO is being adapted the the requirements of the project, and, when ready, will deliver the input data (rainfall, temperature, ...) for an existing open source runoff model. \newline
-In the meantime, modeled time series from the WaterGap software were used in this work. The data takes the form of a raster with a resolution of 5 angular minutes, each raster cells containing time series of runoff with a daily temporal resolution.
+In the meantime, modeled time series from the WaterGap software were used in this work. The data takes the form of a raster with a resolution of 5 angular minutes, each raster cell containing time series of runoff with a daily temporal resolution, from 2006 to 2009. When only the cells with an average runoff over \unit[100]{m\textsuperscript{3}\textperiodcentered s\textsuperscript{-1}} are displayed, the German river system is recognizable and the cells overlap the layout of Germany main rivers from the Digital Landscape Model \cite{dlm250} (see fig. \ref{map_watergap_dlm}).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=15cm]{map_watergap_dlm.png}
+\caption[Representation of the German main rivers from waterGAP and DLM]{Representation of the German main rivers from waterGAP and DLM}
+\label{map_watergap_dlm}
+\end{figure}

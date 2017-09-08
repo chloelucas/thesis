@@ -1,0 +1,30 @@
+/*
+Hydro power plants to rivers
+__copyright__   = "Reiner Lemoine Institut"
+__license__     = "GNU Affero General Public License Version 3 (AGPL-3.0)"
+__url__         = ""
+__author__      = "ludee"
+*/
+
+DROP MATERIALIZED VIEW IF EXISTS hydrolib.fred_gaugeheight_station_with_data_mview;
+CREATE MATERIALIZED VIEW hydrolib.fred_gaugeheight_station_with_data_mview AS 
+
+
+
+SELECT DISTINCT ON (station.id) station.id, station.geom, station.station_id, station.station, station.name, station.plz, station.water, station.kilometer, station.comment, station.gk3_zone, station.rechts, station.hoch,
+CASE WHEN lower(station.station)=lower(hydaba.station) THEN 'HYDABA' ELSE 'GRDC' END AS source
+FROM hydrolib.fred_gaugeheight_station station, hydrolib.bfg_hydaba_runoff hydaba, hydrolib.bfg_grdc_runoff grdc
+WHERE lower(station.station)=lower(hydaba.station) OR lower(station.station)=lower(grdc.station);
+
+
+  
+    -- grant (oeuser)
+ALTER TABLE hydrolib.fred_gaugeheight_station_with_data_mview OWNER TO oeuser;
+
+-- index (id)
+CREATE UNIQUE INDEX fred_gaugeheight_station_with_data_mview_idx
+    ON  hydrolib.fred_gaugeheight_station_with_data_mview (id);
+
+-- index GIST (geom)
+CREATE INDEX fred_gaugeheight_station_with_data_mview_gidx
+    ON hydrolib.fred_gaugeheight_station_with_data_mview USING GIST (geom);

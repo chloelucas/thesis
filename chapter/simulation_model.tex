@@ -142,7 +142,7 @@ The python script of this method is given in appendix \ref{app:get_turb_type}
 
 \subsection{Calculate power output}
 
-Calling the run{\_}model() method of a Modelchain object calculates the electrical production time series of the plant and stores it in the power{\_}output attribute of the HydropowerPlant object. The run{\_}model() method calls an external function power{\_}output.run() which takes as inputs the HydropowerPlant object, the water flow in the turbine(s) \.{V}-\.{V}\textsubscript{rest} and the name of a csv file storing the parameters to calculate the turbine efficiency. If not specified otherwise, a default file is called using parameters from Quaschning \cite{quaschning} listed in table \ref{eff_param} page \ref{eff_param}, and specifying parameters for a ``dummy'' turbine type with a mean efficiency curve. The contents of the csv file are given in appendix \ref{csv_eff}. \newline
+Calling the run{\_}model() method of a Modelchain object calculates the electrical production time series of the plant and stores it in the power{\_}output attribute of the HydropowerPlant object. The run{\_}model() method calls an external function power{\_}output.run() which takes as inputs the HydropowerPlant object, the water flow in the turbine(s) \.{V}-\.{V}\textsubscript{rest} and the name of a csv file storing the parameters to calculate the turbine efficiency. If not specified otherwise, a default file is called using parameters from Quaschning \cite{quaschning} listed in table \ref{eff_param} page \ref{eff_param}, and specifying parameters for a ``dummy'' turbine type with a mean efficiency curve. The contents of the csv file are given in appendix \ref{app:csv_eff}. \newline
 For each timestep of the inflow DataFrame, the load is calculated as $load = \frac{\dot{V}}{\dot{V}_\mathrm{n}}$, the efficiencies of the turbine and generator are calculated based on the values given in section \ref{eff_turb_gen} and an electric power value is calculated from equation \ref{eq_pow}. The flowchart of the function calculating power output is given in figure \ref{powout} and the script in appendix \ref{app:powout}.
 
 \begin{equation}
@@ -166,7 +166,7 @@ P= \left\{
 
 
 \section{Use examples}
-Two (XXX three?) use examples are provided with the model to help the user start simulations. Example \ref{ssub:ex_with_csv} is designed for simulations with the user's own data (runoff and power plant parameters) and is the study case which results are presented in section \ref{sec:res_single}. Example \ref{sub:example_with_OEDB} (XXX ?) is designed for simulations with the OpenEnergy Database and is the study case which results are presented in section\ref{sec:res_th}.
+Two (XXX three?) use examples are provided with the model to help the user start simulations. Example \ref{sub:ex_with_csv} is designed for simulations with the user's own data (runoff and power plant parameters) and is the study case which results are presented in section \ref{sec:res_single}. Example \ref{sub:ex_with_oedb} (XXX ?) is designed for simulations with the OpenEnergy Database and is the study case which results are presented in section  \ref{sec:res_th}.
 
 \subsection{With csv files}
 \label{sub:ex_with_csv}
