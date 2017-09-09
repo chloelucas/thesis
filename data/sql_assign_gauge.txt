@@ -22,7 +22,7 @@ SELECT DISTINCT ON (a.id) a.id plant_id,
     st_shortestline(st_transform(a.dp_geom, 3035)::geometry(Point,3035), b.geom)::geometry(LineString,3035) AS geom_line,
     st_distance(st_transform(a.dp_geom, 3035), b.geom) AS st_distance
    FROM supply.fred_dp_res_powerplant_hydro_on_river_mview a, recent_gauges b
-  WHERE lower(a.nam::text) ~~ lower(b.water::text) OR (st_dwithin(st_transform(a.dp_geom, 3035), b.geom, 40000::double precision) AND lower(a.nam::text) !~~ lower(b.water::text))
+  WHERE (lower(a.nam::text) is not null and lower(a.nam::text) ~~ lower(b.water::text)) OR st_dwithin(st_transform(a.dp_geom, 3035), b.geom, 40000::double precision) 
   ORDER BY a.id, lower(a.nam::text)!~~lower(b.water::text), (st_distance(st_transform(a.dp_geom, 3035), b.geom));
   
     -- grant (oeuser)

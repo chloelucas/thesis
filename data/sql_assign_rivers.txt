@@ -30,4 +30,4 @@ CREATE MATERIALIZED VIEW            supply.fred_dp_res_powerplant_hydro_on_river
     ORDER BY a.id, ST_DISTANCE(ST_TRANSFORM(a.geom,3035),b.geom);
     
 -- grant (oeuser)
-ALTER TABLE environment.fred_dp_rivers_mview OWNER TO oeuser;
+ALTER TABLE supply.fred_dp_res_powerplant_hydro_on_river_mview OWNER TO oeuser;

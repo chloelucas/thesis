@@ -165,7 +165,7 @@ In the case of modeled runoff data (see sec. \ref{sec:mod_runoff}), this will en
 
 \subsubsection*{River identification and relocation of power plants}
 
-This is made with SQL queries. The register of all rivers in Germany was created from the Digital Landscape Model (DLM250) of the german Federal Agency for Cartography and Geodesy. This model describes the topographic features of the landscape in the vector format and is made available as open data \cite{dlm250}. \newline Two types of features were used : ``57003 AX{\_}Gewaesserstationierungsachse'' from the layer GEW03 give the main rivers and ``44004 AX{\_}Gewaesserachse'' from the layer GEW01 give the secondary rivers. \newline 
+This is made using postGIS functions. The register of all rivers in Germany was created from the Digital Landscape Model (DLM250) of the german Federal Agency for Cartography and Geodesy. This model describes the topographic features of the landscape in the vector format and is made available as open data \cite{dlm250}. \newline Two types of features were used : ``57003 AX{\_}Gewaesserstationierungsachse'' from the layer GEW03 give the main rivers and ``44004 AX{\_}Gewaesserachse'' from the layer GEW01 give the secondary rivers. \newline 
 SQL queries on the river segments and power plants geometries enabled the assignment of a river to each plant. This process is described in figure \ref{river_id} and takes place as follow : 
 
 \begin{figure}[H]
@@ -247,7 +247,7 @@ The power plant has the following parameters :
 XX add period of time over which simu was made
 
 \subsection{Extrapolation of missing plant parameters}
-
+\label{sub:metho_extra}
 This process will be run on power plants whose characteristics (nominal head, nominal water flow, turbine types) are known, and for which measured values of water flow are available. \newline
 The power plants of the Mosel were investigated because their characteristics are publicly available \cite{mosel} and the water flow is measured in three stations located in Cochem, Trier and Perl and run by the Wasserstraßen- und Schifffahrtsverwaltung des Bundes (WSV). The time series were made available by the Bundesanstalt für Gewässerkunde (BfG) and contain daily values over following timespans :
 \begin{itemize}
