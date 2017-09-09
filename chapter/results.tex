@@ -41,7 +41,83 @@ The simulated production is significantly over the measured production of the pl
 
 \section{Extrapolation of power plant data}
 \label{missing_data}
-Mosel : check that from Pnenn and flow values over several years we get Hn, Qn and turbine type
+Section \ref{sub:metho_extra} listed stations for which both precise design parameters (nominal water flow, nominal head, number and type of turbines) and runoff data were available. The process of extrapolating missing data was tested for these stations. Their nominal power and number of turbines were fed to the model, and the result of the parameter extrapolation process was compared with the actual plant parameters. This process was done with measured and modeled runoffs as input. The results are given in table \ref{tab_res_extra} which lists for each station the real and simulated nominal water flows, heads and turbine types. \newline
+The results based on the simulation with modeled runoff data shows several results very far from reality, where a very low nominal water flow has been set, inducing an extremely high head. This happens when the plant is in a raster cell containing water flow values inconsistent with the Mosel (see fig. \ref{map_mosel_watergap}). The opposite problem arises for the plant in Koblenz, were the Mosel meets the Rhine. The raster cell where the plant is located is crossed by both rivers, and the high water flow from the Rhine distorts the results. Moreover, section \ref{sub:assumptions} explains that the extrapolation process follows the steps of the design process of a run-of-the-river power plant. This design process is normally based on the study of runoff time series over several decades preceding the plant construction, while modeled time series available for this study covered only the ears 2006 to 2009. \newline
+The results based on measured runoff data seem to provide more coherent results. However,if this process gives good results for large waterways with a steady flow and numerous gauge stations, it is bound to entails uncertainties when applied to plants on minor rivers : in this case, the extrapolation process can be done on runoff data from a much bigger river than the one the plant is actually on.\newline
+Section \ref{ref_to_future_section} shows that this extrapolation process has a big impact on the simulated production and prompts the need to a better adjustment of the runoff data to the plants, for the extrapolation process to be based on consistent data.
+
+
+\begingroup
+\renewcommand\arraystretch{0.8}
+\begin{longtable}{|c|c|c|c|c|}
+ \caption{Results of the parameter extrapolation process}
+ \label{tab_res_extra}\\
+ \hline
+  \textbf{Plant}&\textbf{Parameter}&\textbf{Real}&\textbf{Simulation A}&\textbf{Simulation B}\\
+  \hline
+  \endhead
+  \hline
+  \endfoot
+  \multirow{3}{*}{HydroRaon}&\.V\textsubscript{n}&12&11.1&18.4\\
+  &h\textsubscript{n}&4.23&4.29&2.60\\
+  &Turbine type&Kaplan&Kaplan&Kaplan\\
+  \hline
+  \multirow{3}{*}{Koblenz}&\.V\textsubscript{n}&380&2371&438\\
+  &h\textsubscript{n}&5.3&0.8&4.36\\
+  &Turbine type&Kaplan&dummy&Kaplan\\
+  \hline
+  \multirow{3}{*}{Lehmen}&\.V\textsubscript{n}&400&360&438\\
+  &h\textsubscript{n}&7.5&6.6&5.44\\
+  &Turbine type&Kaplan&Kaplan&Kaplan\\
+  \hline
+  \multirow{3}{*}{Müden}&\.V\textsubscript{n}&400&360&438\\
+  &h\textsubscript{n}&6.5&5.4&4.46\\
+  &Turbine type&Kaplan&Kaplan&Kaplan\\
+  \hline
+  \multirow{3}{*}{Fankel}&\.V\textsubscript{n}&400&359&438\\
+  &h\textsubscript{n}&7&5.4&4.46\\
+  &Turbine type&Kaplan&Kaplan&Kaplan\\
+  \hline
+  \multirow{3}{*}{Neef}&\.V\textsubscript{n}&400&0.4&438\\
+  &h\textsubscript{n}&7&5538&4.46\\
+  &Turbine type&Kaplan&dummy&Kaplan\\
+  \hline
+  \multirow{3}{*}{Enkirch}&\.V\textsubscript{n}&400&1.2&438\\
+  &h\textsubscript{n}&7.5&1808&5\\
+  &Turbine type&Kaplan&Kaplan&Kaplan\\
+  \hline
+  \multirow{3}{*}{Zeltingen}&\.V\textsubscript{n}&400&350&438\\
+  &h\textsubscript{n}&6&4.6&3.7\\
+  &Turbine type&Kaplan&Kaplan&Kaplan\\
+  \hline
+  \multirow{3}{*}{Wintrich}&\.V\textsubscript{n}&400&0.3&381\\
+  &h\textsubscript{n}&7.5&8192&6.25\\
+  &Turbine type&Kaplan&dummy&Kaplan\\
+  \hline
+  \multirow{3}{*}{Detzem}&\.V\textsubscript{n}&400&13.3&381\\
+  &h\textsubscript{n}&9&30.6&7.5\\
+  &Turbine type&Kaplan&dummy&Kaplan\\
+  \hline
+  \multirow{3}{*}{Trier}&\.V\textsubscript{n}&400&0.6&381\\
+  &h\textsubscript{n}&7.25&3768&5.9\\
+  &Turbine type&Kaplan&dummy&Kaplan\\
+  \hline
+  \multirow{3}{*}{Grevenmacher}&\.V\textsubscript{n}&165&5.2&381\\
+  &h\textsubscript{n}&6.25&180&2.4\\
+  &Turbine type&Kaplan&Francis&Kaplan\\
+  \hline
+  \multirow{3}{*}{Paltzem}&\.V\textsubscript{n}&150&125&214\\
+  &h\textsubscript{n}&4&4.3&2.5\\
+  &Turbine type&Kaplan&Kaplan&Kaplan\\
+\end{longtable}
+\endgroup
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{map_mosel_watergap.png}
+\caption{Power plants of the Mosel with average modeled runoffs}
+\label{map_mosel_watergap}
+\end{figure}
 
 \section{Production prevision for a region}
 \label{sec:res_th}
@@ -57,4 +133,41 @@ The OEDB lists 205 run-of-the-river plants for Thuringia, displayed on figure \r
 \label{map_th}
 \end{figure}
 
-To state-wide simulation were made : one based on modeled runoff and one based on measured runoff. The gauge assignment process described in section \ref{sub:pp_reg} could only assign gauge stations to 201 out of the 205 plants, therefore the simulations based on measured runoff were only run on these 201 plants.
+To state-wide simulations were made : one based on modeled runoff and one based on measured runoff. The data was preprocessed following the guidelines of section \ref{sub:pp_reg} : the location of the plants was refined, placing them on the course of the nearest river, and they were assigned a gauge station (in the case of measured runoff) or raster cell (in the case of modeled runoff). The yearly productions are given in table \ref{res_th} and compared with the AEE values, and the productions of each plant are displayed on figure \ref{prod_th_map}.
+
+\begin{table}[H]
+\footnotesize
+ \centering
+ \caption{Yearly production of Thuringia : measured and simulated data}
+ \label{res_th}
+ \begin{tabular}{|l|ccc|}
+ \hline
+  &\multicolumn{3}{c|}{Yearly production in MWh}\\
+  Year&Published by AEE&Simulated from modeled runoffs&Simulated from measured runoff\\
+  \hline \hline
+  \multirow{2}{*}{2005}&\multirow{2}{*}{180}&119&-\\
+  &&-\unit[34]{\%}&-\\
+  \hline
+  \multirow{2}{*}{2006}&\multirow{2}{*}{163}&105&112\\
+  &&-\unit[36]{\%}&-\unit[31]{\%}\\
+  \hline
+  \multirow{2}{*}{2007}&\multirow{2}{*}{322}&175&162\\
+  &&-\unit[46]{\%}&-\unit[50]{\%}\\
+  \hline
+  \multirow{2}{*}{2008}&\multirow{2}{*}{248}&131&187\\
+  &&-\unit[47]{\%}&-\unit[25]{\%}\\
+  \hline
+  \multirow{2}{*}{2009}&\multirow{2}{*}{200}&-&130\\
+  &&-&-\unit[35]{\%}\\
+  \hline
+ \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=15cm]{prod_th_map.png}
+\caption{Simulated production of run-of-the-river plants in Thuringia, based on modeled runoffs}
+\label{prod_th_map}
+\end{figure}
+ 
+The production seems to be significantly underestimated by both simulation processes, and a more advanced analysis with precise data about plants would be needed to assess if the difference is due the inconsistencies between the AEE and Open Power data sets, and if not, which parts of the simulation process cause this difference. Some ideas are given in the sensibility analysis of section \ref{ref_to_future_section}.
