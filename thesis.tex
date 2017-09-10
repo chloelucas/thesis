@@ -51,7 +51,7 @@
 \usepackage{tabto}		% Use of tabs to indent
 \usepackage{subfigure}
 \usepackage{scrhack}
-
+\usepackage{glossaries}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -203,7 +203,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
 % Beginn des Dokuments
 \begin{document}
 
@@ -217,6 +216,9 @@
 	% Titelseite
 	\include{./chapter/title}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Remove headers
+	\pagestyle{empty}
+	
 	% offizielle Aufgabenstellung
 %	\include{./chapter/aufgabenstellung}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -238,6 +240,7 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% Abkürzungsverzeichnis/Formelzeichen
 	\include{./chapter/acronym}
+	\include{./chapter/list_scientific_symbols}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\include{./chapter/acknowledgments}
@@ -245,7 +248,8 @@
 	
 	\include{./chapter/abstract}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
+	% Put back headers
+	\pagestyle{scrheadings}
 	
 	% Hauptteil
 	\mainmatter
