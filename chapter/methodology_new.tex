@@ -151,8 +151,8 @@ The input data listed in subsection \ref{sub:collec_data} and obtained by the so
 \subsection{Power plants register - OEDB}
 \label{sub:pp_reg}
 
-The OEDB register containing information about run-of-the-river power plants is the table ``ego{\_}dp{\_}res{\_}powerplant'' in the schema ``supply''. It is a register for renewable power plants, classified by technology through the column generation{\_}type (solar, wind, geothermal, run{\_}of{\_}river, gas, biomass). \newline 
-The map of OEDB run-of-the-river power plants and German rivers shows that the localization of the plants is not always accurate (see fig. \ref{pp_river_dist}).
+The OEDB register containing information about run-of-the-river power plants is extracted from the Open Power Data Set and stored in table ``ego{\_}dp{\_}res{\_}powerplant'' in the schema ``supply''. It is a register for renewable power plants, classified by technology through the column generation{\_}type (solar, wind, geothermal, run{\_}of{\_}river, gas, biomass). \newline 
+The map of OPDS run-of-the-river power plants and German rivers shows that the localization of the plants is not always accurate (see fig. \ref{pp_river_dist}).
 \begin{figure}[H]
 \center
 \framebox{\includegraphics[width=10cm]{pp_river_dist.png}}
@@ -227,7 +227,7 @@ The model will be evaluated through simulations on :
 \begin{itemize}
  \item A single power plant whose characteristics are known (nominal water flow, head, turbine type) with precise runoff data (hourly measures from a gauge within \unit[2]{km} of the plant). Objective : evaluating the quality of the production calculation.
  \item Power plants whose characteristics are known, simulated as entries from the OEDB, i.e. only with the nominal power. Objective : evaluating the extrapolation processes presented in subsection \ref{sub:assumptions}.
- \item A state-wide simulation based on the OpenEnergy Database. Objective : evaluating the quality of the whole process (preprocessing and simulation).
+ \item A state-wide simulation based on the Open Power Data Set. Objective : evaluating the quality of the whole process (preprocessing and simulation).
 \end{itemize}
 
 \subsection{Simulation of a single power plant}
@@ -236,31 +236,54 @@ The simulation will be conducted on a power plant whose parameters are known, gi
 The power plant has the following parameters :
 \begin{itemize}
  \item P\textsubscript{n} \tabto{4cm}: \unit[400]{kW}
- \item Q\textsubscript{n} \tabto{4cm}: \unit[12]{m\textsuperscript{3}\textperiodcentered s\textsuperscript{-1}}
- \item H\textsubscript{n} \tabto{4cm}: \unit[4.23]{m}
+ \item \.V\textsubscript{n} \tabto{4cm}: \unit[12]{m\textsuperscript{3}\textperiodcentered s\textsuperscript{-1}}
+ \item h\textsubscript{n} \tabto{4cm}: \unit[4.23]{m}
  \item Number of turbines \tabto{4cm}: 1
  \item Type of turbine \tabto{4cm}: Kaplan
  \item River \tabto{4cm}: Meurthe
  \item Place \tabto{4cm}: Papeterie des Châtelles, Raon l'Étape
 \end{itemize}
-
-XX add period of time over which simu was made
+At the time this work was written, the water flow time series were only available up to May 31\textsuperscript{st} 2017, and the power plant started operating on April 12\textsuperscript{th} 2017. Therefore, the comparison will be run on one and a half month, shortly after the plant started operating.
 
 \subsection{Extrapolation of missing plant parameters}
 \label{sub:metho_extra}
-This process will be run on power plants whose characteristics (nominal head, nominal water flow, turbine types) are known, and for which measured values of water flow are available. \newline
-The power plants of the Mosel were investigated because their characteristics are publicly available \cite{mosel} and the water flow is measured in three stations located in Cochem, Trier and Perl and run by the Wasserstraßen- und Schifffahrtsverwaltung des Bundes (WSV). The time series were made available by the Bundesanstalt für Gewässerkunde (BfG) and contain daily values over following timespans :
+This process will be run on power plants whose characteristics (nominal head, nominal water flow, turbine types) are known, and for which measured and modeled values of water flow are available. \newline
+The power plants of the Mosel were investigated because their characteristics are publicly available \cite{mosel} and the water flow is measured in three stations located in Cochem, Trier and Perl and run by the Federal Waterways and Shipping Administration (WSV). The time series were made available by the Federal Institute of Hydrology (BfG) and contain daily values over following timespans :
 \begin{itemize}
  \item Cochem \tabto{2cm}: 1901 to 2016
  \item Perl \tabto{2cm}: 1975 to 2016
  \item Trier \tabto{2cm}: 1931 to 2016 except 1963 and 1964
 \end{itemize}
-XXX More plants : Raon, Kyll, ..., write this when the simu is done
-XXX More details. Modeled data as well ?
+In addition, the extrapolation process will also be tested on the HydroRaon power plant described in section \ref{sub:metho_single}, whose characteristics are also known. A list of tested power plants and their characteristics is given in table \ref{plants_to_test}. All of these plants are in the territory covered by the modeled time series from the waterGAP software and available for this work, so that the simulations will be made with modeled and measured time series.
+\begin{table}
+ \caption{Plants used to test the extrapolation process}
+ \footnotesize
+ \label{plants_to_test}
+ \centering
+ \begin{tabular}{|l|c|c|c|c|}
+ \hline
+ Plant&Nominal power&Nominal inflow&Nominal head&Turbines\\
+ \hline
+ HydroRaon&0.4&12&4.23&1 x Kaplan\\
+ Koblenz&16&380&5.3&4 x Kaplan\\
+ Lehmen&20&400&7.5&4 x Kaplan\\
+ Müden&16.4&400&6.5&4 x Kaplan\\
+ Fankel&16.4&400&7&4 x Kaplan\\
+ Neef&16.4&400&7&4 x Kaplan\\
+ Enkirch&18.4&400&7.5&4 x Kaplan\\
+ Zeltingen&13.6&400&6&4 x Kaplan\\
+ Wintrich&20&400&7.5&4 x Kaplan\\
+ Detzem&24&400&9&4 x Kaplan\\
+ Trier&18.8&400&7.25&4 x Kaplan\\
+ Grevenmacher&7.8&165&6.25&3 x Kaplan\\
+ Paltzem&4.5&150&4&3 x Kaplan\\
+ \hline
+ \end{tabular}
+\end{table}
 
 \subsection{State-wide simulations} 
 \label{sub:metho_sw}
-The state wide simulations take the OEDB as power plant register. The simulated production is compared with the yearly production given by the AEE and presented in section \ref{sub:prod_data}. This section showed important discrepancies in installed capacity between the AEE data and the OEDB data. In order to minimize the impact of these discrepancies, the simulation will be run for Thuringe : among the three states for which the AEE data and the OEDB are consistent, this is the state with the biggest installed capacity, and it has no reservoir power plants listed in the OEDB. \newline
+The state wide simulations is based on the power plant register from the Open Power Data Set stored in the Open Energy Database. The simulated production is compared with the yearly production given by the AEE and presented in section \ref{sub:prod_data}. This section showed important discrepancies in installed capacity between the AEE data and the OPDS data. In order to minimize the impact of these discrepancies, the simulation will be run for Thuringe : among the three states for which the AEE data and the OPDS are consistent, this is the state with the biggest installed capacity, and it has no reservoir power plants listed in the OPDS. However, given the inconsistencies between these two sources, this process is mainly illustrative and cannot lead to a conclusion about the quality of the model. \newline
 A simulation will be run with daily measured data from the Global Runoff Data Center (GRDC, Koblenz, Germany) and the Federal Waterways and Shipping Administration, provided by the Bundesanstalt für Gewässerkunde. Table \ref{quelle_runoff_th} lists the gauge stations and the timespans over which data was made available. The stations of Zoellnitz and Kaulsdorf-Eichicht were not used in this study because they do not have available data for the last decade.
 \begin{table}
 \footnotesize
@@ -295,4 +318,11 @@ A simulation will be run with daily measured data from the Global Runoff Data Ce
  \end{tabular}
 \end{table}
 
-Another simulation will be run with modeled runoff from the WaterGap software. XXX Add more details : number of cells in TH, timespan... 
+Another simulation will be run with modeled runoff from the WaterGAP software. The runoffs are given per raster cell, as shown on figure \ref{raster_th} and available from 2006 to 2009, with daily values.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=15cm]{raster_th.png}
+\caption{Main values of the modeled runoffs for Thuringia}
+\label{raster_th}
+\end{figure}
