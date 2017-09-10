@@ -17,7 +17,7 @@ SELECT DISTINCT ON (a.id) a.id, a.dp_geom, b.gid wg_id
     ORDER BY a.id, st_distance(st_transform(a.dp_geom,3035), st_transform(b.geom,3035)); 
 
     -- grant (oeuser)
-ALTER TABLE environment.fred_dp_rivers_mview OWNER TO oeuser;
+ALTER TABLE supply.fred_dp_res_powerplant_hydro_on_wg_mview OWNER TO oeuser;
 
 -- index (id)
 CREATE UNIQUE INDEX fred_dp_res_powerplant_hydro_on_wg_mview_idx

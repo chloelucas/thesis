@@ -21,6 +21,7 @@
 
 % Pakete
 \usepackage{cmap}		% to make the PDF files "searchable and copyable" in pdf viewer
+\usepackage[numbers]{natbib}
 \usepackage[english]{babel}	% deutschsprachig
 \usepackage[utf8]{inputenc}	% utf8 encoding
 \usepackage[T1]{fontenc}	% Schriftkodierung
@@ -274,12 +275,12 @@
 
 	% Literaturverzeichnis
 	% Preambel für das Literaturverzeichnis
-	\setbibpreamble{The bibliography is sorted alphabetically based on the authors names. In the case of several authors, the work is sorted based on the first author.  \par\bigskip}
+	%\setbibpreamble{The bibliography is sorted alphabetically based on the authors names. In the case of several authors, the work is sorted based on the first author.  \par\bigskip}
 	\bibliography{./bibliography/verzeichnis.bib}{} % Datei
 	% Layout
-	\bibliographystyle{plain}
+	\bibliographystyle{plainnat}
 	% alle Literaturangaben (auch unzitierte)
-	\nocite{*}
+	%\nocite{*}
 	% Info: Autoren mit AND trennen, wenn genaue Formatierung ohne Umsortierung gewünscht dann ...= "{...}"
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
