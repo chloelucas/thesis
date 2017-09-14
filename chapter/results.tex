@@ -9,17 +9,17 @@ Figure \ref{raon_map} shows the locations of the plant and the closest gauge sta
 \begin{table}[H]
 \footnotesize
  \centering
- \caption{Monthly production of the HydroRaon plant \cite{ercisol}}
+ \caption{Monthly production of the HydroRaon plant}
  \label{prod_raon}
- \begin{tabular}{l|c|c|}
-  &Ercisol data&Model output\\
-  Month&Measured [MWh]&Simulated [MWh]\\
+ \begin{tabular}{l|c|c|c|}
+  &Ercisol data \cite{ercisol}&Model output&\multirow{2}{*}{Difference}\\
+  Month&Measured [MWh]&Simulated [MWh]&\\
   \hline
-  April&37&61\\
-  May&86&119\\
-  June&66&\\
-  July&29&\\
-  August&17&\\
+  April&37&63&+\unit[70]{\%}\\
+  May&86&123&+\unit[43]{\%}\\
+  June&66&100&+\unit[51]{\%}\\
+  July&29&39&+\unit[34]{\%}\\
+  August&17&13&-\unit[23]{\%}\\
  \end{tabular}
 \end{table}
 
@@ -32,19 +32,19 @@ Figure \ref{raon_map} shows the locations of the plant and the closest gauge sta
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=10cm]{prod_raon_curve.png}
+\includegraphics[width=15cm]{prod_raon_curve.png}
 \caption{Simulated production of the HydroRaon plant}
 \label{prod_raon_curve}
 \end{figure}
 
-The simulated production is significantly over the measured production of the plant. This could be due to the fact that the plant had just started operating and was undergoing a tests and adjustments. Unfortunately, at the time this work is being written, the measured runoff data from June to August is not yet available.
+The simulated production is significantly over the measured production of the plant from April to July. This is due to the fact that the plant had just started operating and was undergoing tests and adjustments. In August, the simulated production is under the measured production. These results will be discussed in ch. \ref{chap:discussion}.
 
 \section{Extrapolation of power plant data}
 \label{sec:missing_data}
 Section \ref{sub:metho_extra} listed stations for which both precise design parameters (nominal water flow, nominal head, number and type of turbines) and runoff data were available. The process of extrapolating missing data was tested for these stations. Their nominal power and number of turbines were fed to the model, and the result of the parameter extrapolation process was compared with the actual plant parameters. This process was done with measured and modeled runoffs as input. The results are given in table \ref{tab_res_extra} which lists for each station the real and simulated nominal water flows, heads and turbine types. \newline
-The results based on the simulation with modeled runoff data shows several results very far from reality, where a very low nominal water flow has been set, inducing an extremely high head. This happens when the plant is in a raster cell containing water flow values inconsistent with the Mosel (see fig. \ref{map_mosel_watergap}). The opposite problem arises for the plant in Koblenz, were the Mosel meets the Rhine. The raster cell where the plant is located is crossed by both rivers, and the high water flow from the Rhine distorts the results. Moreover, section \ref{sub:assumptions} explains that the extrapolation process follows the steps of the design process of a run-of-the-river power plant. This design process is normally based on the study of runoff time series over several decades preceding the plant construction, while modeled time series available for this study covered only the ears 2006 to 2009. \newline
-The results based on measured runoff data seem to provide more coherent results. However,if this process gives good results for large waterways with a steady flow and numerous gauge stations, it is bound to entails uncertainties when applied to plants on minor rivers : in this case, the extrapolation process can be done on runoff data from a much bigger river than the one the plant is actually on.\newline
-Section \ref{sec:improv} shows that this extrapolation process has a big impact on the simulated production and prompts the need to a better adjustment of the runoff data to the plants, for the extrapolation process to be based on consistent data.
+The results based on the simulation with modeled runoff data shows several results very far from reality, where a very low nominal water flow has been set, inducing an extremely high head. This happens when the plant is in a raster cell containing water flow values inconsistent with the Mosel (see fig. \ref{map_mosel_watergap}). The opposite problem arises for the plant in Koblenz, were the Mosel meets the Rhine. The raster cell where the plant is located is crossed by both rivers, and the high water flow from the Rhine distorts the results. Moreover, section \ref{sub:assumptions} explains that the extrapolation process follows the steps of the design process of a run-of-the-river power plant. This design process is normally based on the study of runoff time series over several decades preceding the plant construction, while modeled time series available for this study covered only the years 2006 to 2009. \newline
+The results based on measured runoff data seem to provide more coherent results. However, if this process gives good results for large waterways with a steady flow and numerous gauge stations, it is bound to entail uncertainties when applied to plants on minor rivers : in this case, the extrapolation process can be done on runoff data from a much bigger river than the one the plant is actually on.\newline
+Section \ref{sec:improv} shows that this extrapolation process has a big impact on the simulated production and prompts the need for a better adjustment of the runoff data to the plants, for the extrapolation process to be based on consistent data.
 
 
 \begingroup
@@ -122,9 +122,9 @@ Section \ref{sec:improv} shows that this extrapolation process has a big impact 
 \section{Production prevision for a region}
 \label{sec:res_th}
 
-Sections \ref{sec:db_hydroelec} and \ref{sub:metho_sw} showed the problems inherent to comparing the results of a state-wide simulation based on the OpenEnergy Database with publicly available production data (from the Agentur für Erneuerbare Energien - AEE). Firstly, the AEE aggregates data from run-of-the-river plants, reservoir plants, as well as some pumped storage plants instead of differentiating them like the OpenEnergy Database. Secondly, the OEDB registers, in terms of number of plants and installed capacity, are not consistent with the AEE aggregated data, and the inconsistencies cannot be explained by the precedent remark alone. \newline
-Section \ref{sub:metho_sw} justified the choice of running the state-wide simulation on the federal state of Thuringia and the results are presented here. \newline
-The OEDB lists 205 run-of-the-river plants for Thuringia, displayed on figure \ref{map_th} along with the 18 used gauge stations, the average values of modeled runoff, and the river network.
+Sections \ref{sec:db_hydroelec} and \ref{sub:metho_sw} showed the problems inherent to comparing the results of a state-wide simulation based on the OpenEnergy Database with publicly available production data (from the Agentur für Erneuerbare Energien - AEE). Firstly, the AEE aggregates data from run-of-the-river plants, reservoir plants, as well as some pumped storage plants instead of differentiating them like the Open Power Data Set. Secondly, the OPDS registers, in terms of number of plants and installed capacity, are not consistent with the AEE aggregated data, and the inconsistencies cannot be explained by the precedent remark alone. \newline
+Section \ref{sub:metho_sw} justified the choice of running the state-wide simulation on the federal state of Thuringia, and the results are presented here. \newline
+The OPDS lists 205 run-of-the-river plants for Thuringia, displayed on figure \ref{map_th} along with the 18 used gauge stations, the average values of modeled runoff, and the river network.
 
 \begin{figure}[H]
 \centering
@@ -170,4 +170,4 @@ To state-wide simulations were made : one based on modeled runoff and one based 
 \label{prod_th_map}
 \end{figure}
  
-The production seems to be significantly underestimated by both simulation processes, and a more advanced analysis with precise data about plants would be needed to assess if the difference is due the inconsistencies between the AEE and Open Power data sets, and if not, which parts of the simulation process cause this difference. Some ideas are given in the sensibility analysis of section \ref{sec:improv}.
+The production seems to be significantly underestimated by both simulation processes, and a more advanced analysis with precise data about plants would be needed to assess if the difference is due the inconsistencies between the AEE and Open Power data sets, and if not, which parts of the simulation process causes this difference. Some ideas are given in the sensibility analysis of section \ref{sec:improv}.

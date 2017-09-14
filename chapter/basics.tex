@@ -10,7 +10,7 @@ The main types of hydroelectricity generating methods are conventional hydropowe
 \begin{itemize}
  \item Conventional hydroelectricity, or reservoir hydroelectricity, comes from the potential energy of dammed water. In a conventional power plant, the turbine is powered by an inflow from one or several reservoirs. Its use is thereby largely independent from the temporal course of the river flowing into the reservoir.
  \item A pumped storage power plant is a reservoir plant, whose reservoir is completely or partially filled with pumped water. In general, the water is pumped from a lower reservoir, which can be the reservoir of another power plant or a natural water body. A distinction is made between pumped storage with or without natural inflow in the upper reservoir.
- \item Run-of-the-river hydropower plants are hydropower plants that uses the natural usable stream without delaying it. They do not accumulate water in a reservoir and are therefore dependent on the flow of the river.
+ \item Run-of-the-river hydropower plants are hydropower plants that use the natural usable stream without delaying it. They do not accumulate water in a reservoir and are therefore dependent on the flow of the river.
  \item Other types of hydropower include devices converting energy from the tides or the waves.
 \end{itemize}
 
@@ -43,7 +43,7 @@ With
 \end{itemize}
 
 
-The head of water is the altitude difference between the surface of the river before and after the turbine. For run-of-the-river hydropower plants, it is assumed that the water level before the turbine is kept constant by the dam, while the water level downstream can vary. This happens when the water flow exceeds the capacity of the turbine and has to be deviated over the dam. With this assumption, the head of water is given by the equation \ref{eq_head}. The water flow in the turbine is at most \.{V}\textsubscript{n}, and an amount of residual water has to be substracted from the available water flow. The amount of residual water is fixed by law to ensure a minimum water flow in the rivers at all time, an is potentially incresed by the presence of a fish ladder or a passage for boats. The water flow in the turbine by the equation \ref{eq_waterflow} \cite{quaschning}.
+The head of water is the altitude difference between the surface of the river before and after the turbine. For run-of-the-river hydropower plants, it is assumed that the water level before the turbine is kept constant by the dam, while the water level downstream can vary. This happens when the water flow exceeds the capacity of the turbine and has to be deviated over the dam. With this assumption, the head of water is given by the equation \ref{eq_head}. The water flow in the turbine is at most \.{V}\textsubscript{n}, and an amount of residual water has to be substracted from the available water flow. The amount of residual water is fixed by law to ensure a minimum water flow in the rivers at all time, an is potentially increased by the presence of a fish ladder or a passage for boats. The water flow in the turbine is given by equation \ref{eq_waterflow} \cite{quaschning}.
 \begin{equation}
 \label{eq_head} 
  h = h_\mathrm{n} +W_\mathrm{n}-W
@@ -82,9 +82,9 @@ The four types of turbines used for run-of-the-river plants are Pelton, Francis,
 
 \subsection{Turbine and generator efficiencies}
 \label{eff_turb_gen}
-The efficiency of the turbine depends on the type of turbine and on the part-load range\cite{quaschning}\cite{pacer}. 
 
-Figure \ref{efficiency_turb} gives the efficiency curves of different turbine types depending on the part load. These efficiencies can be approximated by the empiric function given in equation \ref{eq_eff} with the parameters given in table \ref{eff_param} \cite{quaschning}. In this equation, $\dot{V}_\mathrm{min}$ is the minimal water flow to start the turbine, $\dot{V}_\mathrm{n}$ is the nominal water flow of the turbine and $\dot{v}=\frac{\dot{V}-\dot{V}_\mathrm{min}}{\dot{V}_\mathrm{n}}$.
+\subsubsection{Turbine efficiency}
+The efficiency of a turbine depends on its type and part-load range \cite{quaschning}\cite{pacer}. Figure \ref{efficiency_turb} gives the efficiency curves of different turbine types depending on the part load. These efficiencies can be approximated by the empiric function given in equation \ref{eq_eff} with the parameters given in table \ref{eff_param} \cite{quaschning}. In this equation, $\dot{V}_\mathrm{min}$ is the minimal water flow to start the turbine, $\dot{V}_\mathrm{n}$ is the nominal water flow of the turbine and $\dot{v}=\frac{\dot{V}-\dot{V}_\mathrm{min}}{\dot{V}_\mathrm{n}}$.
 
 \begin{equation}
  \label{eq_eff}
@@ -98,17 +98,10 @@ Figure \ref{efficiency_turb} gives the efficiency curves of different turbine ty
 \end{equation}
 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=12cm]{efficiency_turb_en.png}
-\caption[Efficiency of different types of turbines depending on the part load ratio]{Efficiency of different types of turbines depending on the part load ratio (water flow / nominal water flow) \cite{raa89}}
-\label{efficiency_turb}
-\end{figure}
-
-
 \begin{table}[H]
  \centering
  \caption[Parameters to calculate the turbine efficiency]{Parameters to calculate the turbine efficiency \cite{quaschning}}
+ \footnotesize
  \label{eff_param}
  \begin{tabular}{|c|c|c|c|c|c|}
   \cline{2-6}
@@ -122,13 +115,21 @@ Figure \ref{efficiency_turb} gives the efficiency curves of different turbine ty
  \end{tabular}
 \end{table}
 
-\label{sub:gen_eff}
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{efficiency_turb_en.png}
+\caption[Efficiency of different types of turbines depending on the part load ratio]{Efficiency of different types of turbines depending on the part load ratio (water flow / nominal water flow) \cite{raa89}}
+\label{efficiency_turb}
+\end{figure}
 
-The efficiency factor of the generator depends on its power and on the part-load range \cite{pacer}. The Swiss ``Bundesamt für Konjunkturfragen'' gives the values given in table \ref{eta_gen}.
+\subsubsection{Generator efficiency}
+
+The efficiency factor of the generator depends on its power and part-load range \cite{pacer}. The Swiss ``Bundesamt für Konjunkturfragen'' gives the values given in table \ref{eta_gen}.
 
 \begin{table}[H]
  \centering
  \caption[Generator efficiency in full load and part load]{Generator efficiency in full load (left) and part load (right) \cite{pacer}}
+ \footnotesize
  \label{eta_gen}
  \begin{tabular}{|C{3cm}|C{3cm}| C{1cm} |C{3cm}|C{3cm}|}
   \cline{1-2} \cline{4-5}

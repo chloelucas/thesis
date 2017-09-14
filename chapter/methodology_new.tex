@@ -49,6 +49,7 @@ The efficiencies of the generator and of the tubine will be calculated using res
 
 A specification of the model, as explained in subsection \ref{sub:spec}, is to be able to run the simulation with limited information about the power plant, namely the nominal power and the coordinates. To do so, some simplifications will be used and other necessary information (nominal head, nominal inflow, and type of turbine) will be extrapolated from the hydrological history of the location, following the steps of the design process for a run-of-the-river plant.
 \subsubsection{Approximation of the head by the nominal head}
+\label{sub:approx_h}
 
 The equation \ref{eq_head} given on page \pageref{eq_head} gives the relation between the head and the water level. However, it is not possible to know the water level directly after a power plant without having a gauge station exactly there. Section \ref{sec:meas_runoff} shows that measured data for water level is widely available throughout Germany, however the gauge stations are not bound to power plants and the water level directly downstream from a plant cannot be approximated with a value measured somewhere else on the river, because it depends on the shape of the river bed : figures \ref{mosel_WQ} based on measurement data for three stations on the Mosel from the Deutsches Gewässerkundliches Jahrbuch show linear correlations with different slopes between water level and water flow, and figure \ref{W_mosel} shows that the water level does not depend on the distance to the river mouth (see appendix \ref{app:boxplot} on how to read the graph). \newline
 This strong variability of water level from a place to another would biase the results if the equation \ref{eq_head} (p.\pageref{eq_head}) was used with measured water level as input. Moreover, the modeled river data will not include information on the water level. For these reasons, the model will approximate the head of water $h$ with the nominal head $h_\mathrm{n}$.
@@ -64,15 +65,15 @@ This strong variability of water level from a place to another would biase the r
 \begin{figure}[H]
 \centering
 \includegraphics[width=15cm]{W_mosel.png}
-\caption[Distribution of water level at gauges on the Mosel]{Distribution of water level at gauges on the Mosel, data from \cite{dgj}, year 2014}
+\caption[Distribution of water level at gauges on the Mosel]{Distribution of water level at gauges on the Mosel for the year 2014, data from \cite{dgj}}
 \label{W_mosel}
 \end{figure}
 
 \subsubsection{Calculation of the residual water flow}
 \label{sub:extrapol_dV_rest}
 
-The residual water flow \.V\textsubscript{rest} is regulated by law, and therefore depends on the country, or on the federal state in Germany. Giesecke gives several ways of defining the residual water quantity and shows that they give slightly differents values \cite{gies_qrest}. In this work, a formula-based approach was used to calculate the residual water (see tab. \ref{res_wat}), where \.{V}\textsubscript{347} is the water flow reached or exceeded 347 days a year, averaged over 10 years. 
-\begin{table}
+The residual water flow \.V\textsubscript{rest} is regulated by law, and therefore depends on the country, or on the federal state in Germany. Giesecke gives several ways of defining the residual water quantity and shows that they give slightly differents values \cite{gies_qrest}. In this work, a formula-based approach was used to calculate the residual water flow (see tab. \ref{res_wat}), where \.{V}\textsubscript{347} is the water flow reached or exceeded 347 days a year, averaged over 10 years. 
+\begin{table}[H]
  \centering
  \caption[Residual water quantity depending on the river]{Residual water quantity depending on the river \cite{gies_qrest}}
  \label{res_wat}
@@ -103,7 +104,7 @@ The residual water flow \.V\textsubscript{rest} is regulated by law, and therefo
 \subsubsection{Calculation of the nominal water flow}
 \label{sub:extrapol_dV_n}
 
-The nominal water flow is chosen so that the power plant works at full load a given number of days a year. The literature recommends that the nominal water flow should be reached 50 to 90 days a year for a system connected to the grid, or 250 days a year for an isolated operation (self-production) \cite{pacer}\cite{cetmef}. The value of 120 days (30\% of the year) can also be found \cite{cetmef}. The nominal water flow is obtained by analyzing the flow duration curve over as many years as possible. This work will use the value of 73 days a year (20\% of the year). However, this can lead to errors, as the real value is influenced by economical and human factors.
+The nominal water flow is is obtained by analyzing the flow duration curve over as many years as possible, and chosen so that the power plant works at full load a given number of days a year. The literature recommends that the nominal water flow should be reached 50 to 90 days a year for a system connected to the grid, or 250 days a year for an isolated operation (self-production) \cite{pacer}\cite{cetmef}. The value of 120 days (30\% of the year) can also be found \cite{cetmef}. This work will use the value of 73 days a year (20\% of the year). However, this can lead to errors, as the real value is influenced by economical and human factors.
 
 \subsubsection{Calculation of the nominal head}
 \label{sub:extrapol_h_n}
@@ -116,7 +117,7 @@ Even though the potential head of water could be calculated from the altitude va
 \end{equation}
 
 \subsubsection{Deduction of the turbine type}
-Finally, the type of turbine is deduced from the nominal head and nominal water flow using a characteristic diagram (fig. \ref{charac_diag}). 
+Finally, the type of turbine is deduced from the nominal head and nominal water flow using a characteristic diagram (fig. \ref{charac_diag}).  In  the first instance, turbines in the overlapping zone between Francis and Kaplan are set as Francis turbines, and those in the overlapping zone between Pelton and Francis are set as Francis. The validity of this simplification is discussed in sec. \ref{sub:limits_others} and improvement possibilities are presented in Sec XXX ref to WoI XXX
 
 \begin{figure}[H]
 \centering
@@ -151,8 +152,7 @@ The input data listed in subsection \ref{sub:collec_data} and obtained by the so
 \subsection{Power plants register - OEDB}
 \label{sub:pp_reg}
 
-The OEDB register containing information about run-of-the-river power plants is extracted from the Open Power Data Set and stored in table ``ego{\_}dp{\_}res{\_}powerplant'' in the schema ``supply''. It is a register for renewable power plants, classified by technology through the column generation{\_}type (solar, wind, geothermal, run{\_}of{\_}river, gas, biomass). \newline 
-The map of OPDS run-of-the-river power plants and German rivers shows that the localization of the plants is not always accurate (see fig. \ref{pp_river_dist}).
+The OEDB register containing information about run-of-the-river power plants is extracted from the Open Power Data Set and stored in table ``ego{\_}dp{\_}res{\_}powerplant'' in the schema ``supply''. It is a register for renewable power plants, classified by technology through the column generation{\_}type (solar, wind, geothermal, run{\_}of{\_}river, gas, biomass). The map of OPDS run-of-the-river power plants and German rivers shows that the localization of the plants is not always accurate (see fig. \ref{pp_river_dist}).
 \begin{figure}[H]
 \center
 \framebox{\includegraphics[width=10cm]{pp_river_dist.png}}
@@ -165,7 +165,7 @@ In the case of modeled runoff data (see sec. \ref{sec:mod_runoff}), this will en
 
 \subsubsection*{River identification and relocation of power plants}
 
-This is made using postGIS functions. The register of all rivers in Germany was created from the Digital Landscape Model (DLM250) of the german Federal Agency for Cartography and Geodesy. This model describes the topographic features of the landscape in the vector format and is made available as open data \cite{dlm250}. \newline Two types of features were used : ``57003 AX{\_}Gewaesserstationierungsachse'' from the layer GEW03 give the main rivers and ``44004 AX{\_}Gewaesserachse'' from the layer GEW01 give the secondary rivers. \newline 
+This is made using postGIS functions. The register of all rivers in Germany was created from the Digital Landscape Model (DLM250) of the german Federal Agency for Cartography and Geodesy. This model describes the topographic features of the landscape in the vector format and is made available as open data \cite{dlm250}. \newline Two types of features were used : ``57003 AX{\_}Gewaesserstationierungsachse'' from the layer GEW03 gives the main rivers and ``44004 AX{\_}Gewaesserachse'' from the layer GEW01 gives the secondary rivers. \newline 
 SQL queries on the river segments and power plants geometries enabled the assignment of a river to each plant. This process is described in figure \ref{river_id} and takes place as follow : 
 
 \begin{figure}[H]
@@ -232,9 +232,10 @@ The model will be evaluated through simulations on :
 
 \subsection{Simulation of a single power plant}
 \label{sub:metho_single}
-The simulation will be conducted on a power plant whose parameters are known, giving a many inputs as possible. The Hydroraon power plant in the french Vosges department and operated by the company Ercisol was chosen for this simulation. Ercisol operates 4 run-of-the-river power plants in France and publishes the monthly productions on their website \cite{ercisol}. The power plant ``Hydroraon'' was chosen due to its proximity with a gauge station measuring water flow. The measured time series are made available on the ``Banque Hydro'' \cite{eaufrance}. This database is run by the SCHAPI (Service Central d'Hydrométéorologie et d'Appui à la Prévision des Inondations), a section of the french Ministry of Ecology, Sustainable Development and Energy, and gathers data from around 5000 gauge stations. \newline
+The simulation will be conducted on a power plant whose parameters are known, giving as many inputs as possible. The Hydroraon power plant in the french Vosges department and operated by the company Ercisol was chosen for this simulation. Ercisol operates 4 run-of-the-river power plants in France and publishes the monthly productions on their website \cite{ercisol}. The power plant ``Hydroraon'' was chosen due to its proximity with a gauge station measuring water flow. The measured time series are made available on the ``Banque Hydro'' \cite{eaufrance}. This database is run by the SCHAPI, a section of the french Ministry of Ecology, Sustainable Development and Energy. \newline
 The power plant has the following parameters :
 \begin{itemize}
+\itemsep0em
  \item P\textsubscript{n} \tabto{4cm}: \unit[400]{kW}
  \item \.V\textsubscript{n} \tabto{4cm}: \unit[12]{m\textsuperscript{3}\textperiodcentered s\textsuperscript{-1}}
  \item h\textsubscript{n} \tabto{4cm}: \unit[4.23]{m}
@@ -243,13 +244,14 @@ The power plant has the following parameters :
  \item River \tabto{4cm}: Meurthe
  \item Place \tabto{4cm}: Papeterie des Châtelles, Raon l'Étape
 \end{itemize}
-At the time this work was written, the water flow time series were only available up to May 31\textsuperscript{st} 2017, and the power plant started operating on April 12\textsuperscript{th} 2017. Therefore, the comparison will be run on one and a half month, shortly after the plant started operating.
+Since the power plant started operating on April 12\textsuperscript{th} 2017, the comparison will be run on four and a half months, shortly after the plant started operating. The runoff time series over the simulated period have an hourly resolution, while the history of runoffs has a daily resolution. The residual water flow was calculated based on the french legislation, which stipulates a value of 1/10\textsuperscript{th} of the mean annual flow calculated on 5 years \cite{sage}. The mean annual water flow calculated from daily water flows from 2012 to 2016 being \unit[14.3]{m\textsuperscript{3}\textperiodcentered s\textsuperscript{-1}}, \.V\textsubscript{rest} was set to \unit[1.43]{m\textsuperscript{3}\textperiodcentered s\textsuperscript{-1}}.
 
 \subsection{Extrapolation of missing plant parameters}
 \label{sub:metho_extra}
 This process will be run on power plants whose characteristics (nominal head, nominal water flow, turbine types) are known, and for which measured and modeled values of water flow are available. \newline
 The power plants of the Mosel were investigated because their characteristics are publicly available \cite{mosel} and the water flow is measured in three stations located in Cochem, Trier and Perl and run by the Federal Waterways and Shipping Administration (WSV). The time series were made available by the Federal Institute of Hydrology (BfG) and contain daily values over following timespans :
 \begin{itemize}
+\itemsep0em
  \item Cochem \tabto{2cm}: 1901 to 2016
  \item Perl \tabto{2cm}: 1975 to 2016
  \item Trier \tabto{2cm}: 1931 to 2016 except 1963 and 1964
@@ -283,9 +285,9 @@ In addition, the extrapolation process will also be tested on the HydroRaon powe
 
 \subsection{State-wide simulations} 
 \label{sub:metho_sw}
-The state wide simulations is based on the power plant register from the Open Power Data Set stored in the Open Energy Database. The simulated production is compared with the yearly production given by the AEE and presented in section \ref{sub:prod_data}. This section showed important discrepancies in installed capacity between the AEE data and the OPDS data. In order to minimize the impact of these discrepancies, the simulation will be run for Thuringe : among the three states for which the AEE data and the OPDS are consistent, this is the state with the biggest installed capacity, and it has no reservoir power plants listed in the OPDS. However, given the inconsistencies between these two sources, this process is mainly illustrative and cannot lead to a conclusion about the quality of the model. \newline
-A simulation will be run with daily measured data from the Global Runoff Data Center (GRDC, Koblenz, Germany) and the Federal Waterways and Shipping Administration, provided by the Bundesanstalt für Gewässerkunde. Table \ref{quelle_runoff_th} lists the gauge stations and the timespans over which data was made available. The stations of Zoellnitz and Kaulsdorf-Eichicht were not used in this study because they do not have available data for the last decade.
-\begin{table}
+The state wide simulation is based on the power plant register from the Open Power Data Set stored in the Open Energy Database. The simulated production is compared with the yearly production given by the AEE and presented in section \ref{sub:prod_data}. This section showed important discrepancies in installed capacity between the AEE data and the OPDS data. In order to minimize the impact of these discrepancies, the simulation will be run for Thuringe : among the three states for which the AEE data and the OPDS are consistent, this is the state with the biggest installed capacity, and it has no reservoir power plants listed in the OPDS. However, given the inconsistencies between these two sources, this process is mainly illustrative and cannot lead to a conclusion about the quality of the model. \newline
+A simulation will be run with daily measured data from the Global Runoff Data Center (GRDC, Koblenz, Germany) and the Federal Waterways and Shipping Administration, provided by the Bundesanstalt für Gewässerkunde. Table \ref{quelle_runoff_th} lists the gauge stations and the timespans over which data was made available. The stations of Zoellnitz and Kaulsdorf-Eichicht were not used in this study because they do not have available data for the last decade. Another simulation will be run with modeled runoff from the WaterGAP software. The runoffs are given per raster cell, as shown on figure \ref{raster_th} and available from 2006 to 2009, with daily values.
+\begin{table}[H]
 \footnotesize
  \centering
  \caption{Gauge stations in Thuringe}
@@ -318,7 +320,7 @@ A simulation will be run with daily measured data from the Global Runoff Data Ce
  \end{tabular}
 \end{table}
 
-Another simulation will be run with modeled runoff from the WaterGAP software. The runoffs are given per raster cell, as shown on figure \ref{raster_th} and available from 2006 to 2009, with daily values.
+
 
 \begin{figure}[H]
 \centering

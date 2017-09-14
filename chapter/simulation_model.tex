@@ -60,7 +60,7 @@ The output power in \unit{W} is stored in the power{\_}output attribute of the H
 
 \subsection{Initialization of Modelchain class}
 
-When a Modelchain object is created. an initialization process takes place to check the integrity of the input and if needs be extrapolate the missing input data. The initialization process is presented in figure \ref{init} and the different methods are detailed in the following sections.
+When a Modelchain object is created, an initialization process takes place to check the integrity of the input and, if needs be, extrapolate the missing input data. The initialization process is presented in figure \ref{init} and the different methods are detailed in the following sections.
 
 \begin{figure}[H]
 \centering
@@ -129,16 +129,14 @@ Segments [AD] and [BC] intersect $\iff
     B and C are on opposite sides of [AD]
 \end{tabular}\right.$\newline
 A and D are on opposite sides of [BC] $\iff$ ccw(A,B,C) $\neq$ ccw(D,B,C) \cite{erickson} \newline \\
-Where ccw(A,B,C) is a function testing whether A, B and C are in counterclockwise order. \newline  Therefore, testing in [AD] and [BC] intersect is equivalent to testing if only one triplet among \{A,B,C\} and \{D,B,C\} is in counterclockwise order.\newline \\
-To test if a triplet \{A,B,C\} of non aligned points is in couterclockwise order, we compute the determinant of $\overrightarrow{AB}$ and $\overrightarrow{BC}$ :\newline
+Where ccw(A,B,C) is a function testing whether A, B and C are in counterclockwise order. \newline  Therefore, testing in [AD] and [BC] intersect is equivalent to testing if only one and only one triplet among \{A,B,C\} and \{D,B,C\} is in counterclockwise order, and if one and only one triplet among \{B,A,D\} and \{C,A,D\} is in counterclockwise order.\newline \\
+To test if a triplet \{A,B,C\} of non aligned points is in counterclockwise order, we compute the determinant of $\overrightarrow{AB}$ and $\overrightarrow{BC}$ :\newline
 ccw(A,B,C) \tabto{2.5cm}$\iff \mathrm{det}(\overrightarrow{AB},\overrightarrow{AC})>0$\newline \\
 \tabto{2.5cm}$\iff \begin{vmatrix}x_B-x_A&x_c-x_A\\y_B-y_A&y_c-y_A\end{vmatrix}>0$\newline\\
 \tabto{2.5cm}$\iff (y_C-y_A)\cdot(x_B-x_A) > (y_B-y_A)\cdot(x_C-x_A)$ \newline
 Where A, B and C are located by their abscissa x and ordinate y. \newline
 \\
-Having implemented these two functions in Python, the main function takes a horizontal ray starting in the point (dV\textsubscript{n},h\textsubscript{n}) representing the turbine to test and counts how many time in intersects the edges of each turbine type. When a turbine type gives a uneven number of intersections, the function stops and return this type. If results are found after testing all turbine types defined in the csv file, the function return the type 'dummy', which represent a virtual turbine. \newline
-The python script of this method is given in appendix \ref{app:get_turb_type}
-
+Having implemented these two functions in Python, the main function takes a horizontal ray starting in the point (dV\textsubscript{n},h\textsubscript{n}) representing the turbine to test and counts how many time it intersects the edges of each turbine type. When a turbine type gives a uneven number of intersections, the function stops and returns this type. Therefore, in the case of overlapping diagrams, the assigment is made to the first type tested, i.e. to the first type defined in the csv file. In the default file the order is as follows : first Kaplan, then Francis, then Pelton. If no results are found after testing all turbine types defined in the csv file, the function returns the type 'dummy', which represents a virtual turbine. The python script of this method is given in appendix \ref{app:get_turb_type}.
 
 \subsection{Calculate power output}
 
@@ -166,7 +164,7 @@ P= \left\{
 
 
 \section{Use examples}
-Two (XXX three?) use examples are provided with the model to help the user start simulations. Example \ref{sub:ex_with_csv} is designed for simulations with the user's own data (runoff and power plant parameters) and is the study case which results are presented in section \ref{sec:res_single}. Example \ref{sub:ex_with_oedb} (XXX ?) is designed for simulations with the OpenEnergy Database and is the study case which results are presented in section  \ref{sec:res_th}.
+Two use examples are provided with the model to help the user start simulations. Example \ref{sub:ex_with_csv} is designed for simulations with the user's own data (runoff and power plant parameters) and is the study case which results are presented in section \ref{sec:res_single}. Example \ref{sub:ex_with_oedb} is designed for simulations with the OpenEnergy Database and is the study case which results are presented in section  \ref{sec:res_th}.
 
 \subsection{With csv files}
 \label{sub:ex_with_csv}
@@ -180,7 +178,7 @@ The code of this example is given in appendix \ref{app:ex_with_csv}.
 \subsection{With the OpenEnergy Database}
 \label{sub:ex_with_oedb}
 
-This use example aims at simulating the production of a region over a year, based on a register of run-of-the-river plants of the region, with runoff time series stored in a database. It is based on power plants of Thuringia and modeled runoff data from the waterGAP software. The process would be similar with measured runoff data, as long as the database registers have been preprocessed following the guidelines of section \ref{sec:data_preproc}. \newline
-The power plant register is imported from the OEDB via a sql query and a database connection. It is stored in a DataFrame with the plant id, its electrical capacity and the id of the raster cell containing the runoff modeled data. The example iterates over each plant, fetches the available runoff time series from the database, creates HydropowerPlant and Modelchain instances, and stores the power output and parameters of each plant in a DataFrame. \newline
+This use example aims at simulating the production of a region over a year, based on a register of run-of-the-river plants of the region, with runoff time series stored in a database. It is based on power plants of Thuringia and modeled runoff data from the WaterGAP software. The process would be similar with measured runoff data, as long as the database registers have been preprocessed following the guidelines of section \ref{sec:data_preproc}. \newline
+The power plant register is imported from the OEDB via a SQL query and a database connection. It is stored in a DataFrame with the plant id, its electrical capacity and the id of the raster cell containing the runoff modeled data. The example iterates over each plant, fetches the available runoff time series from the database, creates HydropowerPlant and Modelchain instances, and stores the power output and parameters of each plant in a DataFrame. \newline
 The example counts how many power plants were simulated and displays it, along with the total energy production. The dataframe of plants and power outputs can be exported as csv.\newline
 The code of this example is given in appendix \ref{app:ex_with_oedb}.
