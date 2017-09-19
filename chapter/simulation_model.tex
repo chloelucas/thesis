@@ -93,7 +93,7 @@ Therefore, the first step of the initialization is to check the feasibility of t
 \end{figure}
 
 \subsection{Method get{\_}dV{\_}rest()}
-
+\label{sub:getdVrest}
 The approach chosen to calculate the residual water flow is given in section \ref{sub:assumptions}. It is implemented in the model within the get{\_}dV{\_}rest() method of the Modelchain class, called during initialization.\newline If no runoff history has been specified, the residual water flow is set to zero. Otherwise, the ten most recent years of the runoff history are aggregated in a mean flow duration curve from which \.{V}\textsubscript{347} is extracted as the water flow attained or exceeded 347 days a year. The residual water flow \.{V}\textsubscript{rest} is then calculated following table \ref{res_wat} page \pageref{res_wat}. \newline
 The python script of this method is given in appendix \ref{app:get_dV_rest}.
 
