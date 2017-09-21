@@ -7,9 +7,9 @@ The previous chapter mentioned parameters affecting hydroelectricity production.
 \label{sec:db_hydroelec}
 In order to simulate the hydroelectricity production of a region, a register of all existing power plants is needed. The simulated hydroelectricity production should then be compared to real production data, in order to validate the model. This process can only be consistent if the actual production data comes from the same plants listed in the power plants register. This section presents the available data sets for existing plants and production, and shows the significant discrepancies between them. 
 
-\subsection{Power plants}
+\subsection{Open Energy Database}
 \label{sub:hpp_reg}
-This work, as well as the project open\_FRED, is linked to the OpenEnergy Platform, developed within the open\_eGo project. The OpenEnergy Platform, through the OpenEnergy Database, provides necessary tools for transparent and collaborative energy system modeling \cite{oedb}, such as grid data, power plants register, geography data or weather data. The power plant register was extracted from the Open Power Data Set (OPDS) and has 7491 entries for run-of-the-river hydropower plants and 5 entries for reservoir plants in Germany. The run-of-the-river entries contain, among others, the following information :
+This work, as well as the project open\_FRED, is linked to the OpenEnergy Platform, developed within the open\_eGo project. The OpenEnergy Platform, through the OpenEnergy Database, provides necessary tools for transparent and collaborative energy system modeling \cite{oedb}, such as grid data, power plants register, geography data or weather data. The power plant register was extracted from the Open Power System Data (OPSD) and has 7491 entries for run-of-the-river hydropower plants and 5 entries for reservoir plants in Germany. The run-of-the-river entries contain, among others, the following information :
 \begin{itemize}
 \itemsep-0.5em 
  \item Company operating the plant and network operator information
@@ -19,12 +19,12 @@ This work, as well as the project open\_FRED, is linked to the OpenEnergy Platfo
  \item Position (latitude, longitude, and GIS geometry)
 \end{itemize}
 
-Figure \ref{oedb_capa} shows the repartition of the capacity of OPDS run-of-the-river and reservoir plants. This is consistent with the Umweltbundesamt numbers of 6500 to 7500 hydropower plants excluding pumped hydro, among which 406 with a nominal power above \unit[1]{MW} \cite{uba_wasserkraft}. The OPDS also has entries for pumped storage plants, listed in Tab. \ref{oedb_pump}.
+Figure \ref{oedb_capa} shows the repartition of the capacity of OPSD run-of-the-river and reservoir plants. This is consistent with the Umweltbundesamt numbers of 6500 to 7500 hydropower plants excluding pumped hydro, among which 406 with a nominal power above \unit[1]{MW} \cite{uba_wasserkraft}. The OPSD also has entries for pumped storage plants, listed in Tab. \ref{oedb_pump}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=10cm]{oedb_capa.png}
-\caption[Repartition of the capacity of run-of-the-river and reservoir plants in the Open Power Data Set]{Repartition of the capacity of run-of-the-river plants plants in the Open Power Data Set}
+\caption[Repartition of the capacity of run-of-the-river and reservoir plants in the Open Power System Data]{Repartition of the capacity of run-of-the-river plants plants in the Open Power System Data}
 \label{oedb_capa}
 \end{figure}
 
@@ -50,12 +50,12 @@ Figure \ref{oedb_capa} shows the repartition of the capacity of OPDS run-of-the-
   \end{tabular}
 \end{table}
 
-\subsection{Production data}
+\subsection{Comparison with the Agentur für Erneuerbare Energie data}
 \label{sub:prod_data}
 
-A simulation based on the OPDS register should be compared with real production data, to assess the precision of the model.\newline The hydroelectricity production of Germany is calculated by the Bundesverband der Energie- und Wasserwirtschaft (BDEW), a federal organisation of companies in the sector of water and energy, and published by the Agentur für Erneuerbare Energien (AEE). The AEE provides data about the installed capacity, electricity generation over the year, and number of hydropower plants for each federal state from 2001 to 2014 \cite{aee}. This data contains run-of-the-river and reservoir plants, as well as pumped storage power plants with natural inflow for which only the production from natural inflow is accounted for. There is therefore no consistent way of comparing it with the OPDS data because the OPDS does not state which part of the capacity of pumped hydro plants uses natural inflow. \newline
-Table \ref{oedb_aee_diff} lists the number of plants and installed capacity per federal state from the OPDS (run-of-the-river and reservoirs) and the AEE, as well as the relative difference for each state, with the AEE data as reference. It shows that even in states with no pumped storage facilities, such as Rhineland-Palatinate, these two sources give very different values for the numbers of plants and installed capacities. \newline
-The relative difference is shown on figures \ref{map_diff_num} and \ref{map_diff_pow}, which respectively display the differences in the number of plants and in the installed capacity. The analysis of these two maps and of Tab. \ref{oedb_aee_diff} shows that the OPDS and AEE data sets seem to be consistent in three federal states : Thuringia, Saxony-Anhalt and Mecklenburg-Vorpommern (Berlin and Bremen being excluded due to the near absence of hydropower). The discrepancies in other federal states can be explained by different reasons. First, the data of the the AEE are based on run-of-the-river plants, reservoir plants and natural inflow in pumped storage plants, while the data from the OPDS shown here only account for run-of-the-river and reservoir plants (the pumped hydro plants having been excluded due to the lack of information on the presence of natural inflow). Moreover, the OPDS register of reservoir plants, with its five entries, is clearly incomplete. This is why both the number of plants and the installed capacity are greater in the AEE data for most states. Second, the pumped storage and reservoir plants tend to have a bigger capacity than most run-of-the-river plants, which explains that the difference in installed capacity is not proportional to the difference in number of plants. Finally, rivers often mark boundaries between states and countries, and some hydropower plant are operated by two countries or inject electricity into the grid of a neighboring country. It is possible that the AEE and the OPDS do not count the installed capacity in the same manner in this situation.
+A simulation based on the OPSD register should be compared with real production data, to assess the precision of the model.\newline The hydroelectricity production of Germany is calculated by the Bundesverband der Energie- und Wasserwirtschaft (BDEW), a federal organisation of companies in the sector of water and energy, and published by the Agentur für Erneuerbare Energien (AEE). The AEE provides data about the installed capacity, electricity generation over the year, and number of hydropower plants for each federal state from 2001 to 2014 \cite{aee}. This data contains run-of-the-river and reservoir plants, as well as pumped storage power plants with natural inflow for which only the production from natural inflow is accounted for. There is therefore no consistent way of comparing it with the OPSD data because the OPSD does not state which part of the capacity of pumped hydro plants uses natural inflow. \newline
+Table \ref{oedb_aee_diff} lists the number of plants and installed capacity per federal state from the OPSD (run-of-the-river and reservoirs) and the AEE, as well as the relative difference for each state, with the AEE data as reference. It shows that even in states with no pumped storage facilities, such as Rhineland-Palatinate, these two sources give very different values for the numbers of plants and installed capacities. \newline
+The relative difference is shown on figures \ref{map_diff_num} and \ref{map_diff_pow}, which respectively display the differences in the number of plants and in the installed capacity. The analysis of these two maps and of Tab. \ref{oedb_aee_diff} shows that the OPSD and AEE data sets seem to be consistent in three federal states : Thuringia, Saxony-Anhalt and Mecklenburg-Vorpommern (Berlin and Bremen being excluded due to the near absence of hydropower). The discrepancies in other federal states can be explained by different reasons. First, the data of the the AEE are based on run-of-the-river plants, reservoir plants and natural inflow in pumped storage plants, while the data from the OPSD shown here only account for run-of-the-river and reservoir plants (the pumped hydro plants having been excluded due to the lack of information on the presence of natural inflow). Moreover, the OPSD register of reservoir plants, with its five entries, is clearly incomplete. This is why both the number of plants and the installed capacity are greater in the AEE data for most states. Second, the pumped storage and reservoir plants tend to have a bigger capacity than most run-of-the-river plants, which explains that the difference in installed capacity is not proportional to the difference in number of plants. Finally, rivers often mark boundaries between states and countries, and some hydropower plant are operated by two countries or inject electricity into the grid of a neighboring country. It is possible that the AEE and the OPSD do not count the installed capacity in the same manner in this situation.
 
 \begin{table}[H]
 \footnotesize 
@@ -64,7 +64,7 @@ The relative difference is shown on figures \ref{map_diff_num} and \ref{map_diff
  \label{oedb_aee_diff}
  \begin{tabular}{|c|cc|cc| cc|}
   \cline{2-7}
-  \multicolumn{0}{c|}{} &\multicolumn{2}{c}{\textbf{OPDS \cite{oedb}}}&\multicolumn{2}{|c|}{\textbf{AEE \cite{aee}}}&\multicolumn{2}{c|}{\textbf{Difference}} \\
+  \multicolumn{0}{c|}{} &\multicolumn{2}{c}{\textbf{OPSD \cite{oedb}}}&\multicolumn{2}{|c|}{\textbf{AEE \cite{aee}}}&\multicolumn{2}{c|}{\textbf{Difference}} \\
   \hline
   \textbf{State} & Number 	& 	Capacity [\unit{MW}] 	&	Number 	& 	Capacity [\unit{MW}] 	&	Number [\unit{\%}] 	&	Capacity [\unit{\%}] \\
   \hline
@@ -92,7 +92,7 @@ The relative difference is shown on figures \ref{map_diff_num} and \ref{map_diff
 \begin{figure}[H]
 \centering
 \includegraphics[width=13cm]{map_diff_num.png}
-\caption[Absolute difference in the number of plants between OPDS and AEE]{Absolute difference in the number of plants between OPDS and AEE}
+\caption[Absolute difference in the number of plants between OPSD and AEE]{Absolute difference in the number of plants between OPSD and AEE}
 \label{map_diff_num}
 \end{figure}
 
@@ -100,7 +100,7 @@ The relative difference is shown on figures \ref{map_diff_num} and \ref{map_diff
 \begin{figure}[H]
 \centering
 \includegraphics[width=13cm]{map_diff_pow.png}
-\caption[Absolute difference in the installed capacity between OPDS and AEE]{Absolute difference in the installed capacity between OPDS and AEE}
+\caption[Absolute difference in the installed capacity between OPSD and AEE]{Absolute difference in the installed capacity between OPSD and AEE}
 \label{map_diff_pow}
 \end{figure}
 

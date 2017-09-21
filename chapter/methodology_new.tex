@@ -151,7 +151,7 @@ The input data listed in Sec. \ref{sub:collec_data} and obtained by the sources 
 \subsection{Power plants register - OEDB}
 \label{sub:pp_reg}
 
-The OEDB register containing information about run-of-the-river power plants is extracted from the Open Power Data Set and stored in Tab. ``ego{\_}dp{\_}res{\_}powerplant'' in the schema ``supply''. It is a register for renewable power plants, classified by technology through the column generation{\_}type (solar, wind, geothermal, run{\_}of{\_}river, gas, biomass). The map of OPDS run-of-the-river power plants and German rivers shows that the localization of the plants is not always accurate (see Fig. \ref{pp_river_dist}).
+The OEDB register containing information about run-of-the-river power plants is extracted from the Open Power System Data and stored in Tab. ``ego{\_}dp{\_}res{\_}powerplant'' in the schema ``supply''. It is a register for renewable power plants, classified by technology through the column generation{\_}type (solar, wind, geothermal, run{\_}of{\_}river, gas, biomass). The map of OPSD run-of-the-river power plants and German rivers shows that the localization of the plants is not always accurate (see Fig. \ref{pp_river_dist}).
 \begin{figure}[H]
 \center
 \framebox{\includegraphics[width=10cm]{pp_river_dist.png}}
@@ -226,7 +226,7 @@ The model will be evaluated through following simulations, whose results are pre
 \begin{itemize}
  \item A single power plant whose characteristics are known (nominal water flow, head, turbine type) with precise runoff data (hourly measures from a gauge within \unit[2]{km} of the plant). Objective : evaluating the quality of the production calculation.
  \item Power plants whose characteristics are known, simulated as entries from the OEDB, i.e. only with the nominal power. Objective : evaluating the extrapolation processes presented in Sec. \ref{sub:assumptions}.
- \item A state-wide simulation based on the Open Power Data Set. Objective : evaluating the quality of the whole process (preprocessing and simulation).
+ \item A state-wide simulation based on the Open Power System Data. Objective : evaluating the quality of the whole process (preprocessing and simulation).
 \end{itemize}
 
 \subsection{Simulation of a single power plant}
@@ -284,7 +284,7 @@ In addition, the extrapolation process will also be tested on the HydroRaon powe
 
 \subsection{State-wide simulations} 
 \label{sub:metho_sw}
-The state wide simulation is based on the power plant register from the Open Power Data Set stored in the Open Energy Database. The simulated production is compared with the yearly production given by the AEE and presented in section \ref{sub:prod_data}. This section showed important discrepancies in installed capacity between the AEE data and the OPDS data. In order to minimize the impact of these discrepancies, the simulation will be run for Thuringe : among the three states for which the AEE data and the OPDS are consistent, this is the state with the biggest installed capacity, and it has no reservoir power plants listed in the OPDS. However, given the inconsistencies between these two sources, this process is mainly illustrative and cannot lead to a conclusion about the quality of the model. \newline
+The state wide simulation is based on the power plant register from the Open Power System Data stored in the Open Energy Database. The simulated production is compared with the yearly production given by the AEE and presented in section \ref{sub:prod_data}. This section showed important discrepancies in installed capacity between the AEE data and the OPSD data. In order to minimize the impact of these discrepancies, the simulation will be run for Thuringe : among the three states for which the AEE data and the OPSD are consistent, this is the state with the biggest installed capacity, and it has no reservoir power plants listed in the OPSD. However, given the inconsistencies between these two sources, this process is mainly illustrative and cannot lead to a conclusion about the quality of the model. \newline
 A simulation will be run with daily measured data from the Global Runoff Data Center (GRDC, Koblenz, Germany) and the Federal Waterways and Shipping Administration, provided by the Bundesanstalt für Gewässerkunde. Table \ref{quelle_runoff_th} lists the gauge stations and the timespans over which data was made available. The stations of Zoellnitz and Kaulsdorf-Eichicht were not used in this study because they do not have available data for the last decade. Another simulation will be run with modeled runoff from the WaterGAP software. The runoffs are given per raster cell, as shown on Fig. \ref{raster_th} and available from 2006 to 2009, with daily values.
 \begin{table}[H]
 \footnotesize
@@ -324,6 +324,6 @@ A simulation will be run with daily measured data from the Global Runoff Data Ce
 \begin{figure}[H]
 \centering
 \includegraphics[width=15cm]{raster_th.png}
-\caption{Main values of the modeled runoffs for Thuringia}
+\caption{Main values per raster cells of the modeled runoffs for Thuringia, over the years 2006 to 2009, based on WaterGAP data}
 \label{raster_th}
 \end{figure}
