@@ -1,8 +1,8 @@
-    def get_dV_rest(self):
+    def get_dV_res(self):
         r"""
-        Get value for dV_rest. dV_rest is calculated from the mean flow duration curve over several years.
-        The mean flow duration curve is obtained through dV_hist. If dV_hist is not given, dV_rest is set to 0.
-         Source for calculation of dV_rest : "Wahl, Dimensionierung und Abnahme einer Kleinturbine" from PACER
+        Get value for dV_res. dV_res is calculated from the mean flow duration curve over several years.
+        The mean flow duration curve is obtained through dV_hist. If dV_hist is not given, dV_res is set to 0.
+         Source for calculation of dV_res : "Wahl, Dimensionierung und Abnahme einer Kleinturbine" from PACER
         :return:
         float
         """

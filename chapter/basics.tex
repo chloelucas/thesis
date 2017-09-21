@@ -17,7 +17,7 @@ The main types of hydroelectricity generating methods are conventional hydropowe
 
 \section{Theory of run-of-the-river power plants}
 \subsection{Operating}
-Even though there is no reservoir accumulating the water upstream from the plant, run-of-the-river power plants need an altitude difference, called head, between the water surface before and after the plant. This can be achieved through a dam, a derivation of the water stream through a canal, or a lock \cite{tdi_petites_centrales}. The water is lead through a turbine (see fig. \ref{schema_hpp}) that drives an electrical generator.
+Even though there is no reservoir accumulating the water upstream from the plant, run-of-the-river power plants need an altitude difference, called head, between the water surface before and after the plant. This can be achieved through a dam, a derivation of the water stream through a canal, or a lock \cite{tdi_petites_centrales}. The water is lead through a turbine (see Fig. \ref{schema_hpp}) that drives an electrical generator.
 \begin{figure}[H]
 \centering
 \includegraphics[width=15cm]{schema_hpp_en.png}
@@ -25,7 +25,7 @@ Even though there is no reservoir accumulating the water upstream from the plant
 \label{schema_hpp}
 \end{figure}
 \subsection{Output power}
-A run-of-the-river power plant generates a power proportional to the water flow and the head, as seen in equation \ref{eq_power_1} \cite{quaschning}.
+A run-of-the-river power plant generates a power proportional to the water flow and the head, as seen in Eq. \eqref{eq_power_1} \cite{quaschning}.
 \begin{equation}
 \label{eq_power_1} 
  P = \rho_\mathrm{water} \cdot g \cdot \dot{V}_\mathrm{turbine} \cdot h \cdot \eta_\mathrm{turbine} \cdot \eta_\mathrm{generator}
@@ -43,21 +43,21 @@ With
 \end{itemize}
 
 
-The head of water is the altitude difference between the surface of the river before and after the turbine. For run-of-the-river hydropower plants, it is assumed that the water level before the turbine is kept constant by the dam, while the water level downstream can vary. This happens when the water flow exceeds the capacity of the turbine and has to be deviated over the dam. With this assumption, the head of water is given by the equation \ref{eq_head}. The water flow in the turbine is at most \.{V}\textsubscript{n}, and an amount of residual water has to be substracted from the available water flow. The amount of residual water is fixed by law to ensure a minimum water flow in the rivers at all time, an is potentially increased by the presence of a fish ladder or a passage for boats. The water flow in the turbine is given by equation \ref{eq_waterflow} \cite{quaschning}.
+The head of water is the altitude difference between the surface of the river before and after the turbine. For run-of-the-river hydropower plants, it is assumed that the water level before the turbine is kept constant by the dam, while the water level downstream can vary. This happens when the water flow exceeds the capacity of the turbine and has to be deviated over the dam. With this assumption, the head of water is given by Eq. \eqref{eq_head}. The water flow in the turbine is at most \.{V}\textsubscript{n}, and an amount of residual water has to be substracted from the available water flow. The amount of residual water is fixed by law to ensure a minimum water flow in the rivers at all time, an is potentially increased by the presence of a fish ladder or a passage for boats. The water flow in the turbine is given by Eq. \eqref{eq_waterflow} \cite{quaschning}.
 \begin{equation}
 \label{eq_head} 
  h = h_\mathrm{n} +W_\mathrm{n}-W
 \end{equation}
 \begin{equation}
 \label{eq_waterflow} 
- \dot{V}_\mathrm{turbine} = \min(\dot{V}_\mathrm{n},\dot{V}-\dot{V}_\mathrm{rest})
+ \dot{V}_\mathrm{turbine} = \min(\dot{V}_\mathrm{n},\dot{V}-\dot{V}_\mathrm{res})
 \end{equation}
 Where $h_\mathrm{n}$, $W_\mathrm{n}$ and $\dot{V}_\mathrm{n}$ are respectively the nominal head, water level downstream from the dam and water flow, and W and \.{V} the real water level and water flow.
 \newline
-The  equation \ref{eq_power_1} becomes :
+Equation \eqref{eq_power_1} becomes :
 \begin{equation}
  \label{eq_power_2} 
- P = \rho_\mathrm{water} \cdot g \cdot \min(\dot{V}_\mathrm{n},\dot{V}-\dot{V}_\mathrm{rest}) \cdot (h_\mathrm{n} +W_\mathrm{n}-W) \cdot \eta_\mathrm{turbine} \cdot \eta_\mathrm{generator}
+ P = \rho_\mathrm{water} \cdot g \cdot \min(\dot{V}_\mathrm{n},\dot{V}-\dot{V}_\mathrm{res}) \cdot (h_\mathrm{n} +W_\mathrm{n}-W) \cdot \eta_\mathrm{turbine} \cdot \eta_\mathrm{generator}
 \end{equation}
 
 \subsection{Types of turbines}
@@ -84,7 +84,7 @@ The four types of turbines used for run-of-the-river plants are Pelton, Francis,
 \label{eff_turb_gen}
 
 \subsubsection{Turbine efficiency}
-The efficiency of a turbine depends on its type and part-load range \cite{quaschning}\cite{pacer}. Figure \ref{efficiency_turb} gives the efficiency curves of different turbine types depending on the part load. These efficiencies can be approximated by the empiric function given in equation \ref{eq_eff} with the parameters given in table \ref{eff_param} \cite{quaschning}. In this equation, $\dot{V}_\mathrm{min}$ is the minimal water flow to start the turbine, $\dot{V}_\mathrm{n}$ is the nominal water flow of the turbine and $\dot{v}=\frac{\dot{V}-\dot{V}_\mathrm{min}}{\dot{V}_\mathrm{n}}$.
+The efficiency of a turbine depends on its type and part-load range \cite{quaschning}\cite{pacer}. Figure \ref{efficiency_turb} gives the efficiency curves of different turbine types depending on the part load. These efficiencies can be approximated by the empiric function given in Eq. \eqref{eq_eff} with the parameters given in Tab. \ref{eff_param} \cite{quaschning}. In this equation, $\dot{V}_\mathrm{min}$ is the minimal water flow to start the turbine, $\dot{V}_\mathrm{n}$ is the nominal water flow of the turbine and $\dot{v}=\frac{\dot{V}-\dot{V}_\mathrm{min}}{\dot{V}_\mathrm{n}}$.
 
 \begin{equation}
  \label{eq_eff}
@@ -105,7 +105,7 @@ The efficiency of a turbine depends on its type and part-load range \cite{quasch
  \label{eff_param}
  \begin{tabular}{|c|c|c|c|c|c|}
   \cline{2-6}
-  \multicolumn{1}{c|}{}&$\dot{V}_\mathrm{min} / \dot{V}\mathrm{n}$ & $\eta_\mathrm{T,n}$& $a_\mathrm{1}$ & $a_\mathrm{2}$&$a_\mathrm{3}$ \\ 
+  \multicolumn{1}{c|}{}&$\dot{V}_\mathrm{min} / \dot{V}_\mathrm{n}$ & $\eta_\mathrm{T,n}$& $a_\mathrm{1}$ & $a_\mathrm{2}$&$a_\mathrm{3}$ \\ 
   \hline
   Kaplan & 0.081& 0.895& 0.045 &0.965& 0.1 \\
   Pelton & 0.07& 0.885& 0.03& 0.99& 0.1\\
@@ -124,7 +124,7 @@ The efficiency of a turbine depends on its type and part-load range \cite{quasch
 
 \subsubsection{Generator efficiency}
 
-The efficiency factor of the generator depends on its power and part-load range \cite{pacer}. The Swiss ``Bundesamt für Konjunkturfragen'' gives the values given in table \ref{eta_gen}.
+The efficiency factor of the generator depends on its power and part-load range \cite{pacer}. The Swiss ``Bundesamt für Konjunkturfragen'' gives the values given in Tab. \ref{eta_gen}.
 
 \begin{table}[H]
  \centering
