@@ -5,7 +5,7 @@
 		toc=bib,		% Literaturverzeichnis im Inhaltsverzeichnis aufführen
 		%bibliography=openstyle	% Literaturverzeichnis etwas auflockern
 		headsepline,		% Linie unter Kolumnentitel
-		twoside=false,		% Layout für einseitigen Druck
+		twoside=true,		% Layout für einseitigen Druck
 		BCOR=12mm,		% Bindekorrektur: bei Buch normalerweise 12mm
 		DIV=14,			% DIV-Wert fuer die Erstellung des Satzspiegels, siehe scrguide
 		parskip=false,		% Absatzeinzug (Standard), half: kein Einzug, Halber Zeilenabstand, ...
@@ -22,7 +22,6 @@
 % Pakete
 \usepackage{cmap}		% to make the PDF files "searchable and copyable" in pdf viewer
 \usepackage[numbers]{natbib}
-%\usepackage{cite}
 \usepackage[english]{babel}	% deutschsprachig
 \usepackage[utf8]{inputenc}	% utf8 encoding
 \usepackage[T1]{fontenc}	% Schriftkodierung
@@ -54,6 +53,7 @@
 \usepackage{subfigure}
 \usepackage{scrhack}
 \usepackage{glossaries}
+\usepackage[hyphens]{url}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -86,9 +86,9 @@
 
 
 % Schusterjungen und Hurenkinder vermeiden
-\clubpenalty = 10000
+%\clubpenalty = 10000
 \widowpenalty = 10000
-\displaywidowpenalty = 10000
+%\displaywidowpenalty = 10000
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -230,6 +230,10 @@
 	% Selbstständigkeitserklärung
 	\include{./chapter/declaration_of_primary_authorship}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\include{./chapter/acknowledgments}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	\include{./chapter/abstract}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% Inhaltsverzeichnis
 	\tableofcontents
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -248,11 +252,6 @@
 	\include{./chapter/list_scientific_symbols}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-	\include{./chapter/acknowledgments}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-	\include{./chapter/abstract}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	% Put back headers
 	\pagestyle{scrheadings}
 	

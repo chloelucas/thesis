@@ -37,12 +37,12 @@ Figure \ref{raon_map} shows the locations of the plant and the closest gauge sta
 \label{prod_raon_curve}
 \end{figure}
 
-The simulated production is significantly over the measured production of the plant from April to July. This is due to the fact that the plant had just started operating and was undergoing tests and adjustments. In August, the simulated production is under the measured production. These results will be discussed in Ch. \ref{chap:discussion}.
+From April to July the simulated production is significantly over the measured production of the plant. This is due to the fact that the plant had just started operating and was undergoing tests and adjustments. In August, the simulated production is under the measured production. These results will be discussed in Ch. \ref{chap:discussion}.
 
 \section{Extrapolation of power plant data}
 \label{sec:missing_data}
-Section \ref{sub:metho_extra} listed plants for which both precise design parameters (nominal water flow, nominal head, number and type of turbines) and runoff data were available. The process of extrapolating missing data was tested for these plants. Their nominal power and number of turbines were fed to the model, and the result of the parameter extrapolation process was compared with the actual plant parameters. This process was done with measured and modeled runoffs as input. The results are given in Tab. \ref{tab_res_extra} which lists for each station the real and simulated nominal water flows, heads and turbine types. Simulation A is based on modeled runoffs while simulation B is based on measured runoffs. \newline
-The results of the simulation based on modeled runoff data shows several values very far from reality, where a very low nominal water flow has been set, inducing an extremely high head. Figure \ref{map_mosel_watergap} shows that this happens for plants located in raster cells with a low mean runoff (<\unit[10]{m\textsuperscript{3}\textperiodcentered s\textsuperscript{-1}}), not representative of the Mosel. In Koblenz, were the Mosel meets the Rhine, the runoff of the cell is representative of the Rhine, which has a much higher water flow. Therefore, the nominal water flow for the plant in Koblenz, located on the Mosel, is higher than the real nominal water flow, and the head is smaller. Moreover, Sec. \ref{sub:assumptions} explains that the extrapolation process follows the steps of the design process of a run-of-the-river power plant. This design process is normally based on the study of runoff time series over several decades preceding the plant construction, while modeled time series available for this study covered only the years 2006 to 2009. \newline
+Section \ref{sub:metho_extra} listed plants for which both precise design parameters (nominal water flow, nominal head, number and type of turbines) and runoff data were available. The process of extrapolating missing data was tested for these plants. Their nominal power and number of turbines were fed to the model, and the result of the parameter extrapolation process was compared with the actual plant parameters. This process was done with measured and modelled runoffs as input. The results are given in Tab. \ref{tab_res_extra} which lists for each station the real and simulated nominal water flows, heads and turbine types. Simulation A is based on modelled runoffs while simulation B is based on measured runoffs. \newline
+The results of the simulation based on modelled runoff data shows several values very far from reality, where a very low nominal water flow has been set, inducing an extremely high head. Figure \ref{map_mosel_watergap} shows that this happens for plants located in raster cells with a low mean runoff (<\unit[10]{m\textsuperscript{3}\textperiodcentered s\textsuperscript{-1}}), not representative of the Mosel. In Koblenz, were the Mosel meets the Rhine, the runoff of the cell is representative of the Rhine, which has a much higher water flow. Therefore, the nominal water flow for the plant in Koblenz, located on the Mosel, is higher than the real nominal water flow, and the head is smaller. Moreover, Sec. \ref{sub:assumptions} explains that the extrapolation process follows the steps of the design process of a run-of-the-river power plant. This design process is normally based on the study of runoff time series over several decades preceding the plant construction, while modelled time series available for this study covered only the years 2006 to 2009. \newline
 This faulty assignment of the nominal head and nominal water flow leads to a faulty assignment of the turbine type, since it is assigned based on the characteristic h\textsubscript{n}/\.V\textsubscript{n} diagram (Fig. \ref{charac_diag}). \newline
 The results based on measured runoff data seem to provide more coherent results. However, if this process gives good results for large waterways with a steady flow and numerous gauge stations, it is bound to entail uncertainties when applied to plants on minor rivers : in this case, the extrapolation process can be done on runoff data from a much bigger river than the one the plant is actually on.\newline
 Section \ref{sec:improv} shows that this extrapolation process has a big impact on the simulated production and prompts the need for a better adjustment of the runoff data to the plants, for the extrapolation process to be based on consistent data.
@@ -116,7 +116,7 @@ Section \ref{sec:improv} shows that this extrapolation process has a big impact 
 \begin{figure}[H]
 \centering
 \includegraphics[width=12cm]{map_mosel_watergap.png}
-\caption{Power plants of the Mosel with average modeled runoffs}
+\caption{Power plants of the Mosel with average modelled runoffs}
 \label{map_mosel_watergap}
 \end{figure}
 
@@ -125,16 +125,16 @@ Section \ref{sec:improv} shows that this extrapolation process has a big impact 
 
 Sections \ref{sec:db_hydroelec} and \ref{sub:metho_sw} showed the problems inherent to comparing the results of a state-wide simulation based on the OpenEnergy Database with publicly available production data (from the Agentur für Erneuerbare Energien - AEE). Firstly, the AEE aggregates data from run-of-the-river plants, reservoir plants, as well as some pumped storage plants instead of differentiating them like the Open Power System Data. Secondly, the OPSD registers, in terms of number of plants and installed capacity, are not consistent with the AEE aggregated data, and the inconsistencies cannot be explained by the precedent remark alone. \newline
 Section \ref{sub:metho_sw} justified the choice of running the state-wide simulation on the federal state of Thuringia, and the results are presented here. \newline
-The OPSD lists 205 run-of-the-river plants for Thuringia, displayed on Fig. \ref{map_th} along with the 18 used gauge stations, the average values of modeled runoff, and the river network.
+The OPSD lists 205 run-of-the-river plants for Thuringia, displayed on Fig. \ref{map_th} along with the 18 used gauge stations, the average values of modelled runoff, and the river network.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=15cm]{map_th.png}
-\caption{Run-of-the-river plants, gauge stations, river and modeled runoff in Thuringia}
+\caption{Run-of-the-river plants, gauge stations, river and modelled runoff in Thuringia}
 \label{map_th}
 \end{figure}
 
-To state-wide simulations were made : one based on modeled runoff and one based on measured runoff. The data was preprocessed following the guidelines of Sec. \ref{sub:pp_reg} : the location of the plants was refined, placing them on the course of the nearest river, and they were assigned a gauge station (in the case of measured runoff) or raster cell (in the case of modeled runoff). The yearly productions are given in Tab. \ref{res_th} and compared with the AEE values, and the productions of each plant are displayed on Fig. \ref{prod_th_map}.
+To state-wide simulations were made : one based on modelled runoff and one based on measured runoff. The data was preprocessed following the guidelines of Sec. \ref{sub:pp_reg} : the location of the plants was refined, placing them on the course of the nearest river, and they were assigned a gauge station (in the case of measured runoff) or raster cell (in the case of modelled runoff). The yearly productions are given in Tab. \ref{res_th} and compared with the AEE values, and the productions of each plant are displayed on Fig. \ref{prod_th_map}.
 
 \begin{table}[H]
 \footnotesize
@@ -144,7 +144,7 @@ To state-wide simulations were made : one based on modeled runoff and one based 
  \begin{tabular}{|l|ccc|}
  \hline
   &\multicolumn{3}{c|}{Yearly production in MWh}\\
-  Year&Published by AEE&Simulated from modeled runoffs&Simulated from measured runoff\\
+  Year&Published by AEE&Simulated from modelled runoffs&Simulated from measured runoff\\
   \hline \hline
   \multirow{2}{*}{2005}&\multirow{2}{*}{180}&119&-\\
   &&-\unit[34]{\%}&-\\
@@ -167,7 +167,7 @@ To state-wide simulations were made : one based on modeled runoff and one based 
 \begin{figure}[H]
 \centering
 \includegraphics[width=15cm]{prod_th_map.png}
-\caption{Simulated production of run-of-the-river plants in Thuringia, based on modeled runoffs}
+\caption{Simulated production of run-of-the-river plants in Thuringia, based on modelled runoffs, year 2009}
 \label{prod_th_map}
 \end{figure}
  
