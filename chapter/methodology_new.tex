@@ -18,11 +18,11 @@ The electricity production of a power plant will be calculated using the charact
  P = \rho_\mathrm{water} \cdot g \cdot \min(\dot{V}_\mathrm{n},\dot{V}-\dot{V}_\mathrm{res}) \cdot (h_\mathrm{n} +W_\mathrm{n}-W) \cdot \eta_\mathrm{turbine} \cdot \eta_\mathrm{generator}\tag{\ref{eq_power_2} revisited}
 \end{equation*}
 
-In order to use this equation, the following parameters and values are needed : 
+In order to use this equation, the following parameters and values are needed: 
 
 \begin{itemize}
 \itemsep0em
- \item Power plant parameters : 
+ \item Power plant parameters: 
  \begin{itemize}
   \item nominal water flow through the turbine ($\dot{V}_\mathrm{n}$)
   \item nominal head of water ($h_\mathrm{n}$)
@@ -31,7 +31,7 @@ In order to use this equation, the following parameters and values are needed :
   \item efficiency curve of the generator ($\eta_\mathrm{generator}$)  
   \item residual water flow ($\dot{V}_\mathrm{res}$)  
  \end{itemize}
- \item Input time series : 
+ \item Input time series: 
  \begin{itemize}
   \item actual water flow through the turbine ($\dot{V}$)
   \item actual water level downstream from the turbine ($W$)
@@ -50,7 +50,7 @@ A specification of the model, as explained in Sec. \ref{sub:spec}, is to be able
 \subsubsection{Approximation of the head by the nominal head}
 \label{sub:approx_h}
 
-Equation \eqref{eq_head} gives the relation between the head and the water level. However, it is not possible to know the water level directly after a power plant without having a gauge station exactly there. Section \ref{sec:meas_runoff} shows that measured data for water level is widely available throughout Germany, however the gauge stations are not bound to power plants and the water level directly downstream from a plant cannot be approximated with a value measured somewhere else on the river, because it depends on the shape of the river bed : Fig. \ref{mosel_WQ} based on measurement data for three stations on the Mosel from the Deutsches Gewässerkundliches Jahrbuch show linear correlations with different slopes between water level and water flow, and Fig. \ref{W_mosel} shows that the water level does not depend on the distance to the river mouth (see App. \ref{app:boxplot} on how to read the graph). \newline
+Equation \eqref{eq_head} gives the relation between the head and the water level. However, it is not possible to know the water level directly after a power plant without having a gauge station exactly there. Section \ref{sec:meas_runoff} shows that measured data for water level is widely available throughout Germany, however the gauge stations are not bound to power plants and the water level directly downstream from a plant cannot be approximated with a value measured somewhere else on the river, because it depends on the shape of the river bed: Fig. \ref{mosel_WQ} based on measurement data for three stations on the Mosel from the Deutsches Gewässerkundliches Jahrbuch show linear correlations with different slopes between water level and water flow, and Fig. \ref{W_mosel} shows that the water level does not depend on the distance to the river mouth (see App. \ref{app:boxplot} on how to read the graph). \newline
 This strong variability of water level from a place to another would bias the results if Eq. \eqref{eq_head} was used with measured water level as input. Moreover, the modelled river data will not include information on the water level. For these reasons, the model will approximate the head of water $h$ with the nominal head $h_\mathrm{n}$.
 
 \begin{figure}[H]
@@ -128,11 +128,11 @@ Finally, the type of turbine is deduced from the nominal head and nominal water 
 \subsection{Necessary input data}
 \label{sub:collec_data}
 
-Considering the assumptions made in the previous section (Sec. \ref{sub:assumptions}), the list of necessary data from Sec. \ref{sub:perf_calc} becomes :
+Considering the assumptions made in the previous section (Sec. \ref{sub:assumptions}), the list of necessary data from Sec. \ref{sub:perf_calc} becomes:
 \begin{itemize}
  \item Water flow data (time series for the period to simulate)
  \item Geographical data (river courses)
- \item Properties of installed run-of-the-river power plants :
+ \item Properties of installed run-of-the-river power plants:
  \begin{itemize}
   \item Coordinates
   \item Installed capacity
@@ -142,7 +142,7 @@ Considering the assumptions made in the previous section (Sec. \ref{sub:assumpti
  \item Real production data for validation
 \end{itemize}
 
-This data has to be collected and pre-processed to serve as input for the model (see Sec. \ref{sec:data_preproc}).
+This data has to be collected and pre-processed to serve as input for the model (see Sec.~\ref{sec:data_preproc}).
 
 \section{Data preprocessing}
 \label{sec:data_preproc}
@@ -164,8 +164,8 @@ In the case of modelled runoff data (see Sec. \ref{sec:mod_runoff}), this will e
 
 \subsubsection*{River identification and relocation of power plants}
 
-This is made using postGIS functions. The register of all rivers in Germany was created from the Digital Landscape Model (DLM250) of the German Federal Agency for Cartography and Geodesy. This model describes the topographic features of the landscape in the vector format and is made available as open data \cite{dlm250}. \newline Two types of features were used : ``57003 AX{\_}Gewaesserstationierungsachse'' from the layer GEW03 gives the main rivers and ``44004 AX{\_}Gewaesserachse'' from the layer GEW01 gives the secondary rivers. \newline 
-SQL queries on the river segments and power plants geometries enabled the assignment of a river to each plant. This process is described in Fig. \ref{river_id} and takes place as follows : 
+This is made using postGIS functions. The register of all rivers in Germany was created from the Digital Landscape Model (DLM250) of the German Federal Agency for Cartography and Geodesy. This model describes the topographic features of the landscape in the vector format and is made available as open data \cite{dlm250}. \newline Two types of features were used: ``57003 AX{\_}Gewaesserstationierungsachse'' from the layer GEW03 gives the main rivers and ``44004 AX{\_}Gewaesserachse'' from the layer GEW01 gives the secondary rivers. \newline 
+SQL queries on the river segments and power plants geometries enabled the assignment of a river to each plant. This process is described in Fig. \ref{river_id} and takes place as follows: 
 
 \begin{figure}[H]
 \begin{center}
@@ -195,7 +195,7 @@ In the case of measured values, the stations are located on rivers across the co
 \subsection{Runoff data}
 \label{sec:runoff_data}
 
-Each type of runoff data (measured and modelled) is stored in the database with the following structure : a table listing the gauge stations or raster cells and their geometries (see Tab. \ref{db_struct} left), and a table storing a runoff time series per year for each station (see Tab. \ref{db_struct} right). In the database, runoffs are stored in \unit{m\textsuperscript{3}\textperiodcentered s\textsuperscript{-1}} with the letter 'Q' and water levels in \unit{cm} with the letter 'W'.
+Each type of runoff data (measured and modelled) is stored in the database with the following structure: a table listing the gauge stations or raster cells and their geometries (see Tab. \ref{db_struct} left), and a table storing a runoff time series per year for each station (see Tab. \ref{db_struct} right). In the database, runoffs are stored in \unit{m\textsuperscript{3}\textperiodcentered s\textsuperscript{-1}} with the letter 'Q' and water levels in \unit{cm} with the letter 'W'.
 
 \begin{table}[H]
 \footnotesize
@@ -221,18 +221,17 @@ Each type of runoff data (measured and modelled) is stored in the database with 
 
 \label{sec:simu_res}
 
-In order to validate the model, the simulation results have to be compared to real data. This concerns the part of the model extrapolating plant parameters (Sec. \ref{sub:assumptions}) as well as the calculation of production itself (Sec. \ref{sub:perf_calc}). \newline
-The model will be evaluated through following simulations, whose results are presented in Ch. \ref{chap:results}.
+In order to validate the model, the simulation results have to be compared to real data. This concerns the part of the model extrapolating plant parameters (Sec. \ref{sub:assumptions}) as well as the calculation of production itself (Sec. \ref{sub:perf_calc}). The model will be evaluated through following simulations, whose results are presented in Ch. \ref{chap:results}.
 \begin{itemize}
- \item A single power plant whose characteristics are known (nominal water flow, head, turbine type) with precise runoff data (hourly measures from a gauge within \unit[2]{km} of the plant). Objective : evaluating the quality of the production calculation.
- \item Power plants whose characteristics are known, simulated as entries from the OEDB, i.e. only with the nominal power. Objective : evaluating the extrapolation processes presented in Sec. \ref{sub:assumptions}.
- \item A state-wide simulation based on the Open Power System Data. Objective : evaluating the quality of the whole process (preprocessing and simulation).
+ \item A single power plant whose characteristics are known (nominal water flow, head, turbine type) with precise runoff data (hourly measures from a gauge within \unit[2]{km} of the plant). Objective: evaluating the quality of the production calculation.
+ \item Power plants whose characteristics are known, simulated as entries from the OEDB, i.e. only with the nominal power. Objective: evaluating the extrapolation processes presented in Sec. \ref{sub:assumptions}.
+ \item A state-wide simulation based on the Open Power System Data. Objective: evaluating the quality of the whole process (preprocessing and simulation).
 \end{itemize}
 
 \subsection{Simulation of a single power plant}
 \label{sub:metho_single}
 The simulation will be conducted on a power plant whose parameters are known, giving as many inputs as possible. The Hydroraon power plant in the french Vosges department and operated by the company Ercisol was chosen for this simulation. Ercisol operates 4 run-of-the-river power plants in France and publishes the monthly productions on their website \cite{ercisol}. The power plant ``Hydroraon'' was chosen due to its proximity with a gauge station measuring water flow. The measured time series are made available on the ``Banque Hydro'' \cite{eaufrance}. This database is run by the SCHAPI, a section of the French Ministry of Ecology, Sustainable Development and Energy. \newline
-The power plant has the following parameters :
+The power plant has the following parameters:
 \begin{itemize}
 \itemsep0em
  \item P\textsubscript{n} \tabto{4cm}: \unit[400]{kW}
@@ -248,7 +247,7 @@ Since the power plant started operating on April 12\textsuperscript{th} 2017, th
 \subsection{Extrapolation of missing plant parameters}
 \label{sub:metho_extra}
 This process will be run on power plants whose characteristics (nominal head, nominal water flow, turbine types) are known, and for which measured and modelled values of water flow are available. \newline
-The power plants of the Mosel were investigated because their characteristics are publicly available \cite{mosel} and the water flow is measured in three stations located in Cochem, Trier and Perl and run by the Federal Waterways and Shipping Administration (WSV). The time series were made available by the Federal Institute of Hydrology (BfG) and contain daily values over following timespans :
+The power plants of the Mosel were investigated because their characteristics are publicly available \cite{mosel} and the water flow is measured in three stations located in Cochem, Trier and Perl and run by the Federal Waterways and Shipping Administration (WSV). The time series were made available by the Federal Institute of Hydrology (BfG) and contain daily values over following timespans:
 \begin{itemize}
 \itemsep0em
  \item Cochem \tabto{2cm}: 1901 to 2016
@@ -284,15 +283,9 @@ In addition, the extrapolation process will also be tested on the HydroRaon powe
 
 \subsection{State-wide simulations} 
 \label{sub:metho_sw}
-The state-wide simulation is based on the power plant register from the Open Power System Data stored in the Open Energy Database. The simulated production is compared with the yearly production given by the AEE and presented in section \ref{sub:prod_data}. This section showed important discrepancies in installed capacity between the AEE data and the OPSD data. In order to minimize the impact of these discrepancies, the simulation will be run for Thuringe : among the three states for which the AEE data and the OPSD are consistent, this is the state with the biggest installed capacity, and it has no reservoir power plants listed in the OPSD. However, given the inconsistencies between these two sources, this process is mainly illustrative and cannot lead to a conclusion about the quality of the model. \newline
-A simulation will be run with daily measured data from the Global Runoff Data Center (GRDC, Koblenz, Germany) and the Federal Waterways and Shipping Administration, provided by the Bundesanstalt für Gewässerkunde. Table \ref{quelle_runoff_th} lists the gauge stations and the timespans over which data was made available. The stations of Zoellnitz and Kaulsdorf-Eichicht were not used in this study because they do not have available data over the last decade. Another simulation will be run with modelled runoff from the WaterGAP software. The runoffs are given per raster cell, as shown on Fig. \ref{raster_th} and available from 2006 to 2009, with daily values.
+The state-wide simulation is based on the power plant register from the Open Power System Data stored in the Open Energy Database. The simulated production is compared with the yearly production given by the AEE and presented in section \ref{sub:prod_data}. This section showed important discrepancies in installed capacity between the AEE data and the OPSD data. In order to minimize the impact of these discrepancies, the simulation will be run for Thuringe: among the three states for which the AEE data and the OPSD are consistent, this is the state with the biggest installed capacity, and it has no reservoir power plants listed in the OPSD. However, given the inconsistencies between these two sources, this process is mainly illustrative and cannot lead to a conclusion about the quality of the model. \newline
+A simulation will be run with daily measured data from the Global Runoff Data Center (GRDC, Koblenz, Germany) and the Federal Waterways and Shipping Administration, provided by the Bundesanstalt für Gewässerkunde. Table \ref{quelle_runoff_th} lists the gauge stations and the timespans over which data was made available. The stations of Zoellnitz and Kaulsdorf-Eichicht were not used in this study because they do not have available data over the last decade. Another simulation will be run with modelled runoff from the WaterGAP software. The runoffs are given per raster cell, as shown in Fig. \ref{raster_th} and available from 2006 to 2009, with daily values.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=12cm]{raster_th.png}
-\caption{Main values per raster cells of the modelled runoffs for Thuringia, over the years 2006 to 2009, based on WaterGAP data}
-\label{raster_th}
-\end{figure}
 
 \begin{table}[H]
 \footnotesize
@@ -327,5 +320,11 @@ A simulation will be run with daily measured data from the Global Runoff Data Ce
  \end{tabular}
 \end{table}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=10cm]{raster_th.png}
+\caption{Main values per raster cells of the modelled runoffs for Thuringia, over the years 2006 to 2009, based on WaterGAP data}
+\label{raster_th}
+\end{figure}
 
 

@@ -1,7 +1,7 @@
 \chapter{Data basis}
 \label{chap:data_basis}
 
-The previous chapter mentioned parameters affecting hydroelectricity production. This chapter will set the focus on describing and analysing the data sets available to perform this work. This includes power plants data registers and production data, as well as runoff data sets. 
+This chapter will set the focus on describing and analysing the data sets available to develop and validate the model. This includes power plants data registers and production data, as well as runoff data sets. 
 
 \section{Hydroelectricity}
 \label{sec:db_hydroelec}
@@ -9,7 +9,7 @@ Simulating a region's hydroelectricity production requires a register of all exi
 
 \subsection{Open Energy Database}
 \label{sub:hpp_reg}
-This work, as well as the project open\_FRED, is linked to the OpenEnergy Platform, developed within the open\_eGo project. The OpenEnergy Platform, through the OpenEnergy Database, provides necessary tools for transparent and collaborative energy system modelling \cite{oedb}, such as grid data, power plants register, geography data or weather data. The power plants register has been extracted from the Open Power System Data (OPSD) \cite{opsd} and has 7491 entries for run-of-the-river hydropower plants and 5 entries for reservoir plants in Germany. The run-of-the-river entries contain, among others, the following information :
+This work, as well as the project open\_FRED, is linked to the OpenEnergy Platform, developed within the open\_eGo project. The OpenEnergy Platform, through the OpenEnergy Database, provides necessary tools for transparent and collaborative energy system modelling \cite{oedb}, such as grid data, power plants register, geography data or weather data. The power plants register has been extracted from the Open Power System Data (OPSD) \cite{opsd} and has 7491 entries for run-of-the-river hydropower plants and 5 entries for reservoir plants in Germany. The run-of-the-river entries contain, among others, the following information:
 \begin{itemize}
 \itemsep-0.5em 
  \item Company operating the plant and network operator information
@@ -55,7 +55,22 @@ Figure \ref{oedb_capa} shows the capacity distribution of OPSD run-of-the-river 
 
 The model's precision can be assessed by comparing the results of a simulation based on the OPSD register with real production data.\newline The hydroelectricity production of Germany is calculated by the German Association of Energy and Water Industries (Bundesverband der Energie- und Wasserwirtschaft - BDEW), and published by the Renewable Energies Agency (Agentur für Erneuerbare Energien - AEE). The AEE provides data on the installed capacity, electricity generation over the year, and number of hydropower plants per federal state from 2001 to 2014 \cite{aee}. This data contains run-of-the-river and reservoir plants, as well as pumped storage power plants with natural inflow for which only the production from natural inflow is accounted for. Hence this data is not consistent with the OPSD data as the latter does not state which part of the capacity of pumped hydro plants uses natural inflow. \newline
 Table \ref{oedb_aee_diff} lists the number of plants and installed capacity per federal state from the OPSD (run-of-the-river and reservoirs) and the AEE, as well as the relative difference for each state, with the AEE data as reference. It shows that even in states with no pumped storage facilities, such as Rhineland-Palatinate, these two sources give very different values for the numbers of plants and installed capacities. \newline
-The relative difference is shown on figures \ref{map_diff_num} and \ref{map_diff_pow}, which display the differences in the number of plants and in the installed capacity respectively. The analysis of these two maps and of Tab. \ref{oedb_aee_diff} shows that the OPSD and AEE data sets seem to be consistent in three federal states : Thuringia, Saxony-Anhalt and Mecklenburg-Vorpommern (Berlin and Bremen being excluded due to the near absence of hydropower). Several reasons can explain the discrepancies in the other federal states. First, the AEE data is based on run-of-the-river plants, reservoir plants and natural inflow in pumped storage plants, while the OPSD data shown here only accounts for run-of-the-river and reservoir plants (the pumped hydro plants having been excluded due to the lack of information on natural inflow presence). Moreover, the OPSD register of reservoir plants, with its five entries, is clearly incomplete. This is why both the number of plants and the installed capacity are greater in the AEE data for most states. Second, the pumped storage and reservoir plants tend to have a bigger capacity than most run-of-the-river plants, which explains why the difference in installed capacity is not proportional to the difference in number of plants. Finally, rivers often mark boundaries between states and countries, and some hydropower plants are operated by two countries or inject electricity into the grid of a neighboring country. It is possible that the AEE and the OPSD measure installed capacity in different ways when dealing with this situation.
+The relative difference is shown in figures \ref{map_diff_num} and \ref{map_diff_pow}, which display the differences in the number of plants and in the installed capacity respectively. The analysis of these two maps and of Tab. \ref{oedb_aee_diff} shows that the OPSD and AEE data sets seem to be consistent in three federal states: Thuringia, Saxony-Anhalt and Mecklenburg-Vorpommern (Berlin and Bremen being excluded due to the near absence of hydropower). Several reasons can explain the discrepancies in the other federal states. First, the AEE data is based on run-of-the-river plants, reservoir plants and natural inflow in pumped storage plants, while the OPSD data shown here only accounts for run-of-the-river and reservoir plants (the pumped hydro plants having been excluded due to the lack of information on natural inflow presence). Moreover, the OPSD register of reservoir plants, with its five entries, is clearly incomplete. This is why both the number of plants and the installed capacity are greater in the AEE data for most states. Second, the pumped storage and reservoir plants tend to have a bigger capacity than most run-of-the-river plants, which explains why the difference in installed capacity is not proportional to the difference in number of plants. Finally, rivers often mark boundaries between states and countries, and some hydropower plants are operated by two countries or inject electricity into the grid of a neighboring country. It is possible that the AEE and the OPSD measure installed capacity in different ways when dealing with this situation.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{map_diff_num.png}
+\caption[Absolute difference in the number of plants between OPSD and AEE]{Absolute difference in the number of plants between OPSD and AEE}
+\label{map_diff_num}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=12cm]{map_diff_pow.png}
+\caption[Absolute difference in the installed capacity between OPSD and AEE]{Absolute difference in the installed capacity between OPSD and AEE}
+\label{map_diff_pow}
+\end{figure}
 
 \begin{table}[H]
 \footnotesize 
@@ -88,23 +103,6 @@ The relative difference is shown on figures \ref{map_diff_num} and \ref{map_diff
  \end{tabular} 
 \end{table}
 
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=13cm]{map_diff_num.png}
-\caption[Absolute difference in the number of plants between OPSD and AEE]{Absolute difference in the number of plants between OPSD and AEE}
-\label{map_diff_num}
-\end{figure}
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=13cm]{map_diff_pow.png}
-\caption[Absolute difference in the installed capacity between OPSD and AEE]{Absolute difference in the installed capacity between OPSD and AEE}
-\label{map_diff_pow}
-\end{figure}
-
-
 \subsection{Future data set}
 
 The German Federal Network Agency (BNetzA - Bundesnetzagentur) is developing a register, called ``Marktstammdatenregister'', of every energy production facility in Germany. This register should give a comprehensive overview of the power plants in Germany, sorted by energy carrier and type of plant (reservoir, run-of-the-river, pumped hydro...), and lists the location and nominal power, as well as the presence or absence of a restriction of the usable water flow due for instance to a fish ladder or fish protection system \cite{MaStR}. \newline
@@ -115,8 +113,9 @@ When published, it will be uploaded into the OEDB and should provide a more cons
 \label{sec:meas_runoff}
 
 Water levels and water flows of the main rivers are regularly measured and documented by several organizations, in order to keep track of the history of the waterways and to anticipate potential floods. Measurement stations have been installed and monitored for decades, dating back as far as 1816 for Germany, and the time series are stored in databases. There are different ways to measure the water flow, such as propeller gauges, ultrasonic flow meter, or acoustic current profilers. In Germany there are around 4300 stations measuring water flow or water level, operated by different stakeholders \cite{bafg_hyd}.  The German Federal Institute of Hydrology (Bundesanstalt für Gewässerkunde – BfG) is a supreme federal agency within the portfolio of the Federal Ministry of Transport and Digital Infrastructure. As such it is the federal government's scientific institution for research, assessments, and consulting in the fields of hydrology, uses, quality and conservation of waters and ecology \cite{bafg}. The BfG gathers data about water levels and water flows since its founding in 1949 and publishes it every year in the ``Deutsches Gewässerkundliches Jahrbuch'' (DGJ). The BfG also operates the HYDABA database, in which times series for water flow and water level are stored, starting in 1816 with daily values and shifting to hourly values in 1981. This database gathers water levels from around 600 gauges and water flows from around 250 stations, operated by the Federal Waterways and Shipping Administration (WSV). The data from the HYDABA database can be provided to, among others, universities, public administrations, engineering or insurance companies \cite{bafg_hyd}. \newline
-The WSV, through its service Pegelonline, publishes raw values of water levels from its gauge stations in Germany over the previous 30 days. Some of the stations also measure water flows \cite{pegelonline}. The locations of the gauges are shown on Fig. \ref{pegelonline}.
-
+The WSV, through its service Pegelonline, publishes raw values of water levels from its gauge stations in Germany over the previous 30 days. Some of the stations also measure water flows \cite{pegelonline}. The locations of the gauges are shown in Fig. \ref{pegelonline}.\newline
+Another source for runoff data is the Global Runoff Data Center (GRDC, 56068 Koblenz, Germany) which operates, on a non-profit basis, a world-wide database of measured runoffs. The GRDC can transfer its data on demand but under certain conditions (according to its policy guidelines for the dissemination of data).\newline
+Other countries have similar databases for measured river data. In France, the ``Banque Hydro'' is run by the SCHAPI (Service Central d'Hydrométéorologie et d'Appui à la Prévision des Inondations), a section of the French Ministry of Ecology, Sustainable Development and Energy, and gathers and publishes data from around 5000 gauge stations.
 \begin{figure}[H]
 \centering
 \includegraphics[width=8cm]{pegelonline.png}
@@ -124,15 +123,12 @@ The WSV, through its service Pegelonline, publishes raw values of water levels f
 \label{pegelonline}
 \end{figure}
 
-Another source for runoff data is the Global Runoff Data Center (GRDC, 56068 Koblenz, Germany) which operates, on a non-profit basis, a world-wide database of measured runoffs. The GRDC can transfer its data on demand but under certain conditions (according to its policy guidelines for the dissemination of data).\newline
-
-Other countries have similar databases for measured river data. In France, the ``Banque Hydro'' is run by the SCHAPI (Service Central d'Hydrométéorologie et d'Appui à la Prévision des Inondations), a section of the French Ministry of Ecology, Sustainable Development and Energy, and gathers and publishes data from around 5000 gauge stations.
 
 \section{Runoff data - modelled}
 
 \label{sec:mod_runoff}
 Modelling runoff is a difficult task, as the model has to assess the interactions between river sources, relief, rainfall, local soil and vegetation type, as well as anthropogenic use. This can be done using GIS \cite{bayazit}, by assigning each raster cell with the aforementioned parameters. The water input in each cell (rainfall, water sources and runoff from other cells) is converted in runoff from the cell by subtracting the water lost by infiltration, evapotranspiration, or anthropogenic use, and the runoff direction is given by the slope, calculated using a digital elevation model \cite{heywood}. \newline
-The WaterGAP software, developed by the universities of Kassel and Frankfurt, uses this method to calculate flows and reservoirs of water around the globe, as shown on Fig. \ref{waterGAP}.
+The WaterGAP software, developed by the universities of Kassel and Frankfurt, uses this method to calculate flows and reservoirs of water around the globe, as shown in Fig. \ref{waterGAP}.
 \begin{figure}[H]
 \centering
 \includegraphics[width=15cm]{waterGAP.png}

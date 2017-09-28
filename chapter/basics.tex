@@ -52,9 +52,7 @@ The head of water is the altitude difference between the surface of the river be
 \label{eq_waterflow} 
  \dot{V}_\mathrm{turbine} = \min(\dot{V}_\mathrm{n},\dot{V}-\dot{V}_\mathrm{res})
 \end{equation}
-Where $h_\mathrm{n}$, $W_\mathrm{n}$ and $\dot{V}_\mathrm{n}$ are respectively the nominal head, water level downstream from the dam and water flow, and W and \.{V} the real water level and water flow.
-\newline
-Equation \eqref{eq_power_1} becomes :
+Where $h_\mathrm{n}$, $W_\mathrm{n}$ and $\dot{V}_\mathrm{n}$ are respectively the nominal head, water level downstream from the dam and water flow, and W and \.{V} the real water level and water flow. Equation~\eqref{eq_power_1} becomes:
 \begin{equation}
  \label{eq_power_2} 
  P = \rho_\mathrm{water} \cdot g \cdot \min(\dot{V}_\mathrm{n},\dot{V}-\dot{V}_\mathrm{res}) \cdot (h_\mathrm{n} +W_\mathrm{n}-W) \cdot \eta_\mathrm{turbine} \cdot \eta_\mathrm{generator}
@@ -62,14 +60,15 @@ Equation \eqref{eq_power_1} becomes :
 
 \subsection{Types of turbines}
 
-There are two families of water turbines : action turbines and reaction turbines. Action turbines use the kinetic energy of water, without any changes in pressure, while reaction turbines transform the potential energy of water into kinetic energy, decreasing the pressure. The main types of turbines for each family are \cite{quaschning} :
+There are two families of water turbines: action turbines and reaction turbines. Action turbines use the kinetic energy of water, without any changes in pressure, while reaction turbines transform the potential energy of water into kinetic energy, decreasing the pressure. The main types of turbines for each family are \cite{quaschning}:
 \begin{itemize}
- \item Action turbines
+\item Action turbines
  \begin{itemize}
   \item Pelton turbine
   \item Turgo turbine
   \item Ossberger turbine or cross-flow turbines
  \end{itemize}
+ \item[~] 
  \item Reaction turbines
  \begin{itemize}
   \item Kaplan turbines
@@ -78,7 +77,7 @@ There are two families of water turbines : action turbines and reaction turbines
  \end{itemize}
 \end{itemize}
 
-The four types of turbines used for run-of-the-river plants are Pelton, Francis, Kaplan and crossflow. These turbines have optimal performances over ranges of water flow and hydraulic head : Kaplan turbine are appropriate for low-head plants, Francis for average heads and Pelton for low water flows and high heads.   
+The four types of turbines used for run-of-the-river plants are Pelton, Francis, Kaplan and crossflow. These turbines have optimal performances over ranges of water flow and hydraulic head: Kaplan turbine are appropriate for low-head plants, Francis for average heads and Pelton for low water flows and high heads.   
 
 \subsection{Turbine and generator efficiencies}
 \label{eff_turb_gen}
@@ -147,7 +146,7 @@ The efficiency factor of the generator depends on its power and part-load range 
 
 \section{Existing models and approaches}
 
-Several hydropower models have been or are being developed, among which : 
+Several hydropower models have been or are being developed, among which: 
 \begin{itemize}
  \item The r.green.hydro model, developed by EURAC Research in Bolzano \cite{grass} to work with the GRASS GIS software computes hydropower potential from discharge raster maps with theoretical, legal, technical, ecological or economic constraints.
  \item The simple{\_}hydropower{\_}model from James Sample \cite{sample} estimates the potential impacts of climate change on Scotland's run-of-river hydropower potential. It takes historical and future flow data as input, a user-defined head of water, and set the nominal water flow based on the flow duration curve, and computes the output.
